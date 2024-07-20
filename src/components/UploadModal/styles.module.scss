@@ -1,0 +1,17 @@
+.FormWrapper {
+  display: flex;
+  flex-direction: column;
+  .FormFiled {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-block: 8px;
+    .FormLabel {
+      color: rgb(39, 39, 39);
+    }
+  }
+}
+
+.FileIcon {
+  cursor: pointer;
+}

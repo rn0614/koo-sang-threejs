@@ -1,0 +1,30 @@
+.SidebarWrapper {
+  grid-area: aside;
+  display: flex;
+  gap:8px;
+  flex-direction: column;
+  background-color: rgb(141, 141, 141);
+
+  .Route {
+    display: flex;
+    flex-direction: column;
+    margin-top:8px;
+    margin-inline: 8px;
+    background-color: rgb(229, 229, 229);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+}
+
+.MainLayout {
+  display: grid;
+  grid-template-areas:
+    "aside header"
+    "aside main";
+  gap: 10px;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  grid-template-rows: 30px auto;
+  grid-template-columns: minmax(100px, 200px) auto;
+}

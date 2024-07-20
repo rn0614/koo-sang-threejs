@@ -1,0 +1,17 @@
+.SidebarLink {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-inline: 8px;
+  padding-block: 4px;
+  gap: 8px;
+
+  .Paragraph {
+    width: 100%;
+  }
+}
+.active {
+  background-color: rgba(255, 255, 255);
+  color: rgba(79, 79, 79);
+  font-weight: 600;
+}

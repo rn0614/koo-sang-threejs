@@ -1,0 +1,43 @@
+.cardWrapper {
+  background-color: rgb(207, 207, 207);
+  padding-inline: 10px;
+  padding-bottom: 20px;
+  padding-top: 10px;
+  .imageWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .floatingWrapper {
+      display: flex;
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      opacity: 0;
+    }
+  }
+  .cardTextWrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 200px;
+    .cardText {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
+    }
+  }
+}
+
+.cardWrapper:hover {
+  transition: 0.3s;
+  background-color: rgb(124, 124, 124);
+  cursor: pointer;
+
+  .floatingWrapper {
+    transition: 0.3s;
+    opacity: 1;
+  }
+}
+
+.floatingBtn {
+  opacity: 1;
+}
