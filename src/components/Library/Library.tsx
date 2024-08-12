@@ -1,13 +1,12 @@
-import { AiOutlinePlus } from "react-icons/ai";
-import Box from "../Box/Box";
-import { PlusIcon } from "@radix-ui/react-icons";
-import styles from "./styles.module.scss";
 import useAuthModal from "@/hooks/useAuthModal";
-import { useUser } from "@/hooks/useUser";
-import { UploadModal } from "../UploadModal/UploadModal";
 import useUploadModal from "@/hooks/useUploadModal";
+import { useUser } from "@/hooks/useUser";
 import { Song } from "@/types/types";
+import { PlusIcon } from "@radix-ui/react-icons";
+import Box from "../Box/Box";
 import { MediaItem } from "../MediaItem/MediaItem";
+import styles from "./styles.module.scss";
+import useOnPlay from "@/hooks/useOnPlay";
 
 type LibraryProps = {
   songs:Song[]
@@ -17,6 +16,8 @@ export const Library:React.FC<LibraryProps> = ({songs}) => {
   const authModal = useAuthModal();
   const uploadModal = useUploadModal();
   const { user } = useUser();
+
+  const onPlay = useOnPlay(songs);
 
   const onClick = () => {
     if (!user) {
@@ -36,7 +37,7 @@ export const Library:React.FC<LibraryProps> = ({songs}) => {
       </div>
       <div className={styles.mediaList}>
         {songs.map((item)=>(
-          <MediaItem key={item.id} onClick={()=>{}} data={item}/>
+          <MediaItem key={item.id} onClick={(id:string)=>onPlay(id)} data={item}/>
         ))}
       </div>
     </Box>

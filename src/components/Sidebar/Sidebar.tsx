@@ -35,6 +35,18 @@ export default function Sidebar({ children, songs }: SidebarProps) {
         active: pathname == "/three",
         href: "/three",
       },
+      {
+        icon: BiSearch,
+        label: "photoFeed",
+        active: pathname == "/photo-feed",
+        href: "/photo-feed",
+      },
+      {
+        icon: BiSearch,
+        label: "apiTest",
+        active: pathname == "/apitest",
+        href: "/apitest",
+      },
     ],
     [pathname]
   );

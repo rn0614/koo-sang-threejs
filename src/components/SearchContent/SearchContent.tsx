@@ -2,16 +2,18 @@
 import { Song } from "@/types/types";
 import React from "react";
 import { MediaItem } from "../MediaItem/MediaItem";
+import useOnPlay from "@/hooks/useOnPlay";
 
 type SearchContentProps = {
   songs: Song[];
 };
 
 export const SearchContent: React.FC<SearchContentProps> = ({ songs }) => {
+  const onPlay = useOnPlay(songs);
   return (
     <div>
       {songs.map((item) => (
-        <MediaItem key={item.id} data={item} onClick={()=>{}}></MediaItem>
+        <MediaItem key={item.id} data={item} onClick={(id:string)=>onPlay(id)}></MediaItem>
       ))}
     </div>
   );

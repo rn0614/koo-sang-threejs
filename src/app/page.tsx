@@ -7,7 +7,6 @@ import Head from "next/head";
 
 export default async function Home() {
   const songs = await getSongs();
-
   return (
     <main className={styles.flexColumn}>
       <Head>
