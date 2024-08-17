@@ -1,23 +1,28 @@
-.ModalOverlay{
+.ModalOverlay {
   position: fixed;
-  top:0;
-  left:0;
+  top: 0;
+  left: 0;
   width: 100%;
-  height:100vh;
-  background-color: rgba(0,0,0,0.5);
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
-.ModalContent{
+.ModalContent {
   position: absolute;
   width: 35%;
-  top:50%;
-  left:50%;
-  transform: translate(-50%,-50%);
-  padding:20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
   background-color: white;
+
+  @media (max-width: 768px) {
+    position: absolute;
+    width: 70%;
+  }
 }
 
-.ModalCloseBtn{
+.ModalCloseBtn {
   cursor: pointer;
   position: absolute;
   top: 10px;

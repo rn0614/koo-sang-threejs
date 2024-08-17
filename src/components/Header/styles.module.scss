@@ -1,7 +1,35 @@
-.HeaderWrapper {
-  grid-area:header;
+.headerWrapper {
+  position: sticky;
+  height: 4rem;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0,0.2,1);
+  transition-duration: 500ms;
+  top:0;
+  left: 0;
+  z-index: 99;
+  grid-area: header;
   display: flex;
   justify-content: space-between;
-  padding-right:10px;
+  padding-inline: 10px;
+  padding-block: 12px;
   align-items: center;
+  background-color: white;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+  .category {
+    display: none;
+    @media (max-width: 768px) {
+      display: flex;
+    }
+  }
+}
+
+.buttonWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.headerHidden{
+  transform: translateY(-100%);
 }

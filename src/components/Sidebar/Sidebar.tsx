@@ -9,25 +9,24 @@ import { Library } from "../Library/Library";
 import styles from "./styles.module.scss";
 import { Song } from "@/types/types";
 type SidebarProps = {
-  children: React.ReactNode;
-  songs : Song[];
+  songs: Song[];
 };
 
-export default function Sidebar({ children, songs }: SidebarProps) {
+export default function Sidebar({ songs }: SidebarProps) {
   const pathname = usePathname();
   const routes = useMemo(
     () => [
       {
         icon: HiHome,
         label: "Home",
-        active: pathname == "/",
-        href: "/",
+        active: pathname == "/music/",
+        href: "/music",
       },
       {
         icon: BiSearch,
         label: "Search",
-        active: pathname == "/search",
-        href: "/search",
+        active: pathname == "/music/search",
+        href: "/music/search",
       },
       {
         icon: BiSearch,
@@ -52,16 +51,12 @@ export default function Sidebar({ children, songs }: SidebarProps) {
   );
 
   return (
-    <div className={styles.MainLayout}>
-      <aside className={styles.SidebarWrapper}>
-        <Box className={styles.Route}>
-          {routes.map((item, idx) => (
-            <SidebarItem key={item.label} {...item} />
-          ))}
-        </Box>
-        <Library songs={songs}/>
-      </aside>
-      {children}
-    </div>
+    <aside className={styles.SidebarWrapper}>
+      <Box className={styles.Route}>
+        {routes.map((item, idx) => (
+          <SidebarItem key={item.label} {...item} />
+        ))}
+      </Box>
+    </aside>
   );
 }

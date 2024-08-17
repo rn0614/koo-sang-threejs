@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function TestingPage() {
+export default async function TestingPage() {
   return (
     <div>testing pat111e</div>
   )

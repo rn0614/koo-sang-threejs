@@ -1,6 +1,6 @@
 import * as Dialog from "@radix-ui/react-dialog";
+import { AiOutlineClose } from "react-icons/ai";
 import styles from "./styles.module.scss";
-import { ExitIcon } from "@radix-ui/react-icons";
 
 export type ModalProps = {
   isOpen: boolean;
@@ -30,7 +30,7 @@ const Modal: React.FC<ModalProps> = ({
               className={styles.ModalCloseBtn}
               onClick={() => onChange}
             >
-              <ExitIcon></ExitIcon>
+              <AiOutlineClose></AiOutlineClose>
             </Dialog.Close>
           </Dialog.Content>
         </Dialog.Overlay>

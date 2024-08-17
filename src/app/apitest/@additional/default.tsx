@@ -1,10 +1,10 @@
 import Link from "next/link";
 import React from "react";
 
-export default function AdditionalPage() {
+export default async function DefaultAdditionalPage() {
   return (
     <div>
-      <h3>additionalPage</h3>
+      <h3>DefaultadditionalPage</h3>
       <Link href={"/apitest/archieve"} replace>Archive</Link>
     </div>
   );

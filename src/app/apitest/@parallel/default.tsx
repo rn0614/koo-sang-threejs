@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function DefaultParellelPage() {
+export default async function DefaultParellelPage() {
   return (
     <div>DefaultParellelPage</div>
   )

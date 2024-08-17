@@ -1,0 +1,28 @@
+.MainLayout {
+  display: grid;
+  grid-template-areas:
+    "aside header"
+    "aside main";
+  gap: 10px;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  grid-template-rows: 30px auto;
+  grid-template-columns: minmax(100px, 200px) auto;
+
+  // 모바일 화면에서는 aside를 제거
+  @media (max-width: 768px) {
+    grid-template-areas:
+      "header"
+      "main";
+    
+    grid-template-columns: 1fr;
+    margin-left:10px;
+  }
+
+  aside {
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+}

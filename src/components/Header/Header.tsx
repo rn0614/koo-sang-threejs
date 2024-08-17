@@ -1,19 +1,26 @@
 "use client";
-import { useRouter } from "next/navigation";
-import React, { ReactNode } from "react";
-import styles from "./styles.module.scss";
 import useAuthModal from "@/hooks/useAuthModal";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useUser } from "@/hooks/useUser";
-import Button from "../Button/Button";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useRouter } from "next/navigation";
+import React from "react";
 import toast from "react-hot-toast";
+import { BiLogIn, BiLogOut } from "react-icons/bi";
+import { BsJustify } from "react-icons/bs";
+import { CgProfile } from "react-icons/cg";
+import { CiSearch } from "react-icons/ci";
+import { FaHome } from "react-icons/fa";
+import styles from "./styles.module.scss";
+
+import { useScrollDirection } from "@/hooks/useScrollDirection";
+import Link from "next/link";
 
 type HeaderProps = {
-  children: ReactNode;
   className?: string;
 };
 
-export const Header: React.FC<HeaderProps> = ({ children, className }) => {
+export const Header: React.FC<HeaderProps> = ({ className }) => {
+  const scrollDirection = useScrollDirection();
   const authModal = useAuthModal();
   const router = useRouter();
 
@@ -27,26 +34,37 @@ export const Header: React.FC<HeaderProps> = ({ children, className }) => {
     router.refresh();
 
     if (error) {
-      toast.error(error.message)
-    }else{
-      toast.success('Logged out!')
+      toast.error(error.message);
+    } else {
+      toast.success("Logged out!");
     }
   };
   return (
-    <header className={styles.HeaderWrapper}>
-      <div>
-        <button>Home</button>
-        <button>Searce</button>
+    <header className={`${styles.headerWrapper} ${scrollDirection==='down'&&styles.headerHidden}`}>
+      <div className={styles.buttonWrapper}>
+        <div className={styles.category}>
+          <BsJustify size={32} />
+        </div>
+        <Link href={"/music"}>
+          <FaHome size={32} color="black"></FaHome>
+        </Link>
+        <CiSearch onClick={() => router.push("/music/search")} size={32}>
+          Search
+        </CiSearch>
       </div>
       {user ? (
-        <div>
-          <Button onClick={handleLogout}>Logout</Button>
-          <Button onClick={() => router.push("/account")}>프로필</Button>
+        <div className={styles.buttonWrapper}>
+          <BiLogOut onClick={handleLogout} size={32}></BiLogOut>
+          <CgProfile
+            onClick={() => router.push("/account")}
+            size={32}
+          ></CgProfile>
         </div>
       ) : (
-        <div>
-          <Button onClick={authModal.onOpen}>Sign Up</Button>
-          <Button onClick={authModal.onOpen}>Log In</Button>
+        <div className={styles.buttonWrapper}>
+          <BiLogIn onClick={authModal.onOpen} size={32}>
+            Log In
+          </BiLogIn>
         </div>
       )}
     </header>

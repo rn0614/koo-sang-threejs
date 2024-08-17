@@ -1,0 +1,36 @@
+.mainWrapper{
+  height:200vh;
+}
+.mainContent{
+  padding-inline:10px;
+  margin-top: 10px;
+}
+
+.flexColumn{
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainLayout {
+  display: grid;
+  grid-template-areas:
+    "aside main";
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  grid-template-columns: minmax(100px, 200px) 1fr;
+
+  // 모바일 화면에서는 aside를 제거
+  @media (max-width: 768px) {
+    grid-template-areas:
+      "main";
+    grid-template-columns: 1fr;
+  }
+
+  aside {
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+}
