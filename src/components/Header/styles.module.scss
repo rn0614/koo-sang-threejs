@@ -1,5 +1,5 @@
 .headerWrapper {
-  height: 10rem;
+  height: 4rem;
   //transition-property: all;
   //transition-timing-function: cubic-bezier(0.4, 0,0.2,1);
   //transition-duration: 500ms;
@@ -9,10 +9,8 @@
   grid-area: header;
   display: flex;
   justify-content: space-between;
-  padding-right: 10px;
-  padding-left: 10px;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-inline: 10px;
+  padding-block: 12px;
   align-items: center;
   background-color: white;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
