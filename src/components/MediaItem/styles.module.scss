@@ -13,18 +13,22 @@
       position: relative;
       min-height: 48px;
       min-width: 48px;
+      flex-shrink: 0; /* 이미지 크기는 줄어들지 않도록 설정 */
     }
     .mediaItemTextWrapper {
       display: flex;
       flex-direction: column;
-      width: 100%;
       min-width: 0;
-      flex: 1;
+      flex-grow: 1; /* 가용 가능한 공간을 최대한 차지 */
+      flex-shrink: 1; /* 공간이 줄어들면 텍스트가 줄어들도록 설정 */
       .mediaItemText {
         width: 100%;
+        max-width: 60svw;
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap;
+        @media(max-width: 768px){
+          max-width: 70svw;
+        }
       }
     }
   }

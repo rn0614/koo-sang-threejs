@@ -12,9 +12,9 @@ const Liked = async () => {
   }
 
   return (
-    <div>
+    <>
       <Likedcontent songs={songs}/>
-    </div>
+    </>
   )
 }
 
