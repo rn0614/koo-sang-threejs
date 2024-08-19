@@ -1,11 +1,13 @@
 .mainWrapper{
   grid-area: main;
-  height:200vh;
+  display: flex;
+  flex-direction: column;
 }
 .mainContent{
   padding-left:10px;
   padding-right:10px;
   padding-top: 10px;
+  flex-grow: 1;
 }
 
 .flexColumn{
