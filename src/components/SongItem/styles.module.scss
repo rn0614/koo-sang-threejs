@@ -1,43 +1,51 @@
 .cardWrapper {
+  display: flex;
+  flex-direction: column;
   background-color: rgb(207, 207, 207);
   padding-inline: 10px;
   padding-bottom: 20px;
   padding-top: 10px;
+  transition: background-color 0.3s; /* 배경 색상 변화에 대한 트랜지션 추가 */
+  cursor: pointer; /* 기본 커서 스타일 추가 */
+  
   .imageWrapper {
     display: flex;
     flex-direction: column;
     gap: 10px;
+
     .floatingWrapper {
       display: flex;
       position: absolute;
       bottom: 10px;
       right: 10px;
-      opacity: 0;
+      opacity: 0; /* 기본 상태에서 숨김 */
+      transition: opacity 0.3s; /* 트랜지션 추가 */
     }
   }
+  
   .cardTextWrapper {
     display: flex;
     flex-direction: column;
     max-width: 200px;
+
     .cardText {
       overflow: hidden;
       text-overflow: ellipsis;
       min-width: 0;
     }
+
+    @media (max-width: 768px) {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+    }
   }
-}
 
-.cardWrapper:hover {
-  transition: 0.3s;
-  background-color: rgb(124, 124, 124);
-  cursor: pointer;
-
-  .floatingWrapper {
-    transition: 0.3s;
-    opacity: 1;
+  &:hover {
+    background-color: rgb(124, 124, 124); /* hover시 배경색 변화 */
+    
+    .floatingWrapper {
+      opacity: 1; /* hover시 나타남 */
+    }
   }
-}
-
-.floatingBtn {
-  opacity: 1;
 }
