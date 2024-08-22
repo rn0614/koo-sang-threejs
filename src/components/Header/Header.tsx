@@ -40,31 +40,42 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
     }
   };
   return (
-    <header className={`${styles.headerWrapper} ${scrollDirection==='down'&&styles.headerHidden}`}>
+    <header
+      className={`${styles.headerWrapper} ${
+        scrollDirection === "down" && styles.headerHidden
+      }`}
+    >
       <div className={styles.buttonWrapper}>
         <div className={styles.category}>
           <BsJustify size={32} />
         </div>
         <Link href={"/music"}>
-          <FaHome size={32} color="black"></FaHome>
+          <FaHome size={32} color="black" />
         </Link>
-        <CiSearch onClick={() => router.push("/music/search")} size={32}>
-          Search
-        </CiSearch>
+        <Link href={"/music/search"}>
+          <CiSearch size={32} color="black" />
+        </Link>
       </div>
       {user ? (
         <div className={styles.buttonWrapper}>
-          <BiLogOut onClick={handleLogout} size={32}></BiLogOut>
+          <BiLogOut
+            onClick={handleLogout}
+            size={32}
+            style={{ cursor: "pointer" }}
+          />
           <CgProfile
             onClick={() => router.push("/account")}
             size={32}
-          ></CgProfile>
+            style={{ cursor: "pointer" }}
+          />
         </div>
       ) : (
         <div className={styles.buttonWrapper}>
-          <BiLogIn onClick={authModal.onOpen} size={32}>
-            Log In
-          </BiLogIn>
+          <BiLogIn
+            onClick={authModal.onOpen}
+            size={32}
+            style={{ cursor: "pointer" }}
+          />
         </div>
       )}
     </header>

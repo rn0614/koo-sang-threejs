@@ -57,6 +57,7 @@ export default function Sidebar({ songs }: SidebarProps) {
           <SidebarItem key={item.label} {...item} />
         ))}
       </Box>
+      <Library songs={songs}/>
     </aside>
   );
 }
