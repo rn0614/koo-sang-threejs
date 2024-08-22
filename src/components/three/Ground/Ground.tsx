@@ -12,7 +12,7 @@ export function Ground() {
         <boxGeometry args={[1000,0.1, 1000]} />
         <meshStandardMaterial />
       </mesh>
-      {/* <CuboidCollider args={[1000, 2, 1000]} position={[0, -2, 0]} /> */}
+      <CuboidCollider args={[1000, 2, 1000]} position={[0, -2, 0]} />
     </RigidBody>
   )
 }

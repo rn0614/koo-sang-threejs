@@ -23,7 +23,6 @@ export const SongItem: React.FC<SongItemProps> = ({ data, onClick }) => {
         side="top"
         pb="current"
         className={styles.imageWrapper}
-        style={{ position: "relative", width: "200px", height: "200px" }}
       >
         <Image src={imagePath || "/images/linked.png"} fill alt="Image" />
         <div className={styles.floatingWrapper}>

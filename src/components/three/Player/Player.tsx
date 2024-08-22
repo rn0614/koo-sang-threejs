@@ -73,10 +73,10 @@ export function Player({ lerp = THREE.MathUtils.lerp }) {
     <>
       <RigidBody
         ref={playerRef}
-        colliders={false}
+        colliders={"trimesh"}
         mass={1}
         type="dynamic"
-        //position={[0, 10, 0]}
+        position={[0, 10, 0]}
         lockRotations
       >
         <CapsuleCollider args={[0.75, 0.5]} />

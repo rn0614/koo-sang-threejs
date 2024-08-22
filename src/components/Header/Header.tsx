@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import toast from "react-hot-toast";
 import { BiLogIn, BiLogOut } from "react-icons/bi";
-import { BsJustify } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import { CiSearch } from "react-icons/ci";
 import { FaHome } from "react-icons/fa";
@@ -14,6 +13,8 @@ import styles from "./styles.module.scss";
 
 import { useScrollDirection } from "@/hooks/useScrollDirection";
 import Link from "next/link";
+import HambuggerButton from "../HambuggerButton/HambuggerButton";
+import { BsJustify } from "react-icons/bs";
 
 type HeaderProps = {
   className?: string;
@@ -46,9 +47,10 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
       }`}
     >
       <div className={styles.buttonWrapper}>
-        <div className={styles.category}>
+        <Link href={"/three"}>
           <BsJustify size={32} />
-        </div>
+        </Link>
+        {/* <HambuggerButton/> */}
         <Link href={"/music"}>
           <FaHome size={32} color="black" />
         </Link>

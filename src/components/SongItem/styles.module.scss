@@ -7,11 +7,12 @@
   padding-top: 10px;
   transition: background-color 0.3s; /* 배경 색상 변화에 대한 트랜지션 추가 */
   cursor: pointer; /* 기본 커서 스타일 추가 */
-  
+
   .imageWrapper {
-    display: flex;
-    flex-direction: column;
+    position: relative;
     gap: 10px;
+    width: 200px;
+    height: 200px;
 
     .floatingWrapper {
       display: flex;
@@ -22,7 +23,17 @@
       transition: opacity 0.3s; /* 트랜지션 추가 */
     }
   }
-  
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+    .imageWrapper {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
   .cardTextWrapper {
     display: flex;
     flex-direction: column;
@@ -43,7 +54,7 @@
 
   &:hover {
     background-color: rgb(124, 124, 124); /* hover시 배경색 변화 */
-    
+
     .floatingWrapper {
       opacity: 1; /* hover시 나타남 */
     }
