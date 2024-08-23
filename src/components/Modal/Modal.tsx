@@ -1,6 +1,7 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { AiOutlineClose } from "react-icons/ai";
 import styles from "./styles.module.scss";
+import { Box } from "@radix-ui/themes";
 
 export type ModalProps = {
   isOpen: boolean;
@@ -24,7 +25,7 @@ const Modal: React.FC<ModalProps> = ({
           <Dialog.Content className={styles.ModalContent}>
             <Dialog.Title>{title}</Dialog.Title>
             <Dialog.Description>{description}</Dialog.Description>
-            <div>{children}</div>
+            {children}
             <Dialog.Close
               asChild
               className={styles.ModalCloseBtn}
