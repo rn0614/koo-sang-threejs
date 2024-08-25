@@ -9,10 +9,10 @@ import { Library } from "../Library/Library";
 import styles from "./styles.module.scss";
 import { Song } from "@/types/types";
 type SidebarProps = {
-  songs: Song[];
+  isOpen: boolean;
 };
 
-export default function Sidebar({ songs }: SidebarProps) {
+export default function Sidebar({ isOpen }: SidebarProps) {
   const pathname = usePathname();
   const routes = useMemo(
     () => [
@@ -51,13 +51,16 @@ export default function Sidebar({ songs }: SidebarProps) {
   );
 
   return (
-    <aside className={styles.SidebarWrapper}>
+    <aside
+      className={`${styles.sidebarWrapper} ${
+        isOpen ? styles.sidebarOpen : null
+      }`}
+    >
       <Box className={styles.Route}>
         {routes.map((item, idx) => (
           <SidebarItem key={item.label} {...item} />
         ))}
       </Box>
-      <Library songs={songs}/>
     </aside>
   );
 }

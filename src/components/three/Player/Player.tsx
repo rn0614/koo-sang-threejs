@@ -63,7 +63,7 @@ export function Player({ lerp = THREE.MathUtils.lerp }) {
     if (jump) {
       playerRef.current.setLinvel({ x: 0, y: 7, z: 0 });
       console.log({ x1: curPosition.x, y1: curPosition.y, z1: curPosition.z });
-      console.log({ x: direction.x, y: velocity.y, z: direction.z });
+      //console.log({ x: direction.x, y: velocity.y, z: direction.z });
     }
     // if (grounded) {
     //   console.log("grounded");
@@ -73,13 +73,13 @@ export function Player({ lerp = THREE.MathUtils.lerp }) {
     <>
       <RigidBody
         ref={playerRef}
-        colliders={"trimesh"}
+        colliders={"cuboid"}
         mass={1}
         type="dynamic"
-        position={[0, 10, 0]}
+        position={[0, 2, 0]}
         lockRotations
       >
-        <CapsuleCollider args={[0.75, 0.5]} />
+        <CapsuleCollider args={[0.5, 1]} />
       </RigidBody>
     </>
   );

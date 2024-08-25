@@ -25,9 +25,9 @@ export const SongItem: React.FC<SongItemProps> = ({ data, onClick }) => {
         className={styles.imageWrapper}
       >
         <Image src={imagePath || "/images/linked.png"} fill alt="Image" />
-        <div className={styles.floatingWrapper}>
+        <Box className={styles.floatingWrapper}>
           <FloatButton />
-        </div>
+        </Box>
       </Inset>
       <Box className={styles.cardTextWrapper}>
         <Text className={styles.cardText}>{data.title}</Text>

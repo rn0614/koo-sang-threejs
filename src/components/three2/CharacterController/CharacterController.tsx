@@ -15,7 +15,7 @@ export const WEAPON_OFFSET = {
 
 export const CharacterController = ({
   state,
-  joystic,
+  joystick,
   userPlayer,
   onFire,
   ...props
@@ -28,56 +28,72 @@ export const CharacterController = ({
   const [animation, setAnimation] = useState("Idle");
   const [, get] = useKeyboardControls();
   useFrame((_, delta) => {
-    if (controls.current) {
-      const cameraDistanceY = window.innerWidth < 1024 ? 16 : 20;
-      const cameraDistanceZ = window.innerWidth < 1024 ? 16 : 20;
-      const playerWorldPos = vec3(rigidbody.current?.translation());
-      controls.current.setLookAt(
-        playerWorldPos.x,
-        playerWorldPos.y + cameraDistanceY,
-        playerWorldPos.z + cameraDistanceZ,
-        playerWorldPos.x,
-        playerWorldPos.y + 1.5,
-        playerWorldPos.z
-      );
-    }
-
-    const { forward, backward, left, right, jump } = get();
-    const angle = 10;
-    if (
-      (forward || backward || left || right || jump) &&
-      angle &&
-      character.current
-    ) {
-      // 키확인
+    const angle = joystick.angle();
+    if(joystick.isJoystickPressed() && angle){
       setAnimation("Run");
-      console.log("key press");
-      //character.current.rotation.y = angle;
+      character.current.rotation.y = angle;
 
-      const impulse = {
-        x: (+right - +left) * MOVEMENT_SPEED * delta,
-        y: 0,
-        z: (+backward - +forward) * MOVEMENT_SPEED * delta,
-      };
-      console.log(impulse, true);
-      rigidbody.current?.applyImpulse(impulse, true);
-
-      if (jump) {
-        setAnimation("Shoot");
-        if (Date.now() - lastShot.current > FIRE_RATE) {
-          lastShot.current = Date.now();
-          const newBullet = {
-            id: state.id + "-" + +new Date(),
-            position: vec3(rigidbody.current.translation()),
-            angle,
-            player: state.id,
-          };
-          onFire(newBullet);
-        }
+      const impulse ={
+        x:Math.sin(angle) * MOVEMENT_SPEED * delta,
+        y:0,
+        z:Math.cos(angle) * MOVEMENT_SPEED * delta,
       }
-    } else {
+
+      rigidbody.current.applyImpulse(impulse, true);
+    }else{
       setAnimation("Idle");
     }
+
+    // if (controls.current) {
+    //   const cameraDistanceY = window.innerWidth < 1024 ? 16 : 20;
+    //   const cameraDistanceZ = window.innerWidth < 1024 ? 16 : 20;
+    //   const playerWorldPos = vec3(rigidbody.current?.translation());
+    //   controls.current.setLookAt(
+    //     playerWorldPos.x,
+    //     playerWorldPos.y + cameraDistanceY,
+    //     playerWorldPos.z + cameraDistanceZ,
+    //     playerWorldPos.x,
+    //     playerWorldPos.y + 1.5,
+    //     playerWorldPos.z
+    //   );
+    // }
+
+    // const { forward, backward, left, right, jump } = get();
+    // const angle = 10;
+    // if (
+    //   (forward || backward || left || right || jump) &&
+    //   angle &&
+    //   character.current
+    // ) {
+    //   // 키확인
+    //   setAnimation("Run");
+    //   console.log("key press");
+    //   //character.current.rotation.y = angle;
+
+    //   const impulse = {
+    //     x: (+right - +left) * MOVEMENT_SPEED * delta,
+    //     y: 0,
+    //     z: (+backward - +forward) * MOVEMENT_SPEED * delta,
+    //   };
+    //   console.log(impulse, true);
+    //   rigidbody.current?.applyImpulse(impulse, true);
+
+    //   if (jump) {
+    //     setAnimation("Shoot");
+    //     if (Date.now() - lastShot.current > FIRE_RATE) {
+    //       lastShot.current = Date.now();
+    //       const newBullet = {
+    //         id: state.id + "-" + +new Date(),
+    //         position: vec3(rigidbody.current.translation()),
+    //         angle,
+    //         player: state.id,
+    //       };
+    //       onFire(newBullet);
+    //     }
+    //   }
+    // } else {
+    //   setAnimation("Idle");
+    // }
 
     //state.setState("pos",rigidbody.current.translation())
   });
@@ -89,6 +105,7 @@ export const CharacterController = ({
         ref={rigidbody}
         mass={1}
         colliders={false}
+        linearDamping={12}
         lockRotations
         type={"dynamic"}
       >

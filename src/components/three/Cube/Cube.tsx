@@ -48,23 +48,23 @@ export const Cube: React.FC<CubeProps> = (props) => {
 
   const onOut = useCallback(() => setHover(null), []);
 
-  const onClick = useCallback((e: ThreeEvent<MouseEvent>) => {
-    e.stopPropagation();
-    if (ref.current) {
-      const { x, y, z } = ref.current.position;
-      const dir: CubePosition[] = [
-        [x + 1, y, z],
-        [x - 1, y, z],
-        [x, y + 1, z],
-        [x, y - 1, z],
-        [x, y, z + 1],
-        [x, y, z - 1],
-      ];
-      if (e.faceIndex !== undefined) {
-        addCube(...dir[Math.floor(e.faceIndex / 2)]);
-      }
-    }
-  }, [addCube]);
+  // const onClick = useCallback((e: ThreeEvent<MouseEvent>) => {
+  //   e.stopPropagation();
+  //   if (ref.current) {
+  //     const { x, y, z } = ref.current.position;
+  //     const dir: CubePosition[] = [
+  //       [x + 1, y, z],
+  //       [x - 1, y, z],
+  //       [x, y + 1, z],
+  //       [x, y - 1, z],
+  //       [x, y, z + 1],
+  //       [x, y, z - 1],
+  //     ];
+  //     if (e.faceIndex !== undefined) {
+  //       addCube(...dir[Math.floor(e.faceIndex / 2)]);
+  //     }
+  //   }
+  // }, [addCube]);
 
   return (
     <RigidBody {...props} type="fixed" colliders="cuboid" ref={ref}>
@@ -73,7 +73,7 @@ export const Cube: React.FC<CubeProps> = (props) => {
         castShadow
         onPointerMove={onMove}
         onPointerOut={onOut}
-        onClick={onClick}
+        //onClick={onClick}
       >
         {[...Array(6)].map((_, index) => (
           <meshStandardMaterial

@@ -19,7 +19,7 @@ export const Map = () => {
     <RigidBody colliders="trimesh" type="fixed">
       <mesh position={[0, -1, 0]}>
         <boxGeometry args={[100, 0.1, 100]} />
-        <meshStandardMaterial color={"red"} />
+        <meshStandardMaterial color={"black"} />
       </mesh>
     </RigidBody>
   );

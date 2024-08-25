@@ -1,10 +1,18 @@
-.SidebarWrapper {
-  position:relative;
-  grid-area: aside;
+.sidebarWrapper {
+  position:fixed;
+  top:90px;
+  left: 0;
+  width:300px;
   display: flex;
   gap:8px;
   flex-direction: column;
   background-color: rgb(141, 141, 141);
+  transition: 0.3s;
+  height: 100dvh;
+
+  @media (max-width:768px){
+    left:-300px;
+  }
 
   .Route {
     position:sticky;
@@ -19,5 +27,6 @@
     overflow: hidden;
   }
 }
-
-
+.sidebarOpen{
+  left: -300px;
+}

@@ -3,21 +3,20 @@ import { Header } from "@/components/Header/Header";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import { Player } from "@/components/Player/Player";
 import styles from "./styles.module.scss";
+import { Box } from "@radix-ui/themes";
 
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const userSongs = await getSongsByUserId();
   return (
-    <div className={styles.mainLayout}>
-      <Sidebar songs={userSongs} />
+    <Box className={styles.mainLayout}>
+      <Header/>
       <main className={styles.mainWrapper}>
-        <Header />
-        <div className={styles.mainContent}>{children}</div>
+        <Box className={styles.sidebarGuide}></Box>
+        <Box className={styles.mainContent}>{children}</Box>
       </main>
-      {/* <Player /> */}
-    </div>
+    </Box>
   );
 }

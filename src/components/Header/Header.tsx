@@ -3,7 +3,7 @@ import useAuthModal from "@/hooks/useAuthModal";
 import { useUser } from "@/hooks/useUser";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { BiLogIn, BiLogOut } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
@@ -15,6 +15,8 @@ import { useScrollDirection } from "@/hooks/useScrollDirection";
 import Link from "next/link";
 import HambuggerButton from "../HambuggerButton/HambuggerButton";
 import { BsJustify } from "react-icons/bs";
+import { Box } from "@radix-ui/themes";
+import Sidebar from "../Sidebar/Sidebar";
 
 type HeaderProps = {
   className?: string;
@@ -24,6 +26,7 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
   const scrollDirection = useScrollDirection();
   const authModal = useAuthModal();
   const router = useRouter();
+  const [sidbarOpen, setSidebarOpen] = useState(false);
 
   const supabaseClient = useSupabaseClient();
   const { user } = useUser();
@@ -46,20 +49,22 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
         scrollDirection === "down" && styles.headerHidden
       }`}
     >
-      <div className={styles.buttonWrapper}>
-        <Link href={"/three"}>
-          <BsJustify size={32} />
-        </Link>
-        {/* <HambuggerButton/> */}
+      <Box className={styles.buttonWrapper}>
+        <Box className={styles.sidebarButton}>
+        <BsJustify
+          size={32}
+          color="black"
+          onClick={() => setSidebarOpen((pre) => !pre)}
+        /></Box>
         <Link href={"/music"}>
           <FaHome size={32} color="black" />
         </Link>
         <Link href={"/music/search"}>
           <CiSearch size={32} color="black" />
         </Link>
-      </div>
+      </Box>
       {user ? (
-        <div className={styles.buttonWrapper}>
+        <Box className={styles.buttonWrapper}>
           <BiLogOut
             onClick={handleLogout}
             size={32}
@@ -70,16 +75,17 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
             size={32}
             style={{ cursor: "pointer" }}
           />
-        </div>
+        </Box>
       ) : (
-        <div className={styles.buttonWrapper}>
+        <Box className={styles.buttonWrapper}>
           <BiLogIn
             onClick={authModal.onOpen}
             size={32}
             style={{ cursor: "pointer" }}
           />
-        </div>
+        </Box>
       )}
+      <Sidebar isOpen={sidbarOpen}/>
     </header>
   );
 };

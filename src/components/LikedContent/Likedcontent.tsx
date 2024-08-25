@@ -4,6 +4,7 @@ import { Song } from "@/types/types";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import { MediaItem } from "../MediaItem/MediaItem";
+import { Box } from "@radix-ui/themes";
 
 type LikedContentProps = {
   songs: Song[];
@@ -20,14 +21,14 @@ export const Likedcontent = ({ songs }: LikedContentProps) => {
   }, [isLoading, user, router]);
 
   if (songs.length === 0) {
-    return <div>there is no songs~</div>;
+    return <Box>there is no songs~</Box>;
   }
 
   return (
-    <div>
+    <Box>
       {songs.map((item) => (
         <MediaItem key={item.id} data={item} onClick={() => {}} />
       ))}
-    </div>
+    </Box>
   );
 };
