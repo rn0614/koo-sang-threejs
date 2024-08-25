@@ -16,7 +16,7 @@ const PageContent: React.FC<PageContentProps> = ({ songs }) => {
     return <Box>No songs available.</Box>;
   }
   return (
-    <Box className={styles.imageContainer}>
+    <Box className={styles.pageContainer}>
       {songs.map((song) => (
         <SongItem key={song.id} data={song} onClick={(id:string) => onPlay(id)} />
       ))}

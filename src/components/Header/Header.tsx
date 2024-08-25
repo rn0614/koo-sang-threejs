@@ -2,8 +2,8 @@
 import useAuthModal from "@/hooks/useAuthModal";
 import { useUser } from "@/hooks/useUser";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { BiLogIn, BiLogOut } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
@@ -27,14 +27,18 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
   const authModal = useAuthModal();
   const router = useRouter();
   const [sidbarOpen, setSidebarOpen] = useState(false);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    setSidebarOpen(false);
+  }, [pathname, searchParams]);
 
   const supabaseClient = useSupabaseClient();
   const { user } = useUser();
 
   const handleLogout = async () => {
     const { error } = await supabaseClient.auth.signOut();
-
-    // TODO: Reset any playing song
     router.refresh();
 
     if (error) {
@@ -51,11 +55,12 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
     >
       <Box className={styles.buttonWrapper}>
         <Box className={styles.sidebarButton}>
-        <BsJustify
-          size={32}
-          color="black"
-          onClick={() => setSidebarOpen((pre) => !pre)}
-        /></Box>
+          <BsJustify
+            size={32}
+            color="black"
+            onClick={() => setSidebarOpen((pre) => !pre)}
+          />
+        </Box>
         <Link href={"/music"}>
           <FaHome size={32} color="black" />
         </Link>
@@ -85,7 +90,7 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
           />
         </Box>
       )}
-      <Sidebar isOpen={sidbarOpen}/>
+      <Sidebar isOpen={sidbarOpen} />
     </header>
   );
 };

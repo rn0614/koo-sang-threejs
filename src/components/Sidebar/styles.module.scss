@@ -2,7 +2,7 @@
   position:fixed;
   top:90px;
   left: 0;
-  width:300px;
+  width:200px;
   display: flex;
   gap:8px;
   flex-direction: column;
@@ -11,7 +11,10 @@
   height: 100dvh;
 
   @media (max-width:768px){
-    left:-300px;
+    left:-200px;
+    &.sidebarOpen{
+      left:0px;
+    }
   }
 
   .Route {
@@ -26,7 +29,4 @@
     border-radius: 8px;
     overflow: hidden;
   }
-}
-.sidebarOpen{
-  left: -300px;
 }

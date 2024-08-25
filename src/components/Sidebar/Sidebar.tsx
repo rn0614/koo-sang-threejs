@@ -58,7 +58,7 @@ export default function Sidebar({ isOpen }: SidebarProps) {
     >
       <Box className={styles.Route}>
         {routes.map((item, idx) => (
-          <SidebarItem key={item.label} {...item} />
+          <SidebarItem key={item.label} {...item}/>
         ))}
       </Box>
     </aside>
