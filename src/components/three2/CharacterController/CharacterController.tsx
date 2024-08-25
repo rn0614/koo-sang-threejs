@@ -31,7 +31,7 @@ export const CharacterController = ({
     const angle = joystick.angle();
     if(joystick.isJoystickPressed() && angle){
       setAnimation("Run");
-      character.current.rotation.y = angle;
+      //character.current.rotation.y = angle;
 
       const impulse ={
         x:Math.sin(angle) * MOVEMENT_SPEED * delta,
