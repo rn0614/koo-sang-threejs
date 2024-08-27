@@ -30,6 +30,12 @@ export default function Sidebar({ isOpen }: SidebarProps) {
       },
       {
         icon: BiSearch,
+        label: "Test",
+        active: pathname == "/test",
+        href: "/test",
+      },
+      {
+        icon: BiSearch,
         label: "Three",
         active: pathname == "/three",
         href: "/three",

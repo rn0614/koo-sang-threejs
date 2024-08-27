@@ -9,11 +9,11 @@ export default function ApiTestPage() {
   return (
     <div>
       <button onClick={() => refetch}>getHendler</button>
-      <ul>
+      <div>
         {data.map((item) => (
           <MediaItem key={item.id} onClick={() => {}} data={item} />
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

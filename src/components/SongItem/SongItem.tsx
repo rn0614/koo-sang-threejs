@@ -2,22 +2,21 @@
 import useLoadImage from "@/hooks/useLoadImage";
 import { Song } from "@/types/types";
 import Image from "next/image";
-import { relative } from "path";
 import React from "react";
 import { FloatButton } from "../FloatButton/FloatButton";
 import styles from './styles.module.scss';
-import { Box, Card, Inset, Text } from "@radix-ui/themes";
+import { Inset,  } from "@radix-ui/themes";
 
 type SongItemProps = {
   data: Song;
-  onClick: (id: string) => void;
+  onClick: () => void; // 부모 컴포넌트에서 전달된 onClick 핸들러
 };
 
 export const SongItem: React.FC<SongItemProps> = ({ data, onClick }) => {
   const imagePath = useLoadImage(data);
 
   return (
-    <Card className={styles.cardWrapper} onClick={() => onClick(data.id)}>
+    <div className={styles.cardWrapper} onClick={onClick}>
       <Inset
         clip="padding-box"
         side="top"
@@ -25,16 +24,14 @@ export const SongItem: React.FC<SongItemProps> = ({ data, onClick }) => {
         className={styles.imageWrapper}
       >
         <Image src={imagePath || "/images/linked.png"} fill alt="Image" />
-        <Box className={styles.floatingWrapper}>
+        <div className={styles.floatingWrapper}>
           <FloatButton />
-        </Box>
+        </div>
       </Inset>
-      <Box className={styles.cardTextWrapper}>
-        <Text className={styles.cardText}>{data.title}</Text>
-        <Text className={styles.cardText}>By {data.author}</Text>
-      </Box>
-    </Card>
+      <div className={styles.cardTextWrapper}>
+        <p className={styles.cardTitle}>{data.title}</p>
+        <p className={styles.cardText}>By {data.author}</p>
+      </div>
+    </div>
   );
 };
-
-

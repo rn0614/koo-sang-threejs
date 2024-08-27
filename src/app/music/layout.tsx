@@ -11,12 +11,12 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Box className={styles.mainLayout}>
+    <div className={styles.mainLayout}>
       <Header/>
       <main className={styles.mainWrapper}>
         <Box className={styles.sidebarGuide}></Box>
         <Box className={styles.mainContent}>{children}</Box>
       </main>
-    </Box>
+    </div>
   );
 }

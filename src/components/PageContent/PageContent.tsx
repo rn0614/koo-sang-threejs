@@ -1,10 +1,10 @@
 "use client";
-
 import { Song } from "@/types/types";
 import { SongItem } from "../SongItem/SongItem";
 import styles from './styles.module.scss';
 import useOnPlay from "@/hooks/useOnPlay";
-import { Box } from "@radix-ui/themes";
+import { Box, Flex } from "@radix-ui/themes";
+import React from "react";
 
 type PageContentProps = {
   songs: Song[];
@@ -12,15 +12,17 @@ type PageContentProps = {
 
 const PageContent: React.FC<PageContentProps> = ({ songs }) => {
   const onPlay = useOnPlay(songs);
+
   if (songs.length === 0) {
-    return <Box>No songs available.</Box>;
+    return <div>No songs available.</div>;
   }
+
   return (
-    <Box className={styles.pageContainer}>
+    <div className={styles.pageContainer}>
       {songs.map((song) => (
-        <SongItem key={song.id} data={song} onClick={(id:string) => onPlay(id)} />
+        <SongItem key={song.id} data={song} onClick={() => onPlay(song.id)} />
       ))}
-    </Box>
+    </div>
   );
 };
 

@@ -39,7 +39,17 @@
     flex-direction: column;
     max-width: 200px;
 
+
+    .cardTitle {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-weight: 600;
+      min-width: 0;
+    }
+
     .cardText {
+      white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       min-width: 0;

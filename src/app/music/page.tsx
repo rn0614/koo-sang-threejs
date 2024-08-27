@@ -3,9 +3,5 @@ import PageContent from "@/components/PageContent/PageContent";
 
 export default async function Home() {
   const songs = await getSongs();
-  return (
-    <>
-      <PageContent songs={songs} />
-    </>
-  );
+  return <PageContent songs={songs} />;
 }
