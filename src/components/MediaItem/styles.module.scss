@@ -4,12 +4,12 @@
     background-color: rgb(130, 130, 130);
   }
   .mediaItemContent {
+    width: 100%;
     display: flex;
+    overflow: hidden;
     align-items: center;
-    justify-content: cneter;
     cursor: pointer;
     gap: 10px;
-    max-width: 300px;
     .imageWrapper {
       position: relative;
       min-height: 48px;
@@ -17,15 +17,14 @@
       flex-shrink: 0; /* 이미지 크기는 줄어들지 않도록 설정 */
     }
     .mediaItemTextWrapper {
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-      flex-grow: 1; /* 가용 가능한 공간을 최대한 차지 */
-      flex-shrink: 1; /* 공간이 줄어들면 텍스트가 줄어들도록 설정 */
+      display: block;
+      width:100%;
       .mediaItemText {
-        width: 100%;
+        white-space: nowrap;
         max-width: 60svw;
+        //max-width: 60svw;
         overflow: hidden;
+        word-break: break-all;
         text-overflow: ellipsis;
         @media(max-width: 768px){
           max-width: 70svw;

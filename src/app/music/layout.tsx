@@ -14,8 +14,8 @@ export default async function RootLayout({
     <div className={styles.mainLayout}>
       <Header/>
       <main className={styles.mainWrapper}>
-        <Box className={styles.sidebarGuide}></Box>
-        <Box className={styles.mainContent}>{children}</Box>
+        <div className={styles.sidebarGuide}></div>
+        <div className={styles.mainContent}>{children}</div>
       </main>
     </div>
   );

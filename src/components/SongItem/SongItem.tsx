@@ -4,8 +4,10 @@ import { Song } from "@/types/types";
 import Image from "next/image";
 import React from "react";
 import { FloatButton } from "../FloatButton/FloatButton";
-import styles from './styles.module.scss';
-import { Inset,  } from "@radix-ui/themes";
+import styles from "./styles.module.scss";
+import { Inset } from "@radix-ui/themes";
+import { useRouter } from "next/navigation";
+import { stackRouterPush } from "@/util/stackRouter";
 
 type SongItemProps = {
   data: Song;
@@ -14,7 +16,12 @@ type SongItemProps = {
 
 export const SongItem: React.FC<SongItemProps> = ({ data, onClick }) => {
   const imagePath = useLoadImage(data);
+  const router = useRouter();
 
+  const moreInfomationbuttonHandler = (e:React.MouseEvent) => {
+    e.stopPropagation();
+    stackRouterPush(router, "/music/detail/" + data.id);
+  };
   return (
     <div className={styles.cardWrapper} onClick={onClick}>
       <Inset
@@ -31,6 +38,9 @@ export const SongItem: React.FC<SongItemProps> = ({ data, onClick }) => {
       <div className={styles.cardTextWrapper}>
         <p className={styles.cardTitle}>{data.title}</p>
         <p className={styles.cardText}>By {data.author}</p>
+      </div>
+      <div onClick={moreInfomationbuttonHandler}>
+        <button>more infomation</button>
       </div>
     </div>
   );

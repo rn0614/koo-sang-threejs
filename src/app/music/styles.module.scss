@@ -22,22 +22,34 @@
 
   
   .mainWrapper {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-areas: "sidebar main";
+    grid-template-columns: 200px auto;
     height: 100%;
-    flex-grow:1;
+    max-width:100%;
     
     @media (max-width: 768px) {
-      width: 100%;
+      display: grid;
+      grid-template-areas: "main";
+      grid-template-columns: auto;
+      height: 100%;
+      max-width:100%;
+      .mainContent{
+        grid-area: main;
+      }
     }
     .sidebarGuide{
+      grid-area: sidebar;
+      display: flex;
+      flex-direction: column;
       width:200px;
+      min-width:200px;
       @media (max-width: 768px) {
         display: none;
       }
     }
     .mainContent{
-      flex: 1;
+      grid-area: main;
     }
   }
 }
