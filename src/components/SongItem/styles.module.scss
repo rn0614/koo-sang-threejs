@@ -1,5 +1,7 @@
 .cardWrapper {
   display: flex;
+  overflow: hidden;
+  max-width: 100%;
   flex-direction: column;
   background-color: rgb(207, 207, 207);
   padding-inline: 10px;
@@ -13,6 +15,7 @@
     gap: 10px;
     width: 200px;
     height: 200px;
+    flex-shrink: 0;
 
     .floatingWrapper {
       display: flex;
@@ -35,8 +38,10 @@
   }
 
   .cardTextWrapper {
+    overflow: hidden;
     display: flex;
     flex-direction: column;
+    flex: 1;
     max-width: 200px;
 
 
@@ -57,7 +62,9 @@
 
     @media (max-width: 768px) {
       display: flex;
-      width: 100%;
+      overflow: hidden;
+      max-width: 500px;
+      flex-shrink: 1;
       flex-direction: column;
     }
   }

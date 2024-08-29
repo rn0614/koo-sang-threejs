@@ -27,6 +27,7 @@
     grid-template-columns: 200px auto;
     height: 100%;
     max-width:100%;
+    overflow-x: hidden;
     
     @media (max-width: 768px) {
       display: grid;
@@ -35,6 +36,7 @@
       height: 100%;
       max-width:100%;
       .mainContent{
+        overflow-x: hidden;
         grid-area: main;
       }
     }
@@ -49,6 +51,7 @@
       }
     }
     .mainContent{
+      overflow-x: hidden;
       grid-area: main;
     }
   }
