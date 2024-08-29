@@ -12,6 +12,6 @@ type ImageProps ={
 export default function ClientImage({alt, song}:ImageProps) {
   const imageUrl = useLoadImage(song) as string;
   return (
-    <Image alt={alt} src={imageUrl} width="300" height={"300"}/>
+    <Image alt={alt} src={imageUrl} fill sizes={"300"}/>
   )
 }
