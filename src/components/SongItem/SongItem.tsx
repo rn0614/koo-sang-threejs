@@ -8,6 +8,7 @@ import styles from "./styles.module.scss";
 import { Inset } from "@radix-ui/themes";
 import { useRouter } from "next/navigation";
 import { stackRouterPush } from "@/util/stackRouter";
+import Button from "../Button/Button";
 
 type SongItemProps = {
   data: Song;
@@ -30,7 +31,7 @@ export const SongItem: React.FC<SongItemProps> = ({ data, onClick }) => {
         pb="current"
         className={styles.imageWrapper}
       >
-        <Image src={imagePath || "/images/linked.png"} fill alt="Image" />
+        <Image src={imagePath || "/images/linked.png"} fill loading="lazy" alt={imagePath||'에러 이미지'} sizes="210px" />
         <div className={styles.floatingWrapper}>
           <FloatButton />
         </div>
@@ -39,9 +40,8 @@ export const SongItem: React.FC<SongItemProps> = ({ data, onClick }) => {
         <p className={styles.cardTitle}>{data.title}</p>
         <p className={styles.cardText}>By {data.author}</p>
       </div>
-      <div onClick={moreInfomationbuttonHandler}>
-        <button>more infomation</button>
-      </div>
+        <Button  onClick={moreInfomationbuttonHandler}>more infomation</Button>
+
     </div>
   );
 };

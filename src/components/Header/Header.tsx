@@ -90,7 +90,7 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
           />
         </Box>
       )}
-      <Sidebar isOpen={sidbarOpen} />
+      <Sidebar isOpen={sidbarOpen} scrollDirection={scrollDirection}/>
     </header>
   );
 };

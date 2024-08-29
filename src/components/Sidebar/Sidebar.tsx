@@ -9,10 +9,11 @@ import { Library } from "../Library/Library";
 import styles from "./styles.module.scss";
 import { Song } from "@/types/types";
 type SidebarProps = {
+  scrollDirection:string;
   isOpen: boolean;
 };
 
-export default function Sidebar({ isOpen }: SidebarProps) {
+export default function Sidebar({ scrollDirection,isOpen }: SidebarProps) {
   const pathname = usePathname();
   const routes = useMemo(
     () => [
@@ -59,7 +60,7 @@ export default function Sidebar({ isOpen }: SidebarProps) {
   return (
     <aside
       className={`${styles.sidebarWrapper} ${
-        isOpen ? styles.sidebarOpen : null
+        isOpen&&scrollDirection!="down" ? styles.sidebarOpen : null
       }`}
     >
       <Box className={styles.Route}>
