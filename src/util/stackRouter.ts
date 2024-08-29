@@ -9,7 +9,7 @@ declare global {
 
 
 // react native app 환경인지 판단
-const isApp = () => {
+export const isApp = () => {
   let isApp = false;
 
   if (typeof window !== 'undefined' && window.ReactNativeWebView) {
