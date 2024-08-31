@@ -4,7 +4,6 @@ import { Song } from "@/types/types";
 
 const fetchSongs = async ():Promise<Song[]> => {
   const response = await fetch("/api/getapitest");
-  console.log('fetching try')
   if (!response.ok) {
     const errorData = await response.json();
     throw new Error(errorData.error || "Unknown error");

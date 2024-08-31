@@ -6,8 +6,6 @@ import { Song } from '@/types/types';
 
 export async function GET() {
   const supabase = createServerComponentClient({ cookies });
-  console.log('get 안으로 들어옴')
-
   const { data, error } = await supabase
     .from('songs')
     .select('*')

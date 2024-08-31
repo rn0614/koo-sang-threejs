@@ -13,7 +13,6 @@ export default function HomeContent() {
         throw new Error("Failed to fetch");
       }
       const data= await res.json();
-      console.log(data);
     } catch (err) {
       console.log("Error loading: ", err);
     }

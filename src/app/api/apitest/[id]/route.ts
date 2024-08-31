@@ -23,9 +23,6 @@ export async function GET(
   cookies().set("resultsPerPage", "20");
   const cookieData = cookies().get("resultsPerPage"); // {name:"resultsPerPage",value:"20", path:"/"}
 
-  //console.log(requestHeaders.get("Authorization"))
-  console.log(headerList.get("Authorization"));
-
   //* params를 다루는 법*/
   if (parseInt(params.id) > comments.length) {
     redirect("/api/apitest");

@@ -7,8 +7,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  console.log('music layout')
-  
   return (
     <div className={styles.mainLayout}>
       {isApp()? null: <Header/>}
