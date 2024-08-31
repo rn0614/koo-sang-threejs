@@ -2,8 +2,8 @@
 import DynamicSelects from "@/components/GroupSelect/GroupSelect";
 //export const fetchCache = "default-cache"; // 개발환경에서도 default cache 작업
 import CustomTable from "@/components/Table/Table";
-import { convertJson2Tree } from "@/util/data-structure";
-import { stackRouterPush } from "@/util/stackRouter";
+import { convertJson2Tree } from "@/utils/data-structure";
+import { stackRouterPush } from "@/utils/stackRouter";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 

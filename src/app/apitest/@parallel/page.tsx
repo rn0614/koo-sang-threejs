@@ -1,4 +1,4 @@
-import { wait } from '@/util/lib';
+import { wait } from '@/utils/lib';
 import React from 'react'
 
 export default async function ParellelPage() {

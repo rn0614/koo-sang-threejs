@@ -1,5 +1,6 @@
 import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
 import { NextRequest, NextResponse } from "next/server";
+import { updateSession } from '@/utils/supabase/middleware'
 
 export async function middleware(req: NextRequest, res: NextResponse) {
   //const response = NextResponse.next();  // res와 동일
@@ -11,31 +12,8 @@ export async function middleware(req: NextRequest, res: NextResponse) {
   //*사용자 정의 custom header 정의*/
   res.headers.set("custom-header", "custom-value");
 
-
-  // supabase 작동설정
-  const supabase = createMiddlewareClient({ req, res });
-  console.log("middleware");
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  const { pathname } = req.nextUrl;
-
-  if (pathname.startsWith("./private")) {
-    if (!user) {
-      return NextResponse.redirect(new URL("/login", req.url));
-    }
-  }
-
-  if (pathname.startsWith("./user")) {
-    if (!user) {
-      return NextResponse.redirect(new URL("/login", req.url));
-      //return NextResponse.rewrite(new URL("/login", req.url)); // 주소는 그대로 유지함
-    }
-  }
-
-  return res;
+  
+  return await updateSession(req);
 }
 
 export const config = {

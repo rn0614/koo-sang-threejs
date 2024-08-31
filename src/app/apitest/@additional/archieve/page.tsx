@@ -1,4 +1,4 @@
-import { wait } from "@/util/lib";
+import { wait } from "@/utils/lib";
 import Link from "next/link";
 import React from "react";
 

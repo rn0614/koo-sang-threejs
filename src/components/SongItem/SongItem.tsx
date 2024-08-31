@@ -7,7 +7,7 @@ import { FloatButton } from "../FloatButton/FloatButton";
 import styles from "./styles.module.scss";
 import { Inset } from "@radix-ui/themes";
 import { useRouter } from "next/navigation";
-import { stackRouterPush } from "@/util/stackRouter";
+import { stackRouterPush } from "@/utils/stackRouter";
 import Button from "../Button/Button";
 
 type SongItemProps = {
