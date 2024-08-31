@@ -1,3 +1,4 @@
+@use "@styles/variable.scss";
 .headerWrapper {
   position: sticky;
   height: 4rem;
@@ -18,7 +19,7 @@
 
   .category {
     display: none;
-    @media (max-width: 768px) {
+    @media (max-width: variable.$media-sm) {
       display: flex;
     }
   }
@@ -31,7 +32,7 @@
 
   .sidebarButton {
     display: none;
-    @media (max-width: 768px) {
+    @media (max-width: variable.$media-sm) {
       display: block;
     }
   }

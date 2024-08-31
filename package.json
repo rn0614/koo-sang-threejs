@@ -43,6 +43,7 @@
     "zustand": "^4.5.4"
   },
   "devDependencies": {
+    "@faker-js/faker": "github:faker-js/faker",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

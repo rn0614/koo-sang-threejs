@@ -1,3 +1,4 @@
+@use "@styles/variable.scss";
 .mainContent {
   display: flex;
   flex-direction: column;
@@ -20,37 +21,36 @@
   min-height: 100vh;
   height: 100%;
 
-  
   .mainWrapper {
     display: grid;
     grid-template-areas: "sidebar main";
     grid-template-columns: 200px auto;
     height: 100%;
-    max-width:100%;
+    max-width: 100%;
     overflow-x: hidden;
-    
-    @media (max-width: 768px) {
+
+    @media (max-width: variable.$media-sm) {
       display: grid;
       grid-template-areas: "main";
       grid-template-columns: auto;
       height: 100%;
-      max-width:100%;
-      .mainContent{
+      max-width: 100%;
+      .mainContent {
         overflow-x: hidden;
         grid-area: main;
       }
     }
-    .sidebarGuide{
+    .sidebarGuide {
       grid-area: sidebar;
       display: flex;
       flex-direction: column;
-      width:200px;
-      min-width:200px;
-      @media (max-width: 768px) {
+      width: 200px;
+      min-width: 200px;
+      @media (max-width: variable.$media-sm) {
         display: none;
       }
     }
-    .mainContent{
+    .mainContent {
       overflow-x: hidden;
       grid-area: main;
     }
