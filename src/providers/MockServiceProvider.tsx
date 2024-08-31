@@ -1,11 +1,7 @@
 "use client";
 import { mswStart } from "@/mocks";
-import { useEffect } from "react";
 
 export function MockServiceProvider() {
-  useEffect(() => {
-    mswStart()
-  }, []);
-  
+  mswStart() // client단 실행
   return null;
 }

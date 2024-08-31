@@ -9,6 +9,7 @@ import { Inter } from "next/font/google";
 import "@radix-ui/themes/styles.css";
 import "./globals.css";
 import { MockServiceProvider } from "@/providers/MockServiceProvider";
+import { mswStart } from "@/mocks";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,6 +19,8 @@ export const metadata: Metadata = {
 };
 
 export const revalidate = 0;
+
+mswStart() // 서버단 실행
 
 export default function RootLayout({
   children,
