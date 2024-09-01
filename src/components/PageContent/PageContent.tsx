@@ -1,7 +1,7 @@
 "use client";
 import useOnPlay from "@/hooks/useOnPlay";
 import { Song } from "@/types/types";
-import { Grid } from "@radix-ui/themes";
+import { Box, Grid } from "@radix-ui/themes";
 import React from "react";
 import { SongItem } from "../SongItem/SongItem";
 
@@ -11,11 +11,6 @@ type PageContentProps = {
 
 const PageContent: React.FC<PageContentProps> = ({ songs }) => {
   const onPlay = useOnPlay(songs);
-
-  if (songs.length === 0) {
-    return <div>No songs available.</div>;
-  }
-
   return (
     <Grid
       columns={{ xs: "1", sm: "2", md: "3", lg: "4", xl: "6" }}

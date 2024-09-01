@@ -5,10 +5,9 @@ import Image from "next/image";
 import React from "react";
 import { FloatButton } from "../FloatButton/FloatButton";
 import styles from "./styles.module.scss";
-import { Box, Flex, Inset } from "@radix-ui/themes";
+import { Box, Container, Flex, Heading, Inset, Text,Button } from "@radix-ui/themes";
 import { useRouter } from "next/navigation";
 import { stackRouterPush } from "@/utils/stackRouter";
-import Button from "../Button/Button";
 
 type SongItemProps = {
   data: Song;
@@ -42,15 +41,21 @@ export const SongItem: React.FC<SongItemProps> = ({ data, onClick }) => {
           alt={imagePath || "에러 이미지"}
           sizes="210px"
         />
-        <div className={styles.floatingWrapper}>
+        <Container className={styles.floatingWrapper}>
           <FloatButton />
-        </div>
+        </Container>
       </Inset>
-      <div className={styles.cardTextWrapper}>
-        <p className={styles.cardTitle}>{data.title}</p>
-        <p className={styles.cardText}>By {data.author}</p>
-      </div>
-      <Button onClick={moreInfomationbuttonHandler}>more infomation</Button>
+      <Container className={styles.cardTextWrapper}>
+        <Heading as="h2" weight="bold" size="5" className={styles.cardTitle}>
+          {data.title}
+        </Heading>
+        <Text as="p" weight="light" size="2" className={styles.cardText}>
+          By {data.author}
+        </Text>
+      </Container>
+      <Box py="1">
+        <Button onClick={moreInfomationbuttonHandler}>more infomation</Button>
+      </Box>
     </Flex>
   );
 };

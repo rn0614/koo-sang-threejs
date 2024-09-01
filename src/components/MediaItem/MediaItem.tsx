@@ -3,6 +3,7 @@ import { Song } from "@/types/types";
 import React from "react";
 import styles from "./styles.module.scss";
 import Image from "next/image";
+import { Box, Container, Heading, Section, Text } from "@radix-ui/themes";
 
 type MediaItemProps = {
   onClick?: (id: string) => void;
@@ -21,21 +22,25 @@ export const MediaItem: React.FC<MediaItemProps> = ({ onClick, data }) => {
   };
 
   return (
-    <div  className={styles.mediaItemWrapper}>
-      <div onClick={hadleClick} className={styles.mediaItemContent}>
-        <div className={styles.imageWrapper}>
+    <Box className={styles.mediaItemWrapper}>
+      <Box onClick={hadleClick} className={styles.mediaItemContent}>
+        <Box className={styles.imageWrapper}>
           <Image
             fill
             src={imageUrl || "/images/linked.png"}
             alt="Media Item"
             className={styles.image}
           />
-        </div>
-        <div className={styles.mediaItemTextWrapper}>
-          <p className={styles.mediaItemText}>{data.title}</p>
-          <p className={styles.mediaItemText}>{data.author}</p>
-        </div>
-      </div>
-    </div>
+        </Box>
+        <Box className={styles.mediaItemTextWrapper}>
+          <Heading as="h2" weight="bold" size="5" className={styles.cardTitle}>
+            {data.title}
+          </Heading>
+          <Text as="p" weight="light" size="2" className={styles.cardText}>
+            By {data.author}
+          </Text>
+        </Box>
+      </Box>
+    </Box>
   );
 };

@@ -1,6 +1,6 @@
 .mediaItemWrapper {
-  padding-inline:8px;
-  &:hover{
+  padding-inline: 8px;
+  &:hover {
     background-color: rgb(130, 130, 130);
   }
   .mediaItemContent {
@@ -17,18 +17,21 @@
       flex-shrink: 0; /* 이미지 크기는 줄어들지 않도록 설정 */
     }
     .mediaItemTextWrapper {
-      display: block;
-      width:100%;
-      .mediaItemText {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      flex: 1;
+      
+      .cardTitle {
         white-space: nowrap;
-        max-width: 60svw;
-        //max-width: 60svw;
         overflow: hidden;
-        word-break: break-all;
         text-overflow: ellipsis;
-        @media(max-width: 768px){
-          max-width: 70svw;
-        }
+      }
+
+      .cardText {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
   }

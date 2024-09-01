@@ -4,7 +4,7 @@ import { Song } from "@/types/types";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import { MediaItem } from "../MediaItem/MediaItem";
-import { Box } from "@radix-ui/themes";
+import { Box, Flex } from "@radix-ui/themes";
 
 type LikedContentProps = {
   songs: Song[];
@@ -25,10 +25,10 @@ export const Likedcontent = ({ songs }: LikedContentProps) => {
   }
 
   return (
-    <Box>
+    <Flex gap={"1"}>
       {songs.map((item) => (
         <MediaItem key={item.id} data={item} onClick={() => {}} />
       ))}
-    </Box>
+    </Flex>
   );
 };
