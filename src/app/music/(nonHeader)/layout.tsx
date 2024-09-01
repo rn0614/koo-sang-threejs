@@ -7,10 +7,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const state = window.ReactNativeWebView &&"undefined";
   
   return (
     <div className={styles.mainLayout}>
       {isApp() ? null: <Header/>}
+      <div>{state}</div>
       <main className={styles.mainWrapper}>
         <div className={styles.sidebarGuide}></div>
         <div className={styles.mainContent}>{children}</div>
