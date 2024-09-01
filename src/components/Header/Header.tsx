@@ -17,6 +17,7 @@ import HambuggerButton from "../HambuggerButton/HambuggerButton";
 import { BsJustify } from "react-icons/bs";
 import { Box } from "@radix-ui/themes";
 import Sidebar from "../Sidebar/Sidebar";
+import { isApp } from "@/utils/stackRouter";
 
 type HeaderProps = {
   className?: string;
@@ -47,6 +48,10 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
       toast.success("Logged out!");
     }
   };
+  // client side 에서 rendering 
+  if(isApp()){
+    return null;
+  }
   return (
     <header
       className={`${styles.headerWrapper} ${
