@@ -1,10 +1,9 @@
 "use client";
-import { Song } from "@/types/types";
-import { SongItem } from "../SongItem/SongItem";
-import styles from './styles.module.scss';
 import useOnPlay from "@/hooks/useOnPlay";
-import { Box, Flex } from "@radix-ui/themes";
+import { Song } from "@/types/types";
+import { Grid } from "@radix-ui/themes";
 import React from "react";
+import { SongItem } from "../SongItem/SongItem";
 
 type PageContentProps = {
   songs: Song[];
@@ -18,11 +17,15 @@ const PageContent: React.FC<PageContentProps> = ({ songs }) => {
   }
 
   return (
-    <div className={styles.pageContainer}>
+    <Grid
+      columns={{ xs: "1", sm: "2", md: "3", lg: "4", xl: "6" }}
+      gap="3"
+      width="auto"
+    >
       {songs.map((song) => (
         <SongItem key={song.id} data={song} onClick={() => onPlay(song.id)} />
       ))}
-    </div>
+    </Grid>
   );
 };
 

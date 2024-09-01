@@ -1,8 +1,8 @@
 import { Song } from "@/types/types";
-import { createClient } from "@/utils/supabase/client";
+import { getSupabaseBrowserClient } from "@/utils/supabase/client";
 
 const useLoadImage = (song: Song) => {
-  const supabase = createClient();
+  const supabase = getSupabaseBrowserClient();
 
   if (!song) {
     return null;

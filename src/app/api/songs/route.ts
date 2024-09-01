@@ -2,11 +2,10 @@
 import { NextResponse } from 'next/server';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
-import { Song } from '@/types/types';
 
 export async function GET() {
-  const supabase = createServerComponentClient({ cookies });
-  const { data, error } = await supabase
+  const client = createServerComponentClient({ cookies });
+  const { data, error } = await client
     .from('songs')
     .select('*')
     .order('created_at', { ascending: false });
