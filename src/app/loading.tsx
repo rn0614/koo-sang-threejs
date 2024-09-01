@@ -13,7 +13,6 @@ const Loading = () => {
         width:"100%"
       }}
     >
-      <div>loading</div>
       <BounceLoader size={40} />
     </div>
   );

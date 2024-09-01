@@ -1,7 +1,7 @@
 import { Header } from "@/components/Header/Header";
-import styles from "./styles.module.scss";
 import { isApp } from "@/utils/stackRouter";
-import { Box, Container } from "@radix-ui/themes";
+import { Box } from "@radix-ui/themes";
+import styles from "./styles.module.scss";
 
 export default async function RootLayout({
   children,
@@ -9,12 +9,12 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Container className={styles.mainLayout}>
+    <Box className={styles.mainLayout}>
       {isApp()? null: <Header/>}
       <main className={styles.mainWrapper}>
         <Box className={styles.sidebarGuide}></Box>
         <Box className={styles.mainContent}>{children}</Box>
       </main>
-    </Container>
+    </Box>
   );
 }

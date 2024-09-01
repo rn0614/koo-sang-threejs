@@ -1,13 +1,19 @@
-.SidebarLink {
+.sidebarLink {
   display: flex;
   align-items: center;
+  text-decoration: none;
+  color:black;
   width: auto;
   padding-inline: 8px;
   padding-block: 4px;
   gap: 8px;
 
-  .Paragraph {
+  .paragraph {
     width: 100%;
+  }
+  &:hover{
+    background-color: gray;
+    color:white;
   }
 }
 .active {

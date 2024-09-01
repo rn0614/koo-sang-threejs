@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { IconType } from "react-icons";
 import styles from "./styles.module.scss";
+import { Text } from "@radix-ui/themes";
 
 type SidebarItemProps = {
   icon: IconType;
@@ -19,10 +20,10 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
   return (
     <Link
       href={href}
-      className={`${styles.SidebarLink} ${active && styles.active}`}
+      className={`${styles.sidebarLink} ${active && styles.active}`}
     >
       <Icon size={26} />
-      <p className={styles.Paragraph}>{label}</p>
+      <Text as="p" className={styles.paragraph}>{label}</Text>
     </Link>
   );
 };

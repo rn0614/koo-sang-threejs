@@ -1,10 +1,10 @@
 "use client";
-import Box from "@/components/Box/Box";
 import SidebarItem from "@/components/SidebarItem/SidebarItem";
 import { usePathname } from "next/navigation";
 import React, { useMemo } from "react";
 import { BiSearch } from "react-icons/bi";
 import { HiHome } from "react-icons/hi";
+import { Flex } from "@radix-ui/themes";
 import { Library } from "../Library/Library";
 import styles from "./styles.module.scss";
 import { Song } from "@/types/types";
@@ -63,11 +63,11 @@ export default function Sidebar({ scrollDirection,isOpen }: SidebarProps) {
         isOpen&&scrollDirection!="down" ? styles.sidebarOpen : null
       }`}
     >
-      <Box className={styles.Route}>
+      <Flex className={styles.route}>
         {routes.map((item, idx) => (
           <SidebarItem key={item.label} {...item}/>
         ))}
-      </Box>
+      </Flex>
     </aside>
   );
 }
