@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 export const revalidate = 0;
 
-mswStart() // 서버단 실행
+//mswStart() // 서버단 실행
 
 export default function RootLayout({
   children,

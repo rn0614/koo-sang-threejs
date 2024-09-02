@@ -1,8 +1,13 @@
 import { Song } from "@/types/types";
 import { useQuery, UseQueryResult } from "react-query";
 
-const fetchSongs = async (): Promise<Song[]> => {
-  const response = await fetch("/api/songs");
+type SearchParams ={
+  page:number,
+  limit:number
+}
+
+async function fetchSongs({page,limit}:SearchParams){
+  const response = await fetch(`/api/songs?page=${page}&limit=${limit}`);
   if (!response.ok) {
     throw new Error("Failed to fetch songs");
   }
@@ -10,8 +15,9 @@ const fetchSongs = async (): Promise<Song[]> => {
   return data || [];
 };
 
-function useSongList(): UseQueryResult<Song[]> {
-  const returnData = useQuery<Song[]>(["songs"], fetchSongs, {
+
+function useSongList({page,limit}:SearchParams): UseQueryResult<Song[]> {
+  const returnData = useQuery<Song[]>(["songs",limit,page],() =>fetchSongs({page,limit}), {
     staleTime: 2000,
     keepPreviousData: true,
     onError: (error) => {

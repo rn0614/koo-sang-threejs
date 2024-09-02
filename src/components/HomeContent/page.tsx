@@ -1,36 +1,52 @@
-'use client'
-import React from "react";
-import Sidebar from "../Sidebar/Sidebar";
+"use client"
+import React, { useState } from "react";
 import Link from "next/link";
+import classNames from 'classnames';
+import styles from './styles.module.scss';
+
+const menuList =[
+  { href: "/music", label: "Music" },
+  { href: "/login", label: "Login" },
+  { href: "/register", label: "Register" },
+  { href: "/apitest", label: "API Test" },
+  { href: "/music/liked", label: "Liked" },
+  { href: "/photo-feed", label: "Photo Feed" },
+  { href: "/music/search", label: "Search" },
+  { href: "/test", label: "Test" },
+  { href: "/three", label: "Three" },
+  { href: "/three2", label: "Three2" },
+  { href: "/user/rn0614@naver.com", label: "User" },
+]
 
 export default function HomeContent() {
-  async function testApi() {
-    try {
-      const res = await fetch(`/api/apitest`, {
-        method: "GET",
-      });
-      if (!res.ok) {
-        throw new Error("Failed to fetch");
-      }
-      const data= await res.json();
-    } catch (err) {
-      console.log("Error loading: ", err);
-    }
-  }
+  const [active, setActive] = useState(false);
+  const [rippleActive, setRippleActive] = useState<number|null>(null);
+
+  const handleClick = () => {
+    setActive(!active);
+  };
+
+  const handleMouseEnter = (index:number) => {
+    setRippleActive(index);
+    setTimeout(() => {
+      setRippleActive(null);
+    }, 600); // 물방울 애니메이션 지속 시간
+  };
+
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
-      <Link href={"/music"}>music</Link>
-      <Link href={"/login"}>login</Link>
-      <Link href={"/register"}>register</Link>
-      <Link href={"/apitest"}>apitest</Link>
-      <Link href={"/music/liked"}>liked</Link>
-      <Link href={"/photo-feed"}>photo-feed</Link>
-      <Link href={"/music/search"}>search</Link>
-      <Link href={"/test"}>test</Link>
-      <Link href={"/three"}>three</Link>
-      <Link href={"/three2"}>htree2</Link>
-      <Link href={"/user/rn0614@naver.com"}>user</Link>
-      <button onClick={testApi}>dataFetching</button>
+    <div className={classNames(styles.container, { [styles.active]: active })}>
+      <div className={styles.center} onClick={handleClick}>
+        Select
+      </div>
+      {menuList.map((link, index) => (
+        <div
+          key={index}
+          className={classNames(styles.circle, { [styles.ripple]: rippleActive === index })}
+          onMouseEnter={() => handleMouseEnter(index)}
+        >
+          <Link href={link.href}>{link.label}</Link>
+        </div>
+      ))}
     </div>
   );
 }

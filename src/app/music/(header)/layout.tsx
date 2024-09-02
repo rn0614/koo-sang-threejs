@@ -10,7 +10,7 @@ export default async function RootLayout({
 }>) {
   return (
     <Box className={styles.mainLayout}>
-      {isApp()? null: <Header/>}
+      <Header/>
       <main className={styles.mainWrapper}>
         <Box className={styles.sidebarGuide}></Box>
         <Box className={styles.mainContent}>{children}</Box>

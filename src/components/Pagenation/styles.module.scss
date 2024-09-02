@@ -1,0 +1,39 @@
+.paginationWrapper {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  .pageItem {
+    color: black;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sideBtn {
+    background-color: white;
+    padding: 0.2rem 0.5rem;
+    &:disabled {
+      border: 1px solid #999999;
+      background-color: #cccccc;
+      color: #787878;
+    }
+  }
+
+  .pageItem.active {
+    background-color: gray;
+    color: white;
+  }
+
+  .pageItem:hover:not(.active) {
+    background-color: #ddd;
+  }
+
+  .pageLimit {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+  }
+}

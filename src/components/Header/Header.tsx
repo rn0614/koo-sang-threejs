@@ -48,9 +48,11 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
       toast.success("Logged out!");
     }
   };
-  // client side 에서 rendering 
+  // MobileHeader
   if(isApp()){
-    return null;
+    return <header className="">
+
+    </header>;
   }
   return (
     <header
@@ -68,9 +70,6 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
         </Box>
         <Link href={"/music"}>
           <FaHome size={32} color="black" />
-        </Link>
-        <Link href={"/music/search"}>
-          <CiSearch size={32} color="black" />
         </Link>
       </Box>
       {user ? (
