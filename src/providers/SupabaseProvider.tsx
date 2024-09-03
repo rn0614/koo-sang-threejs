@@ -1,7 +1,7 @@
+"use client"
 import { ReactNode } from "react";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { SessionContextProvider } from "@supabase/auth-helpers-react";
-import { createClient } from '@/utils/supabase/server'
+import { getSupabaseBrowserClient } from '@/utils/supabase/client'
 
 import { Database } from "@/types/types_db";
 
@@ -10,7 +10,7 @@ type SuperbaseProviderProps = {
 };
 
 const SupabaseProvider: React.FC<SuperbaseProviderProps> = ({ children }) => {
-  const supabase = createClient();
+  const supabase = getSupabaseBrowserClient();
 
   return (
     <SessionContextProvider supabaseClient={supabase}>

@@ -13,7 +13,7 @@ const PageContent = () => {
   const { data: songs = [] } = useSongList({ page, limit });
   const onPlay = useOnPlay(songs);
   return (
-    <Container height={"60vh"}>
+    <Container minHeight={"80svh"}>
       <Grid
         columns={{ xs: "1", sm: "2", md: "3", lg: "4", xl: "6" }}
         gap="3"
