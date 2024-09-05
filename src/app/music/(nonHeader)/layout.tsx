@@ -1,5 +1,5 @@
-import { Header } from "@/components/Header/Header";
 import styles from "./styles.module.scss";
+import { StackHeader } from "@/components/StackHeader/Header";
 
 export default async function RootLayout({
   children,
@@ -8,7 +8,7 @@ export default async function RootLayout({
 }>) {
   return (
     <div className={styles.mainLayout}>
-      <Header/>
+      <StackHeader/>
       <main className={styles.mainWrapper}>
         <div className={styles.sidebarGuide}></div>
         <div className={styles.mainContent}>{children}</div>

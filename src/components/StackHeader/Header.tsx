@@ -23,7 +23,7 @@ type HeaderProps = {
   className?: string;
 };
 
-export const Header: React.FC<HeaderProps> = ({ className }) => {
+export const StackHeader: React.FC<HeaderProps> = ({ className }) => {
   const scrollDirection = useScrollDirection();
   const authModal = useAuthModal();
   const router = useRouter();
@@ -48,6 +48,40 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
       toast.success("Logged out!");
     }
   };
+  // MobileHeader
+  if (true) {
+    return (
+      <header
+        className={`${styles.headerWrapper} ${
+          scrollDirection === "down" && styles.headerHidden
+        }`}
+      > <div></div>
+        {user ? (
+          <Box className={styles.buttonWrapper}>
+            <BiLogOut
+              onClick={handleLogout}
+              size={32}
+              style={{ cursor: "pointer" }}
+            />
+            <CgProfile
+              onClick={() => router.push("/account")}
+              size={32}
+              style={{ cursor: "pointer" }}
+            />
+          </Box>
+        ) : (
+          <Box className={styles.buttonWrapper}>
+            <BiLogIn
+              onClick={authModal.onOpen}
+              size={32}
+              style={{ cursor: "pointer" }}
+            />
+          </Box>
+        )}
+        <Sidebar isOpen={sidbarOpen} scrollDirection={scrollDirection} />
+      </header>
+    );
+  }
   return (
     <header
       className={`${styles.headerWrapper} ${
@@ -88,7 +122,7 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
           />
         </Box>
       )}
-      <Sidebar isOpen={sidbarOpen} scrollDirection={scrollDirection}/>
+      <Sidebar isOpen={sidbarOpen} scrollDirection={scrollDirection} />
     </header>
   );
 };
