@@ -11,14 +11,14 @@ import styles from "./styles.module.scss";
 import { useUser } from "@/hooks/useUser";
 import toast from "react-hot-toast";
 import uniquid from "uniqid";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { createClient } from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
 
 export const UploadModal = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const uploadModal = useUploadModal();
   const { user } = useUser();
-  const supabaseClient = useSupabaseClient();
+  const supabaseClient = createClient();
   const router = useRouter();
 
   const { register, handleSubmit, reset } = useForm<FieldValues>({

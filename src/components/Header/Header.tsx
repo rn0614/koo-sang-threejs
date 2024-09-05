@@ -1,7 +1,7 @@
 "use client";
 import useAuthModal from "@/hooks/useAuthModal";
 import { useUser } from "@/hooks/useUser";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { createClient } from "@/utils/supabase/client";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -35,7 +35,7 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
     setSidebarOpen(false);
   }, [pathname, searchParams]);
 
-  const supabaseClient = useSupabaseClient();
+  const supabaseClient = createClient();
   const { user } = useUser();
 
   const handleLogout = async () => {
