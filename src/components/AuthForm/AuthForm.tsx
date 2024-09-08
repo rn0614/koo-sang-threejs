@@ -1,62 +1,18 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { createClient } from "@/utils/supabase/client";
+import { login, signup } from "@/app/login/actions";
+import styles from "./styles.module.scss";
 
-
-export default function AuthForm() {
-  const [data, setData] = useState<{ email: string; password: string }>({
-    email: "",
-    password: "",
-  });
-  const supabase = createClient()
-
-  const router = useRouter();
-
-  const login = async () => {
-    try {
-      let { data:dataUser, error } = await supabase.auth.signInWithPassword({
-        email: data.email,
-        password: data.email,
-      });
-      
-      if(dataUser){
-        router.refresh();
-      }
-    } catch (error) {}
-  };
-
-  const handleChange = (e: any) => {
-    const { name, value } = e.target;
-    setData((prev: any) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
+export default function LoginPage() {
   return (
-    <div className="container">
-      <div className="grid">
-        <label>email</label>
-        <input
-          type="email"
-          name="email"
-          value={data?.email}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="grid">
-        <label>Password</label>
-        <input
-          type="password"
-          name="password"
-          value={data?.password}
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <button onClick={login}>Login</button>
-      </div>
+    <div className={styles.formContainer}>
+      <form className={styles.form}>
+        <label htmlFor="email">Email:</label>
+        <input id="email" name="email" type="email" required />
+        <label htmlFor="password">Password:</label>
+        <input id="password" name="password" type="password" required />
+        <button className={styles.loginButton} formAction={login}>Log in</button>
+        <button className={styles.signupButton} formAction={signup}>Sign up</button>
+      </form>
     </div>
   );
 }

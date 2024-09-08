@@ -1,17 +1,17 @@
-"use client"
+"use client";
 import React from "react";
 import styles from "./styles.module.scss";
 import { CiCirclePlus } from "react-icons/ci";
 import useUploadModal from "@/hooks/useUploadModal";
-import { useUser } from "@/hooks/useUser";
+import useUser from "@/hooks/useUser2";
 import useAuthModal from "@/hooks/useAuthModal";
 
 export const AddFloatButton = () => {
   const authModal = useAuthModal();
   const uploadModal = useUploadModal();
-  const { user } = useUser();
+  const { data } = useUser();
   const onClick = () => {
-    if (!user) {
+    if (!data.id) {
       return authModal.onOpen();
     }
     return uploadModal.onOpen();

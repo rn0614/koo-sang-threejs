@@ -9,12 +9,12 @@ import { Library } from "../Library/Library";
 import styles from "./styles.module.scss";
 import { Song } from "@/types/types";
 type SidebarProps = {
+  pathname:string;
   scrollDirection:string;
   isOpen: boolean;
 };
 
-export default function Sidebar({ scrollDirection,isOpen }: SidebarProps) {
-  const pathname = usePathname();
+export default function Sidebar({ pathname, scrollDirection,isOpen }: SidebarProps) {
   const routes = useMemo(
     () => [
       {

@@ -8,7 +8,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Input from "../Input/Input";
 import Modal from "../Modal/Modal";
 import styles from "./styles.module.scss";
-import { useUser } from "@/hooks/useUser";
+import useUser from "@/hooks/useUser2";
 import toast from "react-hot-toast";
 import uniquid from "uniqid";
 import { createClient } from "@/utils/supabase/client";
@@ -17,7 +17,7 @@ import { useRouter } from "next/navigation";
 export const UploadModal = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const uploadModal = useUploadModal();
-  const { user } = useUser();
+  const { data, isFetching } = useUser();
   const supabaseClient = createClient();
   const router = useRouter();
 
@@ -44,7 +44,7 @@ export const UploadModal = () => {
       const imageFile = values.image?.[0];
       const songFile = values.song?.[0];
 
-      if (!imageFile || !songFile || !user) {
+      if (!imageFile || !songFile || !data.id) {
         toast.error("Miss field");
         return;
       }
@@ -76,7 +76,7 @@ export const UploadModal = () => {
       const { error: supabaseError } = await supabaseClient
         .from("songs")
         .insert({
-          user_id: user.id,
+          user_id: data.id,
           title: values.title,
           author: values.author,
           image_path: imageData.path,

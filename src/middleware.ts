@@ -3,7 +3,7 @@ import { updateSession } from "@/utils/supabase/middleware";
 //import { updateSession } from '@/utils/supabase/middleware'
 
 export async function middleware(req: NextRequest, res: NextResponse) {
-  //return await updateSession(req);
+  return await updateSession(req);
 }
 
 export const config = {

@@ -1,6 +1,6 @@
-import "server-only";
 import { Song } from "@/types/types";
 import { createClient } from "@/utils/supabase/server";
+import "server-only";
 
 const getLikedSongs = async (): Promise<Song[]> => {
   const supabase = createClient();

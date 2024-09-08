@@ -1,15 +1,16 @@
+"use client"
 import { Song } from "@/types/types";
 import usePlayer from "./usePlayer";
 import useAuthModal from "./useAuthModal";
-import { useUser } from "./useUser";
+import useUser from "@/hooks/useUser2";
 
 const useOnPlay = (songs: Song[]) => {
   const player = usePlayer();
   const authModal = useAuthModal();
-  const { user } = useUser();
+  const { data, isFetching } = useUser();
 
   const onPlay = (id: string) => {
-    if (!user) {
+    if (!data.id) {
       return authModal.onOpen();
     }
     player.setId(id);

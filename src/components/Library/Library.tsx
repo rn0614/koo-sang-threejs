@@ -1,6 +1,7 @@
+"use client"
 import useAuthModal from "@/hooks/useAuthModal";
 import useUploadModal from "@/hooks/useUploadModal";
-import { useUser } from "@/hooks/useUser";
+import useUser from "@/hooks/useUser2";
 import { Song } from "@/types/types";
 import { PlusIcon } from "@radix-ui/react-icons";
 import { MediaItem } from "../MediaItem/MediaItem";
@@ -15,12 +16,12 @@ type LibraryProps = {
 export const Library:React.FC<LibraryProps> = ({songs}) => {
   const authModal = useAuthModal();
   const uploadModal = useUploadModal();
-  const { user } = useUser();
+  const { data, isFetching } = useUser();
 
   const onPlay = useOnPlay(songs);
 
   const onClick = () => {
-    if (!user) {
+    if (!data.id) {
       return authModal.onOpen();
     }
 

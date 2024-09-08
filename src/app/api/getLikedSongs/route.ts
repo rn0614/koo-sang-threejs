@@ -1,11 +1,8 @@
 import { handleError } from "@/utils/errorHandler";
-import { createClient } from "@supabase/supabase-js";
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+import { createClient } from "@/utils/supabase/server";
 
 export async function GET() {
-  const supabase = createClient(supabaseUrl, supabaseKey);
+  const supabase = createClient();
   try {
     const { data, error } = await supabase
     .from("songs")

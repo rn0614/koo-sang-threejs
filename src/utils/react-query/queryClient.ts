@@ -5,7 +5,7 @@ const queryClient = () => {
     defaultOptions: {
       queries: {
         retry: 0,
-        cacheTime: 900000,
+        cacheTime: 0,
       },
     },
     queryCache: new QueryCache({
