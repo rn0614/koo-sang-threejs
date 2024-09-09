@@ -5,6 +5,10 @@ import { useMemo } from "react";
 import { BiSearch } from "react-icons/bi";
 import { HiHome } from "react-icons/hi";
 import styles from "./styles.module.scss";
+import { BsChatSquare } from "react-icons/bs";
+import { Md3dRotation } from "react-icons/md";
+import { GrTest } from "react-icons/gr";
+
 type SidebarProps = {
   pathname:string;
   scrollDirection:string;
@@ -27,28 +31,22 @@ export default function Sidebar({ pathname, scrollDirection,isOpen }: SidebarPro
         href: "/music/search",
       },
       {
-        icon: BiSearch,
+        icon: GrTest,
         label: "Test",
         active: pathname == "/test",
         href: "/test",
       },
       {
-        icon: BiSearch,
+        icon: BsChatSquare,
+        label: "Chat",
+        active: pathname == "/chat",
+        href: "/chat",
+      },
+      {
+        icon: Md3dRotation,
         label: "Three",
         active: pathname == "/three",
         href: "/three",
-      },
-      {
-        icon: BiSearch,
-        label: "photoFeed",
-        active: pathname == "/photo-feed",
-        href: "/photo-feed",
-      },
-      {
-        icon: BiSearch,
-        label: "apiTest",
-        active: pathname == "/apitest",
-        href: "/apitest",
       },
     ],
     [pathname]
