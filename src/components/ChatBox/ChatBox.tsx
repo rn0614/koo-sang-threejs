@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Socket } from "socket.io-client";
 import styles from "./styles.module.scss";
 import { Button } from "@radix-ui/themes";
@@ -13,6 +13,20 @@ type ChatBoxProps = {
 export default function ChatBox({ socket, chatId, userId }: ChatBoxProps) {
   const [message, setMessage] = useState("");
   const [chatMessages, setChatMessages] = useState<string[]>([]);
+  const chatEndRef = useRef<HTMLDivElement | null>(null); // 새로운 메시지 추가시 스크롤 위치 조정용
+
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === "Enter") {
+      sendMessage();
+    }
+  };
+
+  const sendMessage = () => {
+    if (message.trim() && socket) {
+      socket.emit("chatMessage", { chatId, message: `${userId}: ${message}` });
+      setMessage("");
+    }
+  };
 
   useEffect(() => {
     if (socket) {
@@ -28,12 +42,10 @@ export default function ChatBox({ socket, chatId, userId }: ChatBoxProps) {
     };
   }, [socket]);
 
-  const sendMessage = () => {
-    if (message.trim() && socket) {
-      socket.emit("chatMessage", { chatId, message: `${userId}: ${message}` });
-      setMessage("");
-    }
-  };
+  useEffect(() => {
+    // 새로운 메시지가 생길 때마다 채팅창 아래로 스크롤
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chatMessages]);
 
   return (
     <div className={styles.chatWrapper}>
@@ -41,16 +53,18 @@ export default function ChatBox({ socket, chatId, userId }: ChatBoxProps) {
         {chatMessages.map((msg, index) => (
           <p key={index}>{msg}</p>
         ))}
+        <div ref={chatEndRef} />
       </div>
       <input
         type="text"
         value={message}
         onChange={(e) => setMessage(e.target.value)}
+        onKeyDown={handleKeyDown}
         placeholder="Type a message..."
       />
-      <Button onClick={sendMessage} style={{ marginTop: "10px" }}>
-        Send
-      </Button>
+      <div className={styles.buttonWrapper}>
+        <Button onClick={sendMessage}>Send</Button>
+      </div>
     </div>
   );
 }

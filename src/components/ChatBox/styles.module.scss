@@ -1,15 +1,90 @@
-.chatWrapper{
+@use "@styles/variable.scss";
+
+.chatWrapper {
   display: flex;
   flex-direction: column;
-  flex:0;
-  width:500px;
-  padding:10px;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 200px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
 
-  .chatHistory{
+
+  @media (max-width: variable.$media-sm) {
+    max-width: 100%;
+  }
+  .chatHistory {
     flex-grow: 1;
-    border: 1px solid black;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     overflow-y: auto;
     margin-bottom: 10px;
     padding: 10px;
+    background-color: white;
+    
+
+    @media (max-width: variable.$media-sm) {
+      max-height: 300px; /* 기본적으로 300px 높이 */
+    }
+
+    /* 스크롤바 스타일 */
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #888;
+      border-radius: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: #555;
+    }
+
+    p {
+      margin: 0;
+      padding: 5px;
+      background-color: #f0f0f0;
+      border-radius: 4px;
+      word-wrap: break-word;
+      margin-bottom: 5px;
+    }
+  }
+
+  input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 16px;
+
+    &:focus {
+      outline: none;
+      border-color: #007bff;
+    }
+  }
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: flex-end;
+  button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+
+    &:focus {
+      outline: none;
+    }
   }
 }

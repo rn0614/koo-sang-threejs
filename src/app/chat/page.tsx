@@ -1,5 +1,6 @@
 'use client';
 
+import { Button, Heading, Separator, Text } from '@radix-ui/themes';
 import { useRouter } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid'; // UUID를 사용해 랜덤 chatId 생성
 
@@ -13,8 +14,10 @@ export default function ChatPage() {
 
   return (
     <div>
-      <h1>Create a Chat Room</h1>
-      <button onClick={createRoom}>Create Room</button>
+      <Heading as="h1">chat방 생성</Heading>
+      <Text>chat방을 만들고 사용자에게 url을 공유하세요</Text>
+      <Separator orientation="horizontal" size="4" />
+      <Button onClick={createRoom}>Create Room</Button>
     </div>
   );
 }
