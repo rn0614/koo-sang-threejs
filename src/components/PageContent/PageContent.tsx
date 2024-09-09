@@ -9,7 +9,7 @@ import Pagination from "../Pagenation/Pagenation";
 
 const PageContent = () => {
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(4);
+  const [limit, setLimit] = useState(100);
   const { data: songs = [] } = useSongList({ page, limit });
   const onPlay = useOnPlay(songs);
   return (

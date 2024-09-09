@@ -34,9 +34,6 @@ export default function HeaderButton() {
   if (isFetching) {
     return <div></div>;
   }
-  const testButton =()=>{
-    console.log(user)
-  }
 
   // 데이터가 있으면 로그인 상태, 없으면 로그인 버튼 표시
   return (
@@ -53,7 +50,6 @@ export default function HeaderButton() {
             size={32}
             style={{ cursor: "pointer" }}
           />
-          <button onClick={testButton}>test</button>
         </Box>
       ) : (
         <Box className={styles.buttonWrapper}>
@@ -62,7 +58,6 @@ export default function HeaderButton() {
             size={32}
             style={{ cursor: "pointer" }}
           />
-          <button onClick={testButton}>test</button>
         </Box>
       )}
     </>
