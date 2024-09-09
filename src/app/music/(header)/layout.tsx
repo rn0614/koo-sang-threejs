@@ -3,11 +3,11 @@ import { isApp } from "@/utils/stackRouter";
 import { Box } from "@radix-ui/themes";
 import styles from "./styles.module.scss";
 
-export default async function RootLayout({
+export default async function Layout({
   children,
-}: Readonly<{
+}:{
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <Box className={styles.mainLayout}>
       <Header/>

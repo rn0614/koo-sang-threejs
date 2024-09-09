@@ -1,11 +1,11 @@
 import styles from "./styles.module.scss";
 import { StackHeader } from "@/components/StackHeader/Header";
 
-export default async function RootLayout({
+export default async function Layout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <div className={styles.mainLayout}>
       <StackHeader/>
