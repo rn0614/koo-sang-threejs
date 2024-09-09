@@ -2,7 +2,6 @@
 import { MediaItem } from "@/components/MediaItem/MediaItem";
 import useFetchSong from "@/hooks/useApitest";
 import React from "react";
-import { useQuery } from "react-query";
 
 export default function DefaultApiTestPage() {
   const { data=[], error, isLoading, refetch } = useFetchSong();
