@@ -15,13 +15,6 @@ async function fetchSongs({page,limit}:SearchParams){
   return data || [];
 };
 
-export const fetchTodos = async ({page})=>{
-  const res =await fetch(
-    `https://jsonplaceholder.typicode.com/todos?_page=${page}`
-  );
-  return res.json();
-}
-
 
 function useSongList({page,limit}:SearchParams): UseQueryResult<Song[]> {
   const returnData = useQuery<Song[]>({
@@ -33,17 +26,7 @@ function useSongList({page,limit}:SearchParams): UseQueryResult<Song[]> {
   return returnData;
 }
 
-function useInfiniteSongList({page,limit}:SearchParams) {
-  const {data, status } = useInfiniteQuery({
-    queryKey:["songs"],
-    queryFn:()=>fetchSongs({page:page, limit:limit}),
-    initialPageParam:1,
-    getNextPageParam:(lastPage)=>lastPage.nextPage,
-  })
-  return {data,status}
-}
 
 
 
-
-export {useSongList, useInfiniteSongList};
+export {useSongList};
