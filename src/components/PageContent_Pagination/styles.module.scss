@@ -1,0 +1,36 @@
+@use "@styles/variable.scss";
+
+.pageContainer {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: repeat(6, 1fr);
+  gap: variable.$spacing-small;
+
+  @media (max-width: variable.$media-xl) {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: repeat(4, 1fr);
+    gap: variable.$spacing-small;
+  }
+
+  @media (max-width: variable.$media-lg) {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: repeat(3, 1fr);
+    gap: variable.$spacing-small;
+  }
+
+  @media (max-width: variable.$media-sm) {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: repeat(2, 1fr);
+    gap: variable.$spacing-small;
+  }
+
+
+  @media (max-width: variable.$media-xs) {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+  }
+}

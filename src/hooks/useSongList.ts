@@ -1,9 +1,9 @@
 import { Song } from "@/types/types";
-import { useQuery, UseQueryResult } from "react-query";
+import { useInfiniteQuery, useQuery, UseQueryResult } from "@tanstack/react-query";
 
 type SearchParams ={
   page:number,
-  limit:number
+  limit?:number
 }
 
 async function fetchSongs({page,limit}:SearchParams){
@@ -15,16 +15,35 @@ async function fetchSongs({page,limit}:SearchParams){
   return data || [];
 };
 
+export const fetchTodos = async ({page})=>{
+  const res =await fetch(
+    `https://jsonplaceholder.typicode.com/todos?_page=${page}`
+  );
+  return res.json();
+}
+
 
 function useSongList({page,limit}:SearchParams): UseQueryResult<Song[]> {
-  const returnData = useQuery<Song[]>(["songs",limit,page],() =>fetchSongs({page,limit}), {
+  const returnData = useQuery<Song[]>({
+    queryKey:["songs",limit,page],
+    queryFn:()=>fetchSongs({page,limit}),
     staleTime: 2000,
-    keepPreviousData: true,
-    onError: (error) => {
-      console.error("Error fetching songs:", error);
-    }
-  });
+  }
+);
   return returnData;
 }
 
-export default useSongList;
+function useInfiniteSongList({page,limit}:SearchParams) {
+  const {data, status } = useInfiniteQuery({
+    queryKey:["songs"],
+    queryFn:()=>fetchSongs({page:page, limit:limit}),
+    initialPageParam:1,
+    getNextPageParam:(lastPage)=>lastPage.nextPage,
+  })
+  return {data,status}
+}
+
+
+
+
+export {useSongList, useInfiniteSongList};

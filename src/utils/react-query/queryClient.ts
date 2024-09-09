@@ -1,11 +1,10 @@
-import { MutationCache, QueryCache, QueryClient } from "react-query";
+import { MutationCache, QueryCache, QueryClient } from "@tanstack/react-query";
 
 const queryClient = () => {
   return new QueryClient({
     defaultOptions: {
       queries: {
         retry: 0,
-        cacheTime: 0,
       },
     },
     queryCache: new QueryCache({
