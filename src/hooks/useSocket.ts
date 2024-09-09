@@ -7,8 +7,8 @@ export function useSocket(chatId:string) {
   const [isOwner, setIsOwner] = useState(false);
 
   useEffect(() => {
-    const socket = io("http://localhost:5000", {
-      path: "/api/socket",
+    const socket = io(process.env.NEXT_PUBLIC_CHATSOCKET_URL!, {
+      path: "/socket",
     });
 
     socket.emit("joinRoom", { chatId });

@@ -1,13 +1,10 @@
 "use client";
 import SidebarItem from "@/components/SidebarItem/SidebarItem";
-import { usePathname } from "next/navigation";
-import React, { useMemo } from "react";
+import { Flex } from "@radix-ui/themes";
+import { useMemo } from "react";
 import { BiSearch } from "react-icons/bi";
 import { HiHome } from "react-icons/hi";
-import { Flex } from "@radix-ui/themes";
-import { Library } from "../Library/Library";
 import styles from "./styles.module.scss";
-import { Song } from "@/types/types";
 type SidebarProps = {
   pathname:string;
   scrollDirection:string;

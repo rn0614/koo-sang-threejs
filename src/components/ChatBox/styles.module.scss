@@ -1,0 +1,15 @@
+.chatWrapper{
+  display: flex;
+  flex-direction: column;
+  flex:0;
+  width:500px;
+  padding:10px;
+
+  .chatHistory{
+    flex-grow: 1;
+    border: 1px solid black;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+}

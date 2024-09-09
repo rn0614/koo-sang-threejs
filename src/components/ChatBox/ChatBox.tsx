@@ -1,14 +1,16 @@
-"use client"
+"use client";
 import { useState, useEffect } from "react";
 import { Socket } from "socket.io-client";
+import styles from "./styles.module.scss";
+import { Button } from "@radix-ui/themes";
 
 type ChatBoxProps = {
-  socket: Socket|null;
+  socket: Socket | null;
   chatId: string;
   userId: string;
 };
 
-export default function ChatBox({ socket, chatId, userId }:ChatBoxProps) {
+export default function ChatBox({ socket, chatId, userId }: ChatBoxProps) {
   const [message, setMessage] = useState("");
   const [chatMessages, setChatMessages] = useState<string[]>([]);
 
@@ -34,24 +36,8 @@ export default function ChatBox({ socket, chatId, userId }:ChatBoxProps) {
   };
 
   return (
-    <div
-      style={{
-        flex: 0,
-        width: "500px",
-        padding: "10px",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      <div
-        style={{
-          flexGrow: 1,
-          border: "1px solid black",
-          overflowY: "auto",
-          marginBottom: "10px",
-          padding: "10px",
-        }}
-      >
+    <div className={styles.chatWrapper}>
+      <div className={styles.chatHistory}>
         {chatMessages.map((msg, index) => (
           <p key={index}>{msg}</p>
         ))}
@@ -62,9 +48,9 @@ export default function ChatBox({ socket, chatId, userId }:ChatBoxProps) {
         onChange={(e) => setMessage(e.target.value)}
         placeholder="Type a message..."
       />
-      <button onClick={sendMessage} style={{ marginTop: "10px" }}>
+      <Button onClick={sendMessage} style={{ marginTop: "10px" }}>
         Send
-      </button>
+      </Button>
     </div>
   );
 }

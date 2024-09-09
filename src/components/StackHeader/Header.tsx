@@ -20,17 +20,26 @@ export const StackHeader: React.FC<HeaderProps> = ({ className }) => {
   const [sidbarOpen, setSidebarOpen] = useState(false);
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const [isMobile, setIsMobile] = useState(true);
 
   useEffect(() => {
     setSidebarOpen(false);
   }, [pathname, searchParams]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsMobile(!!window?.ReactNativeWebView);
+    }
+  }, []);
   return (
     <header
       className={`${styles.headerWrapper} ${
         scrollDirection === "down" && styles.headerHidden
       }`}
     >
-      {window?.ReactNativeWebView ? (
+      {isMobile ? (
+        <div></div>
+      ) : (
         <Box className={styles.buttonWrapper}>
           <Box className={styles.sidebarButton}>
             <BsJustify
@@ -43,7 +52,7 @@ export const StackHeader: React.FC<HeaderProps> = ({ className }) => {
             <FaHome size={32} color="black" />
           </Link>
         </Box>
-      ) : <div></div>}
+      )}
       <HeaderButton />
       <Sidebar
         pathname={pathname}

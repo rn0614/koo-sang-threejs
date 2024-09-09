@@ -1,0 +1,19 @@
+@use "@styles/variable.scss";
+
+.pageWrapper{
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  height: 100vh;
+  width: 100%;
+
+  @media (max-width: variable.$media-sm) {
+    flex-direction: column;
+  }
+
+  .excalidrawCanvasWrapper{
+    display: flex;
+    flex: 1;
+    border-right: 1px solid #ccc;
+  }
+}
