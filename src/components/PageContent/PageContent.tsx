@@ -4,7 +4,7 @@ import { Song } from "@/types/types";
 import { Box, Container, Flex, Grid } from "@radix-ui/themes";
 import React, { useState } from "react";
 import { SongItem } from "../SongItem/SongItem";
-import {useSongList} from "@/hooks/useSongList";
+import { useSongList } from "@/hooks/useSongList";
 import Pagination from "../Pagenation/Pagenation";
 
 const PageContent = () => {
@@ -18,6 +18,7 @@ const PageContent = () => {
         columns={{ xs: "1", sm: "2", md: "3", lg: "4", xl: "6" }}
         gap="3"
         width="auto"
+        minHeight={"80svh"}
       >
         {songs.map((song) => (
           <SongItem key={song.id} data={song} onClick={() => onPlay(song.id)} />
