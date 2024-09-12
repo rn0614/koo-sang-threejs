@@ -1,9 +1,9 @@
 // hooks/useSocket.js
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import io, { Socket } from "socket.io-client";
 
-export function useSocket(chatId:string) {
-  const [socket, setSocket] = useState<Socket|null>(null);
+export function useSocket(chatId: string) {
+  const [socket, setSocket] = useState<Socket | null>(null);
   const [isOwner, setIsOwner] = useState(false);
 
   useEffect(() => {
@@ -32,14 +32,23 @@ export function useSocket(chatId:string) {
   return { socket, isOwner };
 }
 
-
 export function useGetRoomList() {
   const [rooms, setRooms] = useState([]);
+  const socketRef = useRef<Socket | null>(null);
+
+  // refresh 
+  const refresh = () => {
+    if (socketRef.current) {
+      console.log('refresh click')
+      socketRef.current.emit("getRoomList");
+    }
+  };
 
   useEffect(() => {
     const socket = io(process.env.NEXT_PUBLIC_CHATSOCKET_URL!, {
       path: "/socket",
     });
+    socketRef.current = socket;
     // 방 목록 요청
     socket.emit("getRoomList");
 
@@ -54,5 +63,5 @@ export function useGetRoomList() {
     };
   }, []);
 
-  return {rooms}
+  return { rooms, refresh };
 }
