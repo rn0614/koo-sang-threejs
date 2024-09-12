@@ -22,7 +22,7 @@ export default function ChatPage() {
 
       <div>test</div>
       {rooms.map((item) => (
-        <div>{item}</div>
+        <div key={item}>{item}</div>
       ))}
     </div>
   );
