@@ -31,3 +31,28 @@ export function useSocket(chatId:string) {
 
   return { socket, isOwner };
 }
+
+
+export function useGetRoomList() {
+  const [rooms, setRooms] = useState([]);
+
+  useEffect(() => {
+    const socket = io(process.env.NEXT_PUBLIC_CHATSOCKET_URL!, {
+      path: "/socket",
+    });
+    // 방 목록 요청
+    socket.emit("getRoomList");
+
+    // 서버에서 받은 방 목록 처리
+    socket.on("roomList", (roomList) => {
+      setRooms(roomList);
+    });
+
+    // 컴포넌트 언마운트 시 소켓 이벤트 정리
+    return () => {
+      socket.off("roomList");
+    };
+  }, []);
+
+  return {rooms}
+}

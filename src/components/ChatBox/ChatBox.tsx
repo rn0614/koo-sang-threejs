@@ -10,9 +10,14 @@ type ChatBoxProps = {
   userId: string;
 };
 
+type ChatMessage = {
+  userId: string;
+  message: string;
+};
+
 export default function ChatBox({ socket, chatId, userId }: ChatBoxProps) {
   const [message, setMessage] = useState("");
-  const [chatMessages, setChatMessages] = useState<string[]>([]);
+  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const chatEndRef = useRef<HTMLDivElement | null>(null); // 새로운 메시지 추가시 스크롤 위치 조정용
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
@@ -31,7 +36,9 @@ export default function ChatBox({ socket, chatId, userId }: ChatBoxProps) {
   useEffect(() => {
     if (socket) {
       socket.on("chatMessage", (msg: string) => {
-        setChatMessages((prev) => [...prev, msg]);
+        const [userIdFromMsg, ...rest] = msg.split(": ");
+        const message = rest.join(": ");
+        setChatMessages((prev) => [...prev, { userId: userIdFromMsg, message }]);
       });
     }
 
@@ -51,7 +58,14 @@ export default function ChatBox({ socket, chatId, userId }: ChatBoxProps) {
     <div className={styles.chatWrapper}>
       <div className={styles.chatHistory}>
         {chatMessages.map((msg, index) => (
-          <p key={index}>{msg}</p>
+          <p
+            key={index}
+            className={
+              msg.userId === userId ? styles.myMessage : styles.otherMessage
+            }
+          >
+            <strong>{msg.userId}:</strong> {msg.message}
+          </p>
         ))}
         <div ref={chatEndRef} />
       </div>

@@ -1,17 +1,23 @@
 "use client";
-import useOnPlay from "@/hooks/useOnPlay";
-import { Song } from "@/types/types";
-import { Box, Container, Flex, Grid } from "@radix-ui/themes";
-import React, { useState } from "react";
+import { useEffect } from "react";
+import { Box, Grid, Container } from "@radix-ui/themes";
 import { SongItem } from "../SongItem/SongItem";
-import { useSongList } from "@/hooks/useSongList";
-import Pagination from "../Pagenation/Pagenation";
+import { useInfiniteSongList } from "@/hooks/useSongList";
+import useOnPlay from "@/hooks/useOnPlay";
+import InfiniteScroll from "react-infinite-scroller";
 
 const PageContent = () => {
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(100);
-  const { data: songs = [] } = useSongList({ page, limit });
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useInfiniteSongList({ limit: 5 });
+  const songs = data?.pages.flat() || [];
   const onPlay = useOnPlay(songs);
+
+  const loadMore = () => {
+    if (hasNextPage && !isFetchingNextPage) {
+      fetchNextPage(); // 페이지 번호를 넘기지 않고 호출
+    }
+  };
+
   return (
     <Container minHeight={"80svh"}>
       <Grid
@@ -20,18 +26,17 @@ const PageContent = () => {
         width="auto"
         minHeight={"80svh"}
       >
-        {songs.map((song) => (
-          <SongItem key={song.id} data={song} onClick={() => onPlay(song.id)} />
-        ))}
+        <InfiniteScroll loadMore={loadMore} hasMore={hasNextPage}>
+          {songs.map((song) => (
+            <SongItem
+              key={song.id}
+              data={song}
+              onClick={() => onPlay(song.id)}
+            />
+          ))}
+        </InfiniteScroll>
       </Grid>
-      <Pagination
-        curPage={page}
-        limit={limit}
-        totalPage={100 ? Math.ceil(100 / limit) : 1}
-        setPage={setPage}
-        setLimit={setLimit}
-        onLimitChange={() => {}}
-      />
+      {isFetchingNextPage && <p>Loading more...</p>}
     </Container>
   );
 };

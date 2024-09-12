@@ -20,8 +20,8 @@ type PropsChatPage ={
 export default function ChatAndDrawPage({ params }:PropsChatPage) {
   const userId = generateRandomName();
   const chatId = params.chatId;
+  
   const { socket, isOwner } = useSocket(chatId);
-
   return (
     <div className={cx(styles.pageWrapper)}>
       <div className={styles.excalidrawCanvasWrapper}>
