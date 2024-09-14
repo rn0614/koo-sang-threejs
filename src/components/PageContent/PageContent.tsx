@@ -5,6 +5,7 @@ import { SongItem } from "../SongItem/SongItem";
 import { useInfiniteSongList } from "@/hooks/useSongList";
 import useOnPlay from "@/hooks/useOnPlay";
 import InfiniteScroll from "react-infinite-scroller";
+import styles from "./styles.module.scss";
 
 const PageContent = () => {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
@@ -19,14 +20,17 @@ const PageContent = () => {
   };
 
   return (
-    <Container minHeight={"80svh"}>
-      <Grid
-        columns={{ xs: "1", sm: "2", md: "3", lg: "4", xl: "6" }}
-        gap="3"
-        width="auto"
-        minHeight={"80svh"}
-      >
-        <InfiniteScroll loadMore={loadMore} hasMore={hasNextPage}>
+    <InfiniteScroll
+      loadMore={loadMore}
+      hasMore={hasNextPage}
+      className={styles.infiniteScrollWrapper}
+    >
+      <Container minHeight={"80svh"} maxWidth={"100%"}>
+        <Grid
+          columns={{ xs: "1", sm: "2", md: "3", lg: "4", xl: "6" }}
+          gap="3"
+          width="auto"
+        >
           {songs.map((song) => (
             <SongItem
               key={song.id}
@@ -34,10 +38,10 @@ const PageContent = () => {
               onClick={() => onPlay(song.id)}
             />
           ))}
-        </InfiniteScroll>
-      </Grid>
-      {isFetchingNextPage && <p>Loading more...</p>}
-    </Container>
+        </Grid>
+        {isFetchingNextPage && <p>Loading more...</p>}
+      </Container>
+    </InfiniteScroll>
   );
 };
 

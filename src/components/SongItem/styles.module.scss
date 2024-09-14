@@ -1,5 +1,10 @@
 @use "@styles/variable.scss";
 
+.infiniteScrollWrapper{
+  display: flex;
+  flex-direction: column;
+}
+
 .cardWrapper {
   background-color: rgb(207, 207, 207);
   padding-inline: 10px;
