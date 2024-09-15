@@ -10,12 +10,13 @@ import { BiLogIn, BiLogOut } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
 import { useRecoilState } from "recoil";
 import styles from "./styles.module.scss";
+import { useEffect, useState } from "react";
 
 export default function HeaderButton() {
+  const [isLoading, setLoading] = useState(true);
   const router = useRouter();
   const supabaseClient = createClient(); // 클라이언트에서만 동작
-  const { isFetching, data } = useUser(); // 사용자 데이터를 가져옴
-
+  
   const [user,setUser] = useRecoilState(userState);
   // 로그아웃 처리 함수
   const handleLogout = async () => {
@@ -29,10 +30,12 @@ export default function HeaderButton() {
       toast.success("Logged out!");
     }
   };
+  useEffect(()=>{
+    setLoading(false);
+  },[])
 
-  // 데이터 로딩 중일 때 UI 처리
-  if (isFetching) {
-    return <div></div>;
+  if(isLoading){
+    return null
   }
 
   // 데이터가 있으면 로그인 상태, 없으면 로그인 버튼 표시
