@@ -1,8 +1,10 @@
-import Link from "next/link";
+"use client"
+import { stackRouterPush } from "@/utils/stackRouter";
+import { Button, Text } from "@radix-ui/themes";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { IconType } from "react-icons";
 import styles from "./styles.module.scss";
-import { Text } from "@radix-ui/themes";
 
 type SidebarItemProps = {
   icon: IconType;
@@ -17,14 +19,21 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
   active,
   href,
 }) => {
+  const router = useRouter();
+
+  const moreInfomationbuttonHandler = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    stackRouterPush(router, href);
+  };
+
   return (
-    <Link
-      href={href}
+    <div
       className={`${styles.sidebarLink} ${active && styles.active}`}
+      onClick={moreInfomationbuttonHandler}
     >
       <Icon size={26} />
       <Text as="p" className={styles.paragraph}>{label}</Text>
-    </Link>
+    </div>
   );
 };
 

@@ -7,12 +7,9 @@ import styles from './styles.module.scss';
 const menuList =[
   { href: "/music", label: "Music" },
   { href: "/login", label: "Login" },
-  { href: "/register", label: "Register" },
   { href: "/apitest", label: "API Test" },
   { href: "/music/liked", label: "Liked" },
-  { href: "/photo-feed", label: "Photo Feed" },
   { href: "/music/search", label: "Search" },
-  { href: "/test", label: "Test" },
   { href: "/three", label: "Three" },
   { href: "/three2", label: "Three2" },
   { href: "/user/rn0614@naver.com", label: "User" },

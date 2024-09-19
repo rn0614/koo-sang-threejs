@@ -48,6 +48,7 @@ export const SongItem: React.FC<SongItemProps> = ({ data, onClick }) => {
           loading="lazy"
           alt={imagePath || "에러 이미지"}
           sizes="210px"
+          priority={false}
         />
         <Container className={styles.floatingWrapper}>
           <FloatButton />

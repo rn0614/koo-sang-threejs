@@ -31,12 +31,6 @@ export default function Sidebar({ pathname, scrollDirection,isOpen }: SidebarPro
         href: "/music/search",
       },
       {
-        icon: GrTest,
-        label: "Test",
-        active: pathname == "/test",
-        href: "/test",
-      },
-      {
         icon: BsChatSquare,
         label: "Chat",
         active: pathname == "/chat",
