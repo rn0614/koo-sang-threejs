@@ -6,20 +6,15 @@ dayjs.extend(duration);
 dayjs.extend(relativeTime);
 dayjs.locale("ko");
 
-/**
- * 한국 현재시간을 출력하는 함수.
- *
- * @param unit - 출력할 시간의 단위를 지정. 'day', 'hour', 'minute', 'second' 중 하나를 선택할 수 있습니다. 기본값은 'day'입니다.
- *
- * @returns 현재 시간을 지정된 단위 형식에 따라 문자열로 반환합니다.
- *
- * @throws Error - 유효하지 않은 `unit` 값이 전달되었을 때 에러를 발생시킵니다.
- */
-export function getCurrentTime(
-  unit: "day" | "hour" | "minute" | "second" = "day"
+export function getCurrentTime({unit= "day", delay}:{
+  unit: string,
+  delay: number} // delay를 밀리초로 받음
 ): string {
   try {
     let formatString = "YYYY-MM-DD"; // 기본 값
+
+    // delay를 반영한 현재 시간 계산
+    const currentTime = dayjs().add(delay, 'millisecond');
 
     switch (unit) {
       case "hour":
@@ -37,7 +32,7 @@ export function getCurrentTime(
         );
     }
 
-    return dayjs().format(formatString);
+    return currentTime.format(formatString);
   } catch (error: any) {
     console.error(
       error.message ||
