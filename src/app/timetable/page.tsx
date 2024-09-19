@@ -71,7 +71,6 @@ export default function DragDropPage() {
     [wrapper]
   );
 
-  const today = getCurrentTime("day");
 
   
   // useEffect(()=>{
@@ -100,9 +99,9 @@ export default function DragDropPage() {
                 </div>
               ))}
             </div>
-            <DropWrapper areaList={wrapper[0]} addBox={addBox} type={"0"} day={today} />
-            <DropWrapper areaList={wrapper[1]} addBox={addBox} type={"1"} day={today}/>
-            <DropWrapper areaList={wrapper[2]} addBox={addBox} type={"2"} day={today}/>
+            <DropWrapper areaList={wrapper[0]} addBox={addBox} type={"0"} day={"2024-09-20"} />
+            <DropWrapper areaList={wrapper[1]} addBox={addBox} type={"1"} day={"2024-09-21"}/>
+            <DropWrapper areaList={wrapper[2]} addBox={addBox} type={"2"} day={"2024-09-22"}/>
           </div>
         </div>
         <div>
