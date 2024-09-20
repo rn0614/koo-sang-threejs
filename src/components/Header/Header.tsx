@@ -44,7 +44,7 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
         </Link>
       </Box>
       <HeaderButton/>
-      <Sidebar pathname={pathname} isOpen={sidbarOpen} scrollDirection={scrollDirection}/>
+      <Sidebar pathname={pathname} isOpen={sidbarOpen} setSidebarOpen={setSidebarOpen} scrollDirection={scrollDirection}/>
     </header>
   );
 };

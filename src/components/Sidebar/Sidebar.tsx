@@ -8,14 +8,18 @@ import styles from "./styles.module.scss";
 import { BsChatSquare } from "react-icons/bs";
 import { Md3dRotation } from "react-icons/md";
 import { GrTest } from "react-icons/gr";
+import { stackRouterPush } from "@/utils/stackRouter";
+import { useRouter } from "next/navigation";
 
 type SidebarProps = {
   pathname:string;
   scrollDirection:string;
   isOpen: boolean;
+  setSidebarOpen:any;
 };
 
-export default function Sidebar({ pathname, scrollDirection,isOpen }: SidebarProps) {
+export default function Sidebar({ pathname, scrollDirection,isOpen, setSidebarOpen }: SidebarProps) {
+  const router = useRouter();
   const routes = useMemo(
     () => [
       {
@@ -45,6 +49,10 @@ export default function Sidebar({ pathname, scrollDirection,isOpen }: SidebarPro
     ],
     [pathname]
   );
+  const webviewClickhandler = (href:any) => {
+    setSidebarOpen(false);
+    stackRouterPush(router, href);
+  };
 
   return (
     <aside
@@ -54,7 +62,7 @@ export default function Sidebar({ pathname, scrollDirection,isOpen }: SidebarPro
     >
       <Flex className={styles.route}>
         {routes.map((item, idx) => (
-          <SidebarItem key={item.label} {...item}/>
+          <SidebarItem key={item.label} webviewClickhandler={webviewClickhandler} {...item}/>
         ))}
       </Flex>
     </aside>

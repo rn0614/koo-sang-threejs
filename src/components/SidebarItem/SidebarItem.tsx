@@ -10,6 +10,7 @@ type SidebarItemProps = {
   icon: IconType;
   label: string;
   active?: boolean;
+  webviewClickhandler?: any;
   href: string;
 };
 
@@ -17,19 +18,16 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
   icon: Icon,
   label,
   active,
+  webviewClickhandler,
   href,
 }) => {
-  const router = useRouter();
 
-  const moreInfomationbuttonHandler = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    stackRouterPush(router, href);
-  };
+
 
   return (
     <div
       className={`${styles.sidebarLink} ${active && styles.active}`}
-      onClick={moreInfomationbuttonHandler}
+      onClick={()=>webviewClickhandler(href)}
     >
       <Icon size={26} />
       <Text as="p" className={styles.paragraph}>{label}</Text>
