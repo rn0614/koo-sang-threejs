@@ -58,6 +58,7 @@ export const StackHeader: React.FC<HeaderProps> = ({ className }) => {
         pathname={pathname}
         isOpen={sidbarOpen}
         scrollDirection={scrollDirection}
+        setSidebarOpen={setSidebarOpen}
       />
     </header>
   );

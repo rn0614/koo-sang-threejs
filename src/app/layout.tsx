@@ -1,17 +1,13 @@
 import ModalProvider from "@/providers/ModalProvider";
 import QueryClientProvider from "@/providers/QueryClientProvider";
-import SupabaseProvider from "@/providers/SupabaseProvider";
 import { ToasterProvider } from "@/providers/ToasterProvider";
 
+import { MockServiceProvider } from "@/providers/MockServiceProvider";
 import { Theme } from "@radix-ui/themes";
+import "@radix-ui/themes/styles.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "@radix-ui/themes/styles.css";
 import "./globals.css";
-import { MockServiceProvider } from "@/providers/MockServiceProvider";
-import { mswStart } from "@/mocks";
-import { RecoilRoot } from "recoil";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -35,10 +31,8 @@ export default function RootLayout({
           <ToasterProvider />
           <MockServiceProvider />
           <QueryClientProvider>
-            {/* <UserProvider> */}
             <ModalProvider />
             {children}
-            {/* </UserProvider> */}
           </QueryClientProvider>
         </Theme>
       </body>

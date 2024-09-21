@@ -1,10 +1,4 @@
-
-import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-
-const GET_SCHEDULE_LIST = () =>
-  `${process.env.NEXT_PUBLIC_API_BACK}/schedule/list`;
-
 
 export const getScheduleListRequest = async () => {
   try {

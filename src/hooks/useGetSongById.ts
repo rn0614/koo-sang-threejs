@@ -1,42 +1,33 @@
 import { Song } from "@/types/types";
 import { createClient } from "@/utils/supabase/client";
-import { useEffect, useMemo, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
-const useGetSongById = (id?: string) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [song, setSong] = useState<Song | undefined>(undefined);
-  const supabase = createClient();
+const supabase = createClient();
 
-  useEffect(() => {
-    if (!id) {
-      return;
-    }
-    setIsLoading(true);
+const fetchSongById = async (id?: string) => {
+  if (!id) return null;
+  const { data, error } = await supabase
+    .from("songs")
+    .select("*")
+    .eq("id", id)
+    .single();
 
-    const fetchSong = async () => {
-      const { data, error } = await supabase
-        .from("songs")
-        .select("*")
-        .eq("id", id)
-        .single();
-      if(error){
-        setIsLoading(false);
-        return toast.error(error.message);
-      }
+  if (error) {
+    throw new Error(error.message);
+  }
 
-      setSong(data as Song);
-      setIsLoading(false)
-    };
-
-    fetchSong();
-  }, [id, supabase]);
-
-  return useMemo(()=>({
-    isLoading,
-    song
-  }),[isLoading, song])
+  return data as Song;
 };
 
+const useGetSongById = (id?: string) => {
+  return useQuery({
+    queryKey: ["song", id],
+    queryFn: () => fetchSongById(id),
+    enabled: !!id, // Only run the query if id is provided
+    onError: (error: Error) => toast.error(error.message),
+    retry: false, // Optional: Avoid retry on error if needed
+  });
+};
 
 export default useGetSongById;

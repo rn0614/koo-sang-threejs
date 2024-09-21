@@ -1,19 +1,39 @@
-import { create } from "zustand";
+import { atom, useRecoilState } from "recoil";
 
-type PlayerStore = {
-  ids: string[];
-  activeId?: string;
-  setId: (id: string) => void;
-  setIds: (ids:string[]) =>void;
-  reset:()=>void;
-};
+// Define atoms for storing the ids and the activeId
+export const idsState = atom<string[]>({
+  key: 'idsState', // Unique ID for this atom
+  default: [], // Default value
+});
 
-const usePlayer = create<PlayerStore>((set)=>({
-  ids:[],
-  activeId:undefined,
-  setId:(id:string )=> set({activeId:id}),
-  setIds:(ids:string[]) =>set({ids:ids}),
-  reset:()=> set({ids:[], activeId:undefined})
-}))
+export const activeIdState = atom<string | undefined>({
+  key: 'activeIdState',
+  default: undefined,
+});
 
-export default usePlayer;
+// Custom hook to provide similar functionality to Zustand store
+export default function usePlayer() {
+  const [ids, setIdsState] = useRecoilState(idsState);
+  const [activeId, setActiveIdState] = useRecoilState(activeIdState);
+
+  const setId = (id: string) => {
+    setActiveIdState(id);
+  };
+
+  const setIds = (ids: string[]) => {
+    setIdsState(ids);
+  };
+
+  const reset = () => {
+    setIdsState([]);
+    setActiveIdState(undefined);
+  };
+
+  return {
+    ids,
+    activeId,
+    setId,
+    setIds,
+    reset,
+  };
+}

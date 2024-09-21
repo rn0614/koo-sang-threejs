@@ -17,7 +17,7 @@ import { useRouter } from "next/navigation";
 export const UploadModal = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const uploadModal = useUploadModal();
-  const { data, isFetching } = useUser();
+  const { user, isFetching } = useUser();
   const supabaseClient = createClient();
   const router = useRouter();
 
@@ -44,7 +44,7 @@ export const UploadModal = () => {
       const imageFile = values.image?.[0];
       const songFile = values.song?.[0];
 
-      if (!imageFile || !songFile || !data.id) {
+      if (!imageFile || !songFile || !user.id) {
         toast.error("Miss field");
         return;
       }
@@ -76,7 +76,7 @@ export const UploadModal = () => {
       const { error: supabaseError } = await supabaseClient
         .from("songs")
         .insert({
-          user_id: data.id,
+          user_id: user.id,
           title: values.title,
           author: values.author,
           image_path: imageData.path,

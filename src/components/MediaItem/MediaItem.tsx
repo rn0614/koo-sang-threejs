@@ -11,7 +11,7 @@ type MediaItemProps = {
 };
 
 export const MediaItem: React.FC<MediaItemProps> = ({ onClick, data }) => {
-  const imageUrl = useLoadImage(data);
+  const { data: imageUrl } = useLoadImage(data);
 
   const hadleClick = () => {
     if (onClick) {

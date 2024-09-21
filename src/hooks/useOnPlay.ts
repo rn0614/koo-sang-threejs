@@ -7,10 +7,10 @@ import useUser from "@/hooks/useUser2";
 const useOnPlay = (songs: Song[]) => {
   const player = usePlayer();
   const authModal = useAuthModal();
-  const { data, isFetching } = useUser();
+  const { user } = useUser();
 
   const onPlay = (id: string) => {
-    if (!data.id) {
+    if (!user.id) {
       return authModal.onOpen();
     }
     player.setId(id);

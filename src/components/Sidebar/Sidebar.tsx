@@ -12,13 +12,18 @@ import { stackRouterPush } from "@/utils/stackRouter";
 import { useRouter } from "next/navigation";
 
 type SidebarProps = {
-  pathname:string;
-  scrollDirection:string;
+  pathname: string;
+  scrollDirection: string;
   isOpen: boolean;
-  setSidebarOpen:any;
+  setSidebarOpen: any;
 };
 
-export default function Sidebar({ pathname, scrollDirection,isOpen, setSidebarOpen }: SidebarProps) {
+export default function Sidebar({
+  pathname,
+  scrollDirection,
+  isOpen,
+  setSidebarOpen,
+}: SidebarProps) {
   const router = useRouter();
   const routes = useMemo(
     () => [
@@ -49,7 +54,7 @@ export default function Sidebar({ pathname, scrollDirection,isOpen, setSidebarOp
     ],
     [pathname]
   );
-  const webviewClickhandler = (href:any) => {
+  const webviewClickhandler = (href: any) => {
     setSidebarOpen(false);
     stackRouterPush(router, href);
   };
@@ -57,12 +62,16 @@ export default function Sidebar({ pathname, scrollDirection,isOpen, setSidebarOp
   return (
     <aside
       className={`${styles.sidebarWrapper} ${
-        isOpen&&scrollDirection!="down" ? styles.sidebarOpen : null
+        isOpen && scrollDirection != "down" ? styles.sidebarOpen : null
       }`}
     >
       <Flex className={styles.route}>
         {routes.map((item, idx) => (
-          <SidebarItem key={item.label} webviewClickhandler={webviewClickhandler} {...item}/>
+          <SidebarItem
+            key={item.label}
+            webviewClickhandler={webviewClickhandler}
+            {...item}
+          />
         ))}
       </Flex>
     </aside>

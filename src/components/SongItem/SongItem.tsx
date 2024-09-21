@@ -23,7 +23,7 @@ type SongItemProps = {
 };
 
 export const SongItem: React.FC<SongItemProps> = ({ data, onClick }) => {
-  const imagePath = useLoadImage(data);
+  const { data: imagePath } = useLoadImage(data);
   const router = useRouter();
 
   const moreInfomationbuttonHandler = (e: React.MouseEvent) => {

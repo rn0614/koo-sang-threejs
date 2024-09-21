@@ -16,12 +16,12 @@ type LibraryProps = {
 export const Library:React.FC<LibraryProps> = ({songs}) => {
   const authModal = useAuthModal();
   const uploadModal = useUploadModal();
-  const { data, isFetching } = useUser();
+  const { user, isFetching } = useUser();
 
   const onPlay = useOnPlay(songs);
 
   const onClick = () => {
-    if (!data.id) {
+    if (!user.id) {
       return authModal.onOpen();
     }
 

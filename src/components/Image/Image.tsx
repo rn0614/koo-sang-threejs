@@ -10,6 +10,9 @@ type ImageProps = {
 };
 
 export default function ClientImage({ alt, song }: ImageProps) {
-  const imageUrl = useLoadImage(song) as string;
-  return <Image alt={alt} src={imageUrl} fill sizes={"300"} />;
+  const { data: imageUrl, error } = useLoadImage(song);
+  if (imageUrl) {
+    return <div></div>;
+  }
+  return <Image alt={alt} src={imageUrl || ""} fill sizes={"300"} />;
 }
