@@ -1,6 +1,7 @@
 import { Header } from "@/components/Header/Header";
 import styles from "./styles.module.scss";
 import HomeContent from "@/components/HomeContent/page";
+import HeaderButton from "@/components/HeaderButton/HeaderButton";
 
 export const metadata = {
   title: "Koosang Project",
@@ -10,7 +11,9 @@ export const metadata = {
 export default async function Home() {
   return (
     <main className={styles.flexColumn}>
-      <Header />
+      <Header>
+        <HeaderButton />
+      </Header>
       <HomeContent />
     </main>
   );

@@ -14,7 +14,8 @@ export default function useAuthModal() {
     setIsOpen(true); // 모달 열기
   };
 
-  const onClose = () => {
+  const onClose = 
+  () => {
     setIsOpen(false); // 모달 닫기
   };
 

@@ -7,10 +7,24 @@ import { BiLogIn, BiLogOut } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
 import styles from "./styles.module.scss";
 import { useEffect, useState } from "react";
+import { createClient } from "@/utils/supabase/client";
+import { toast } from "react-hot-toast";
+
 export default function HeaderButton() {
   const [isClient, setIsClient] = useState(false);
   const router = useRouter();
-  const { user, isLoading, isFetching, handleLogout } = useUser();
+  const { user, isLoading, isFetching, refetch } = useUser();
+  const supabaseClient = createClient();
+
+  const handleLogout = async () => {
+    const { error } = await supabaseClient.auth.signOut();
+    if (error) {
+      toast.error(error.message);
+    } else {
+      toast.success("Logged out!");
+      refetch();
+    }
+  };
 
   useEffect(() => {
     setIsClient(true);
@@ -46,7 +60,7 @@ export default function HeaderButton() {
           />
         </Box>
       )}
-      {isLoading && <div></div>}
+      {isLoading && <div>여기</div>}
     </>
   );
 }

@@ -1,0 +1,59 @@
+@use "@styles/variable.scss";
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  flex-grow: 1;
+}
+
+.flexColumn {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainLayout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+
+  .mainWrapper {
+    display: grid;
+    grid-template-areas: "sidebar main";
+    grid-template-columns: 200px auto;
+    height: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+
+    @media (max-width: variable.$media-sm) {
+      display: grid;
+      grid-template-areas: "main";
+      grid-template-columns: auto;
+      height: 100%;
+      max-width: 100%;
+      .mainContent {
+        overflow-x: hidden;
+        grid-area: main;
+      }
+    }
+    .sidebarGuide {
+      grid-area: sidebar;
+      display: flex;
+      flex-direction: column;
+      width: 200px;
+      min-width: 200px;
+      @media (max-width: variable.$media-sm) {
+        display: none;
+      }
+    }
+    .mainContent {
+      overflow-x: hidden;
+      grid-area: main;
+    }
+  }
+}

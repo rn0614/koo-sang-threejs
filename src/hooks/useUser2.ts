@@ -1,7 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import { createClient } from "@/utils/supabase/client";
-import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
 
 const initialUser = {
   id: "",
@@ -10,8 +8,6 @@ const initialUser = {
   billing_address: "",
   payment_method: "",
 };
-
-const supabaseClient = createClient();
 
 const fetchUser = async () => {
   const supabase = createClient();
@@ -42,8 +38,6 @@ const fetchUser = async () => {
 };
 
 export default function useUser() {
-  const router = useRouter();
-
   // React Query로 사용자 상태 관리
   const {
     data: user,
@@ -63,17 +57,5 @@ export default function useUser() {
     },
   });
 
-  // 로그아웃 함수
-  const handleLogout = async () => {
-    const { error } = await supabaseClient.auth.signOut();
-    router.refresh();
-    if (error) {
-      toast.error(error.message);
-    } else {
-      toast.success("Logged out!");
-      refetch(); // 로그아웃 후 사용자를 다시 가져오도록 강제 refetch
-    }
-  };
-
-  return { user, isLoading, isFetching, isError, error, handleLogout };
+  return { user, isLoading, isFetching, isError, error, refetch };
 }
