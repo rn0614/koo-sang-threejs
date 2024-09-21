@@ -4,12 +4,12 @@ import styles from "./styles.module.scss";
 
 export default async function Layout({
   children,
-}:{
+}: {
   children: React.ReactNode;
 }) {
   return (
     <Box className={styles.mainLayout}>
-      <Header/>
+      <Header />
       <main className={styles.mainWrapper}>
         <Box className={styles.sidebarGuide}></Box>
         <Box className={styles.mainContent}>{children}</Box>

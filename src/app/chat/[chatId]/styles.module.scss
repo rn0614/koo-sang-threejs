@@ -1,6 +1,6 @@
 @use "@styles/variable.scss";
 
-.pageWrapper{
+.pageWrapper {
   display: flex;
   flex-direction: row;
   flex-grow: 1;
@@ -11,7 +11,7 @@
     flex-direction: column;
   }
 
-  .excalidrawCanvasWrapper{
+  .excalidrawCanvasWrapper {
     display: flex;
     flex: 1;
     border-right: 1px solid #ccc;

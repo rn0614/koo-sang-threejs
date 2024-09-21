@@ -10,8 +10,12 @@ export default function LoginPage() {
         <input id="email" name="email" type="email" required />
         <label htmlFor="password">Password:</label>
         <input id="password" name="password" type="password" required />
-        <button className={styles.loginButton} formAction={login}>Log in</button>
-        <button className={styles.signupButton} formAction={signup}>Sign up</button>
+        <button className={styles.loginButton} formAction={login}>
+          Log in
+        </button>
+        <button className={styles.signupButton} formAction={signup}>
+          Sign up
+        </button>
       </form>
     </div>
   );

@@ -1,7 +1,7 @@
-'use client'
-import { stackRouterBack } from '@/utils/stackRouter';
-import { useRouter } from 'next/navigation';
-import React, { ButtonHTMLAttributes, forwardRef } from 'react';
+"use client";
+import { stackRouterBack } from "@/utils/stackRouter";
+import { useRouter } from "next/navigation";
+import React, { ButtonHTMLAttributes, forwardRef } from "react";
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   children: string;
@@ -18,5 +18,5 @@ const RoutingBackButton = forwardRef<HTMLButtonElement, ButtonProps>(
   }
 );
 
-RoutingBackButton.displayName='RoutingBackButton';
+RoutingBackButton.displayName = "RoutingBackButton";
 export default RoutingBackButton;

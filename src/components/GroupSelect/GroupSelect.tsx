@@ -1,6 +1,12 @@
-"use client"
+"use client";
 import React, { useState } from "react";
-const DynamicSelects = ({ tree, columns }: { tree: any, columns:string[] }) => {
+const DynamicSelects = ({
+  tree,
+  columns,
+}: {
+  tree: any;
+  columns: string[];
+}) => {
   const initialSelectedState = columns.reduce((acc, column) => {
     acc[column] = "";
     return acc;
@@ -29,7 +35,10 @@ const DynamicSelects = ({ tree, columns }: { tree: any, columns:string[] }) => {
   };
 
   const getFinalOptions = () => {
-    const finalOptions = tree[selectedColumns.column1]?.[selectedColumns.column2]?.[selectedColumns.column3];
+    const finalOptions =
+      tree[selectedColumns.column1]?.[selectedColumns.column2]?.[
+        selectedColumns.column3
+      ];
     if (Array.isArray(finalOptions)) {
       return finalOptions;
     } else if (finalOptions && typeof finalOptions === "object") {
@@ -81,7 +90,9 @@ const DynamicSelects = ({ tree, columns }: { tree: any, columns:string[] }) => {
         >
           <option value="">-- Select --</option>
           {selectedColumns.column2 &&
-            Object.keys(tree[selectedColumns.column1][selectedColumns.column2] || {}).map((key) => (
+            Object.keys(
+              tree[selectedColumns.column1][selectedColumns.column2] || {}
+            ).map((key) => (
               <option key={key} value={key}>
                 {key}
               </option>

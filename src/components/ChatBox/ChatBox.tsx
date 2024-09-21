@@ -38,7 +38,10 @@ export default function ChatBox({ socket, chatId, userId }: ChatBoxProps) {
       socket.on("chatMessage", (msg: string) => {
         const [userIdFromMsg, ...rest] = msg.split(": ");
         const message = rest.join(": ");
-        setChatMessages((prev) => [...prev, { userId: userIdFromMsg, message }]);
+        setChatMessages((prev) => [
+          ...prev,
+          { userId: userIdFromMsg, message },
+        ]);
       });
     }
 

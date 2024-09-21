@@ -1,9 +1,0 @@
-@use "@styles/variable.scss";
-
-.category {
-  display: none;
-  @media (max-width: variable.$media-sm) {
-    display: flex;
-    height: 100%;
-  }
-}

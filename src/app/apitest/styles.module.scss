@@ -1,19 +1,19 @@
-.dashboard{
+.dashboard {
   display: grid;
-  grid-template-areas: 
-      "children parallel"
-      "testing additional";
+  grid-template-areas:
+    "children parallel"
+    "testing additional";
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  margin:20px;
+  margin: 20px;
 }
 
-.children{
+.children {
   grid-area: "children";
 }
-.testing{
+.testing {
   grid-area: "testing";
 }
-.additional{
+.additional {
   grid-area: "additional";
 }

@@ -16,9 +16,9 @@ export const AddFloatButton = () => {
     }
     return uploadModal.onOpen();
   };
-  
-  if(isLoading){
-    return null
+
+  if (isLoading) {
+    return null;
   }
 
   return (

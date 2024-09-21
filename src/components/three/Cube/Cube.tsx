@@ -2,7 +2,7 @@ import React, { useCallback, useRef, useState } from "react";
 import { useTexture } from "@react-three/drei";
 import { RigidBody, RigidBodyProps } from "@react-three/rapier";
 import { create } from "zustand";
-import * as THREE from 'three';
+import * as THREE from "three";
 import { ThreeEvent } from "@react-three/fiber";
 
 // 타입 정의
@@ -15,7 +15,8 @@ interface CubeStore {
 
 const useCubeStore = create<CubeStore>((set) => ({
   cubes: [],
-  addCube: (x, y, z) => set((state) => ({ cubes: [...state.cubes, [x, y, z]] })),
+  addCube: (x, y, z) =>
+    set((state) => ({ cubes: [...state.cubes, [x, y, z]] })),
 }));
 
 export const Cubes: React.FC = () => {

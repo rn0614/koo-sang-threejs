@@ -51,7 +51,7 @@ export const Experience = () => {
       {players.map(({ state, joystick }, idx) => (
         <CharacterController
           key={state.id}
-          position-x={idx *2}
+          position-x={idx * 2}
           state={state}
           joystick={joystick}
           userPlayer={state.id === myPlayer()?.id}

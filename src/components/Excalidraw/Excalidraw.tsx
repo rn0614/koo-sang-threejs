@@ -1,18 +1,23 @@
-"use client"
+"use client";
 import { Excalidraw } from "@excalidraw/excalidraw";
 import { ExcalidrawElement } from "@excalidraw/excalidraw/types/element/types";
 import { ExcalidrawImperativeAPI } from "@excalidraw/excalidraw/types/types";
 import { useEffect, useState } from "react";
 import type { Socket } from "socket.io-client";
 
-type ExcalidrawCanvasProps ={
-  isOwner:boolean;
-  socket:Socket|null;
-  chatId:string;
-}
+type ExcalidrawCanvasProps = {
+  isOwner: boolean;
+  socket: Socket | null;
+  chatId: string;
+};
 
-export default function ExcalidrawCanvas({ isOwner, socket, chatId }:ExcalidrawCanvasProps) {
-  const [excalidrawAPI, setExcalidrawAPI] = useState<ExcalidrawImperativeAPI|null>(null);
+export default function ExcalidrawCanvas({
+  isOwner,
+  socket,
+  chatId,
+}: ExcalidrawCanvasProps) {
+  const [excalidrawAPI, setExcalidrawAPI] =
+    useState<ExcalidrawImperativeAPI | null>(null);
 
   useEffect(() => {
     if (socket) {
@@ -38,7 +43,7 @@ export default function ExcalidrawCanvas({ isOwner, socket, chatId }:ExcalidrawC
     };
   }, [socket, excalidrawAPI]);
 
-  const handleChange = (elements:readonly ExcalidrawElement[]) => {
+  const handleChange = (elements: readonly ExcalidrawElement[]) => {
     if (isOwner && socket) {
       socket.emit("drawingUpdate", { chatId, elements });
     }

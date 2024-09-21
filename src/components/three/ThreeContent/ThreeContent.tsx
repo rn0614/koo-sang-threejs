@@ -7,20 +7,18 @@ import { Player } from "../Player/Player";
 import { Ground } from "../Ground/Ground";
 import { Cube, Cubes } from "../Cube/Cube";
 
-const keyArray =[
+const keyArray = [
   { name: "forward", keys: ["ArrowUp", "w", "W"] },
   { name: "backward", keys: ["ArrowDown", "s", "S"] },
   { name: "left", keys: ["ArrowLeft", "a", "A"] },
   { name: "right", keys: ["ArrowRight", "d", "D"] },
   { name: "jump", keys: ["Space"] },
-]
+];
 
 export const ThreeContent = () => {
   return (
-    <KeyboardControls
-      map={keyArray}
-    >
-      <Canvas shadows camera={{ fov: 45 }} style={{height:"100vh"}}>
+    <KeyboardControls map={keyArray}>
+      <Canvas shadows camera={{ fov: 45 }} style={{ height: "100vh" }}>
         {/* <Sky sunPosition={[100, 20, 100]} /> */}
         <ambientLight intensity={0.3} />
         <pointLight castShadow intensity={0.8} position={[100, 100, 100]} />

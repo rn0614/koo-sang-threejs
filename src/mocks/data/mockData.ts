@@ -1,3 +1,1 @@
-export const getMusicListData =[
-  
-]
+export const getMusicListData = [];

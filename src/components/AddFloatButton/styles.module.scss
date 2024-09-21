@@ -1,14 +1,14 @@
-.floatingButton{
-  position:fixed;
+.floatingButton {
+  position: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: rgb(114, 114, 114);
-  bottom:10%;
-  right:10%;
+  bottom: 10%;
+  right: 10%;
   border-radius: 100%;
 
-  &:hover{
+  &:hover {
     background-color: rgb(60, 60, 60);
   }
 }

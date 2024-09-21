@@ -1,11 +1,17 @@
-import React from 'react';
-import * as Form from '@radix-ui/react-form';
-import './styles.css';
+import React from "react";
+import * as Form from "@radix-ui/react-form";
+import "./styles.css";
 
 const FormDemo = () => (
   <Form.Root className="FormRoot">
     <Form.Field className="FormField" name="email">
-      <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "baseline",
+          justifyContent: "space-between",
+        }}
+      >
         <Form.Label className="FormLabel">Email</Form.Label>
         <Form.Message className="FormMessage" match="valueMissing">
           Please enter your email
@@ -19,7 +25,13 @@ const FormDemo = () => (
       </Form.Control>
     </Form.Field>
     <Form.Field className="FormField" name="question">
-      <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "baseline",
+          justifyContent: "space-between",
+        }}
+      >
         <Form.Label className="FormLabel">Question</Form.Label>
         <Form.Message className="FormMessage" match="valueMissing">
           Please enter a question

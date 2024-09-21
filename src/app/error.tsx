@@ -9,9 +9,9 @@ export default function Error({
   error: Error;
   reset: () => void;
 }) {
-  useEffect(()=>{
-    console.log(`${error}`)
-  },[error])
+  useEffect(() => {
+    console.log(`${error}`);
+  }, [error]);
   return (
     <div>
       <div>오류 default</div>

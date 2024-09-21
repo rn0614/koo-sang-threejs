@@ -1,7 +1,6 @@
-
 .area {
   display: flex;
-  position:relative;
+  position: relative;
   flex-direction: row;
   border-block: 1px solid black;
   height: 20px;
@@ -10,14 +9,14 @@
     width: 30px;
   }
 }
-.drop-possible{
+.drop-possible {
   background-color: yellow;
 }
 
-.drop-disable{
+.drop-disable {
   background-color: red;
 }
 
-.drop-cursor{
+.drop-cursor {
   background-color: greenyellow;
 }

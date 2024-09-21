@@ -1,10 +1,10 @@
-import React from 'react'
+import React from "react";
 
 export const Character = () => {
   return (
     <mesh>
-      <boxGeometry/>
-      <meshStandardMaterial/>
+      <boxGeometry />
+      <meshStandardMaterial />
     </mesh>
-  )
-}
+  );
+};

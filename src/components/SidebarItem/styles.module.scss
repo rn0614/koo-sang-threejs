@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   text-decoration: none;
-  color:black;
+  color: black;
   width: auto;
   padding-inline: 8px;
   padding-block: 4px;
@@ -11,9 +11,9 @@
   .paragraph {
     width: 100%;
   }
-  &:hover{
+  &:hover {
     background-color: gray;
-    color:white;
+    color: white;
   }
 }
 .active {

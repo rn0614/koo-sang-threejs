@@ -4,10 +4,12 @@ import { createClient } from "@/utils/supabase/server";
 const getSongsByUserId = async (): Promise<Song[]> => {
   const supabase = createClient();
 
-  const { data: {user}, error: sessionError } =
-    await supabase.auth.getUser();
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
 
-  if (sessionError) {
+  if (userError) {
     return [];
   }
 

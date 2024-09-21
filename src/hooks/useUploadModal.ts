@@ -1,8 +1,8 @@
-import { atom, useRecoilState } from 'recoil';
+import { atom, useRecoilState } from "recoil";
 
 // 모달의 상태를 관리하는 atom 생성
 const uploadModalState = atom<boolean>({
-  key: 'uploadModalState', // Recoil의 고유 key
+  key: "uploadModalState", // Recoil의 고유 key
   default: false, // 초기값: 모달이 닫혀있는 상태
 });
 

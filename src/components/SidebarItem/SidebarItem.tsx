@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { stackRouterPush } from "@/utils/stackRouter";
 import { Button, Text } from "@radix-ui/themes";
 import { useRouter } from "next/navigation";
@@ -21,16 +21,15 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
   webviewClickhandler,
   href,
 }) => {
-
-
-
   return (
     <div
       className={`${styles.sidebarLink} ${active && styles.active}`}
-      onClick={()=>webviewClickhandler(href)}
+      onClick={() => webviewClickhandler(href)}
     >
       <Icon size={26} />
-      <Text as="p" className={styles.paragraph}>{label}</Text>
+      <Text as="p" className={styles.paragraph}>
+        {label}
+      </Text>
     </div>
   );
 };

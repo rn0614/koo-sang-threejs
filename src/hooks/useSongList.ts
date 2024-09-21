@@ -29,9 +29,9 @@ function useSongList({ page, limit }: SearchParams): UseQueryResult<Song[]> {
 }
 
 function useInfiniteSongList({ limit }: any) {
-  return useInfiniteQuery<Song[],Error>({
+  return useInfiniteQuery<Song[], Error>({
     queryKey: ["songs"],
-    queryFn: ( {pageParam=1} ) => fetchSongs({ page:pageParam, limit }),
+    queryFn: ({ pageParam = 1 }) => fetchSongs({ page: pageParam, limit }),
     //initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
       return lastPage.length < limit ? undefined : allPages.length + 1;

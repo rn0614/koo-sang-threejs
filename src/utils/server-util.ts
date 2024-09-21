@@ -1,5 +1,5 @@
-import "server-only"
+import "server-only";
 
-export const serverSideFunction =()=>{
-  return "server result"
-}
+export const serverSideFunction = () => {
+  return "server result";
+};

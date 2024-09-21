@@ -8,7 +8,7 @@ export default async function Layout({
 }) {
   return (
     <div className={styles.mainLayout}>
-      <StackHeader/>
+      <StackHeader />
       <main className={styles.mainWrapper}>
         <div className={styles.sidebarGuide}></div>
         <div className={styles.mainContent}>{children}</div>

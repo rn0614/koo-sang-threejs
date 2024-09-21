@@ -19,7 +19,7 @@ export const CharacterController = ({
   userPlayer,
   onFire,
   ...props
-}:any) => {
+}: any) => {
   const group = useRef(null);
   const character = useRef(null);
   const rigidbody = useRef<any>(null);
@@ -29,18 +29,18 @@ export const CharacterController = ({
   const [, get] = useKeyboardControls();
   useFrame((_, delta) => {
     const angle = joystick.angle();
-    if(joystick.isJoystickPressed() && angle){
+    if (joystick.isJoystickPressed() && angle) {
       setAnimation("Run");
       //character.current.rotation.y = angle;
 
-      const impulse ={
-        x:Math.sin(angle) * MOVEMENT_SPEED * delta,
-        y:0,
-        z:Math.cos(angle) * MOVEMENT_SPEED * delta,
-      }
+      const impulse = {
+        x: Math.sin(angle) * MOVEMENT_SPEED * delta,
+        y: 0,
+        z: Math.cos(angle) * MOVEMENT_SPEED * delta,
+      };
 
       rigidbody.current.applyImpulse(impulse, true);
-    }else{
+    } else {
       setAnimation("Idle");
     }
 
@@ -110,7 +110,7 @@ export const CharacterController = ({
         type={"dynamic"}
       >
         <group ref={character}>
-          <Crosshair/>
+          <Crosshair />
           <Character />
         </group>
         <CapsuleCollider args={[0.5, 0.7]} position={[0, 1, 0]} />
@@ -119,7 +119,7 @@ export const CharacterController = ({
   );
 };
 
-const Crosshair = (props:any) => {
+const Crosshair = (props: any) => {
   return (
     <group {...props}>
       <mesh position-z={1}>

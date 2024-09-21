@@ -41,6 +41,12 @@ export default function Sidebar({
       },
       {
         icon: BsChatSquare,
+        label: "Test",
+        active: pathname == "/test",
+        href: "/test",
+      },
+      {
+        icon: GrTest,
         label: "Chat",
         active: pathname == "/chat",
         href: "/chat",

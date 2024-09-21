@@ -7,7 +7,7 @@ type LikedContentProps = {
   songs: Song[];
 };
 
-export const Likedcontent = ({ songs=[] }: LikedContentProps) => {
+export const Likedcontent = ({ songs = [] }: LikedContentProps) => {
   if (songs.length === 0) {
     return <Box>there is no songs~</Box>;
   }

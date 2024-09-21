@@ -75,17 +75,17 @@
     border-radius: 50%;
     overflow: hidden;
     transition: background-color 0.3s ease, transform 0.2s ease; // 트랜지션 추가 (배경색, 크기)
-  
+
     &:hover {
       background-color: rgba(0, 0, 0, 0.1); // 호버 시 배경색 변화
     }
-  
+
     &:active {
       transform: scale(0.8); // 클릭 시 살짝 작아짐
     }
-  
+
     &:active::after {
-      content: '';
+      content: "";
       position: absolute;
       left: 50%;
       top: 50%;

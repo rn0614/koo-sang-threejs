@@ -10,7 +10,7 @@ const getLikedSongs = async (): Promise<Song[]> => {
   const { data, error } = await supabase
     .from("liked_songs")
     .select("*, songs(*)")
-    .eq("user_id", user?.user?.id)
+    .eq("user_id", user?.user?.id);
 
   if (error) {
     console.log(error);

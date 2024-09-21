@@ -1,12 +1,10 @@
-import React, { Children } from 'react'
-import styles from './styles.module.scss';
+import React, { Children } from "react";
+import styles from "./styles.module.scss";
 
-type Props ={
+type Props = {
   children: React.ReactNode;
-}
+};
 
-export default function PageLayout({children}:Props) {
-  return (
-    <div className={styles.pageLayout}>{children}</div>
-  )
+export default function PageLayout({ children }: Props) {
+  return <div className={styles.pageLayout}>{children}</div>;
 }

@@ -43,8 +43,13 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
           <FaHome size={32} color="black" />
         </Link>
       </Box>
-      <HeaderButton/>
-      <Sidebar pathname={pathname} isOpen={sidbarOpen} setSidebarOpen={setSidebarOpen} scrollDirection={scrollDirection}/>
+      <HeaderButton />
+      <Sidebar
+        pathname={pathname}
+        isOpen={sidbarOpen}
+        setSidebarOpen={setSidebarOpen}
+        scrollDirection={scrollDirection}
+      />
     </header>
   );
 };

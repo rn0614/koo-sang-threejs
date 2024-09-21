@@ -8,17 +8,16 @@ import { CgProfile } from "react-icons/cg";
 import styles from "./styles.module.scss";
 import { useEffect, useState } from "react";
 export default function HeaderButton() {
-
   const [isClient, setIsClient] = useState(false);
   const router = useRouter();
   const { user, isLoading, isFetching, handleLogout } = useUser();
 
-  useEffect(()=>{
+  useEffect(() => {
     setIsClient(true);
-  },[])
+  }, []);
 
-  if(!isClient){
-    return null
+  if (!isClient) {
+    return null;
   }
 
   // 데이터가 있으면 로그인 상태, 없으면 로그인 버튼 표시

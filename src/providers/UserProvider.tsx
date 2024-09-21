@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import useUser from "@/hooks/useUser2";
 import { ReactNode } from "react";
 

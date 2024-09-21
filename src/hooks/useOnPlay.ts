@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Song } from "@/types/types";
 import usePlayer from "./usePlayer";
 import useAuthModal from "./useAuthModal";
@@ -16,7 +16,7 @@ const useOnPlay = (songs: Song[]) => {
     player.setId(id);
     player.setIds(songs.map((song) => song.id));
   };
-  return onPlay
+  return onPlay;
 };
 
 export default useOnPlay;

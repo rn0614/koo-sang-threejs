@@ -1,10 +1,10 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import classNames from 'classnames';
-import styles from './styles.module.scss';
+import classNames from "classnames";
+import styles from "./styles.module.scss";
 
-const menuList =[
+const menuList = [
   { href: "/music", label: "Music" },
   { href: "/login", label: "Login" },
   { href: "/apitest", label: "API Test" },
@@ -13,17 +13,17 @@ const menuList =[
   { href: "/three", label: "Three" },
   { href: "/three2", label: "Three2" },
   { href: "/user/rn0614@naver.com", label: "User" },
-]
+];
 
 export default function HomeContent() {
   const [active, setActive] = useState(false);
-  const [rippleActive, setRippleActive] = useState<number|null>(null);
+  const [rippleActive, setRippleActive] = useState<number | null>(null);
 
   const handleClick = () => {
     setActive(!active);
   };
 
-  const handleMouseEnter = (index:number) => {
+  const handleMouseEnter = (index: number) => {
     setRippleActive(index);
     setTimeout(() => {
       setRippleActive(null);
@@ -38,7 +38,9 @@ export default function HomeContent() {
       {menuList.map((link, index) => (
         <div
           key={index}
-          className={classNames(styles.circle, { [styles.ripple]: rippleActive === index })}
+          className={classNames(styles.circle, {
+            [styles.ripple]: rippleActive === index,
+          })}
           onMouseEnter={() => handleMouseEnter(index)}
         >
           <Link href={link.href}>{link.label}</Link>

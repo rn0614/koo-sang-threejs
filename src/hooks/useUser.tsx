@@ -43,10 +43,10 @@ export const MyUserContextProvider = (props: Props) => {
       .single();
 
   useEffect(() => {
-    console.log('user',user);
-    console.log('isLoadingData',isLoadingData);
-    console.log('userDetails',userDetails);
-    console.log('subscription',subscription);
+    console.log("user", user);
+    console.log("isLoadingData", isLoadingData);
+    console.log("userDetails", userDetails);
+    console.log("subscription", subscription);
     console.log();
     if (user && !isLoadingData && !userDetails && !subscription) {
       setIsLoadingData(true);
@@ -56,40 +56,38 @@ export const MyUserContextProvider = (props: Props) => {
           const userDetailsPromise = results[0];
           const subscriptionPromise = results[1];
 
-          if(userDetailsPromise.status ==='fulfilled'){
+          if (userDetailsPromise.status === "fulfilled") {
             setUserDetails(userDetailsPromise.value.data as userDetails);
           }
 
-          if(subscriptionPromise.status==='fulfilled'){
+          if (subscriptionPromise.status === "fulfilled") {
             setSubscription(subscriptionPromise.value.data as Subscription);
           }
 
           setIsLoadingData(false);
         }
       );
-    } else if(!user && !isLoadingUser && !isLoadingData){
+    } else if (!user && !isLoadingUser && !isLoadingData) {
       setUserDetails(null);
       setSubscription(null);
     }
   }, [user, isLoadingUser]);
 
-
-  const value ={
+  const value = {
     accessToken,
     user,
     userDetails,
     isLoading: isLoadingUser || isLoadingData,
-    subscription
-  }
+    subscription,
+  };
 
-  return <UserContext.Provider value={value} {...props}/>
+  return <UserContext.Provider value={value} {...props} />;
 };
 
-
-export const useUser = ()=>{
+export const useUser = () => {
   const context = useContext(UserContext);
-  if(context===undefined){
-    throw new Error('useUser must be used within a MyUser')
+  if (context === undefined) {
+    throw new Error("useUser must be used within a MyUser");
   }
   return context;
-}
+};

@@ -7,12 +7,11 @@ declare global {
   }
 }
 
-
 // react native app 환경인지 판단
 export const isApp = () => {
   let isApp = false;
 
-  if (typeof window !== 'undefined' && window.ReactNativeWebView) {
+  if (typeof window !== "undefined" && window.ReactNativeWebView) {
     isApp = true;
   }
 
@@ -21,13 +20,15 @@ export const isApp = () => {
 
 // ReactNative Webview에 postMessage 요청
 const sendRouterEvent = (path: string): void => {
-  window.ReactNativeWebView?.postMessage(JSON.stringify({ type: 'ROUTER_EVENT', data: path }));
+  window.ReactNativeWebView?.postMessage(
+    JSON.stringify({ type: "ROUTER_EVENT", data: path })
+  );
 };
 
 // 뒤로가기 하는 경우
-export const stackRouterBack = (router:any) => {
+export const stackRouterBack = (router: any) => {
   if (isApp()) {
-    sendRouterEvent('back');
+    sendRouterEvent("back");
   } else {
     router.back();
   }

@@ -3,7 +3,7 @@ import DropArea from "../DropArea/DropArea";
 import styles from "./DropWrapper.module.scss";
 
 type DropWrapperProps<T> = {
-  areaList: T[]|undefined;
+  areaList: T[] | undefined;
   addBox: any;
   type: string;
   day: string;

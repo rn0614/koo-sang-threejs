@@ -3,27 +3,27 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width:auto;
-  .pageContent{
+  width: auto;
+  .pageContent {
     width: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    .imageWrapper{
+    .imageWrapper {
       position: relative;
-      width:80vw;
+      width: 80vw;
       max-width: 500px;
       aspect-ratio: 1/1;
     }
-    .contentBox{
-      .detailHeader{
+    .contentBox {
+      .detailHeader {
         font-size: 24px;
         font-weight: 600;
         max-width: 1024px;
         white-space: wrap;
         word-break: break-all;
       }
-      .detailText{
+      .detailText {
         max-width: 100%;
         white-space: wrap;
         word-break: break-all;

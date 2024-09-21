@@ -1,8 +1,8 @@
-import { atom, useRecoilState } from 'recoil';
+import { atom, useRecoilState } from "recoil";
 
 // 모달의 상태를 관리하는 atom을 정의합니다.
 const authModalState = atom<boolean>({
-  key: 'authModalState', // 고유한 key 값
+  key: "authModalState", // 고유한 key 값
   default: false, // 초기 상태는 닫힘(false)으로 설정
 });
 

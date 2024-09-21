@@ -19,7 +19,7 @@ import { stackRouterPush } from "@/utils/stackRouter";
 
 type SongItemProps = {
   data: Song;
-  onClick: () => void; // 부모 컴포넌트에서 전달된 onClick 핸들러
+  onClick: any; // 부모 컴포넌트에서 전달된 onClick 핸들러
 };
 
 export const SongItem: React.FC<SongItemProps> = ({ data, onClick }) => {

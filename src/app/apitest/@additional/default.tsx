@@ -5,7 +5,9 @@ export default async function DefaultAdditionalPage() {
   return (
     <div>
       <h3>DefaultadditionalPage</h3>
-      <Link href={"/apitest/archieve"} replace>Archive</Link>
+      <Link href={"/apitest/archieve"} replace>
+        Archive
+      </Link>
     </div>
   );
 }

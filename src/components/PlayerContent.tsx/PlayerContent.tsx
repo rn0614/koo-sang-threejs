@@ -102,10 +102,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
         <AiFillStepForward onClick={onPlayNext} size={30} />
       </div>
       <VolumeIcon onClick={toggleMuete} size={34} />
-      <Slider 
-        value={volume}
-        onChange={(value)=>setVolume(value)}
-      />
+      <Slider value={volume} onChange={(value) => setVolume(value)} />
     </div>
   );
 };

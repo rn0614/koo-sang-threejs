@@ -6,15 +6,20 @@ dayjs.extend(duration);
 dayjs.extend(relativeTime);
 dayjs.locale("ko");
 
-export function getCurrentTime({unit= "day", delay}:{
-  unit: string,
-  delay: number} // delay를 밀리초로 받음
+export function getCurrentTime(
+  {
+    unit = "day",
+    delay,
+  }: {
+    unit: string;
+    delay: number;
+  } // delay를 밀리초로 받음
 ): string {
   try {
     let formatString = "YYYY-MM-DD"; // 기본 값
 
     // delay를 반영한 현재 시간 계산
-    const currentTime = dayjs().add(delay, 'millisecond');
+    const currentTime = dayjs().add(delay, "millisecond");
 
     switch (unit) {
       case "hour":
