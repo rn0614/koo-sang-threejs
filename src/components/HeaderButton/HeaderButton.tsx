@@ -10,6 +10,7 @@ import { BiLogIn, BiLogOut } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
 import { useRecoilState } from "recoil";
 import styles from "./styles.module.scss";
+import { stackRouterPush } from "@/utils/stackRouter";
 export const initialUser = {
   id: "",
   full_name: "",
@@ -35,6 +36,9 @@ export default function HeaderButton() {
       setUser(initialUser);
     }
   };
+  const loginButtonHandler = ()=>{
+    stackRouterPush(router, `/login`);
+  }
 
   const userProfileHandler = async () => {
     const user = await supabaseClient.auth.getUser();
@@ -69,7 +73,7 @@ export default function HeaderButton() {
       {user?.id == "" && (
         <Box className={styles.buttonWrapper}>
           <BiLogIn
-            onClick={() => router.push("/login")}
+            onClick={loginButtonHandler}
             size={32}
             style={{ cursor: "pointer" }}
           />
