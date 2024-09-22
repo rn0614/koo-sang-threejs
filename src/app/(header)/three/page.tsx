@@ -7,9 +7,9 @@ export const metadata: Metadata = {
   description: "three js Metadata",
 };
 
-export default function page() {
+export default function ThreePage() {
   return (
-    <div style={{ width: "100%", height: "100%", minHeight: "100vh" }}>
+    <div style={{ width: "100%", height: "100%", minHeight: "calc( 100vh - 5rem )" }}>
       <ThreeContent />
     </div>
   );

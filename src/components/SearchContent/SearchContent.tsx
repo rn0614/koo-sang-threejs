@@ -15,7 +15,7 @@ export const SearchContent: React.FC<SearchContentProps> = ({ songs }) => {
   return (
     <Flex gap="1" className={styles.searchWrapper}>
       {songs.map((item) => (
-        <MediaItem key={item.id} data={item} onClick={(id:string)=>onPlay(id)}></MediaItem>
+        <MediaItem key={item.id} data={item} onClick={(id:number)=>onPlay(id)}></MediaItem>
       ))}
     </Flex>
   );

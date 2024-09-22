@@ -3,23 +3,20 @@ import React, { useEffect } from "react";
 import styles from "./styles.module.scss";
 import { CiCirclePlus } from "react-icons/ci";
 import useUploadModal from "@/hooks/useUploadModal";
-import useUser from "@/hooks/useUser2";
 import useAuthModal from "@/hooks/useAuthModal";
+import { useRecoilValue } from "recoil";
+import { userState } from "@/store/useUserStore";
 
 export const AddFloatButton = () => {
   const authModal = useAuthModal();
   const uploadModal = useUploadModal();
-  const { user, isLoading } = useUser();
+  const user = useRecoilValue(userState);
   const onClick = () => {
     if (!user.id) {
       return authModal.onOpen();
     }
     return uploadModal.onOpen();
   };
-
-  if (isLoading) {
-    return null;
-  }
 
   return (
     <div className={styles.floatingButton} onClick={onClick}>

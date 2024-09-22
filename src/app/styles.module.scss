@@ -1,36 +1,60 @@
 @use "@styles/variable.scss";
 
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  flex-grow: 1;
+}
+
 .flexColumn {
   grid-area: main;
   display: flex;
   flex-direction: column;
 }
 
-.MainLayout {
-  display: grid;
-  grid-template-areas:
-    "aside header"
-    "aside main";
-  gap: variable.$spacing-large;
+.mainLayout {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   min-height: 100vh;
   height: 100%;
-  grid-template-rows: 30px auto;
-  grid-template-columns: minmax(100px, 200px) auto;
 
-  // 모바일 화면에서는 aside를 제거
-  @media (max-width: variable.$media-sm) {
-    grid-template-areas:
-      "header"
-      "main";
+  .mainWrapper {
+    display: grid;
+    grid-template-areas: "sidebar main";
+    grid-template-columns: 200px auto;
+    grid-template-rows: 1fr;
+    min-height: calc( 100svh - 4rem );
+    max-width: 100%;
+    overflow-x: hidden;
 
-    grid-template-columns: 1fr;
-    margin-left: 10px;
-  }
-
-  aside {
     @media (max-width: variable.$media-sm) {
-      display: none;
+      display: grid;
+      grid-template-areas: "main";
+      grid-template-columns: auto;
+      height: 100%;
+      max-width: 100%;
+      .mainContent {
+        overflow-x: hidden;
+        grid-area: main;
+      }
+    }
+    .sidebarGuide {
+      grid-area: sidebar;
+      display: flex;
+      flex-direction: column;
+      width: 200px;
+      min-width: 200px;
+      @media (max-width: variable.$media-sm) {
+        display: none;
+      }
+    }
+    .mainContent {
+      overflow-x: hidden;
+      grid-area: main;
     }
   }
 }

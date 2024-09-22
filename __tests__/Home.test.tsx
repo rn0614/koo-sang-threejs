@@ -1,5 +1,5 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import TestingPage from "@/app/music/(header)/page";
+import TestingPage from "@/app/(header)/music/page";
 import QueryClientProvider from "@/providers/QueryClientProvider";
 import UserProvider from "@/providers/UserProvider";
 

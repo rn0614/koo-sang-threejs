@@ -1,8 +1,11 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import classNames from "classnames";
 import styles from "./styles.module.scss";
+import useUser from "@/hooks/useUser2";
+import { useRecoilState } from "recoil";
+import { userState } from "@/store/useUserStore";
 
 const menuList = [
   { href: "/music", label: "Music" },
@@ -16,6 +19,8 @@ const menuList = [
 ];
 
 export default function HomeContent() {
+  const { user } = useUser();
+  const [user1, setUser] = useRecoilState(userState);
   const [active, setActive] = useState(false);
   const [rippleActive, setRippleActive] = useState<number | null>(null);
 
@@ -29,6 +34,9 @@ export default function HomeContent() {
       setRippleActive(null);
     }, 600); // 물방울 애니메이션 지속 시간
   };
+  useEffect(() => {
+    setUser(user);
+  }, [user, setUser]);
 
   return (
     <div className={classNames(styles.container, { [styles.active]: active })}>

@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Box, Container, Heading, Section, Text } from "@radix-ui/themes";
 
 type MediaItemProps = {
-  onClick?: (id: string) => void;
+  onClick?: (id: number) => void;
   data: Song;
 };
 

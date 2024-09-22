@@ -1,4 +1,5 @@
-import { atom, useRecoilState } from "recoil";
+import { atom } from "recoil";
+
 
 export const initialUser = {
   id: "",
@@ -8,7 +9,7 @@ export const initialUser = {
   payment_method: "",
 };
 
-export const userState = atom({
+export const userState = atom<any>({
   key: "userState",
   default: initialUser,
 });

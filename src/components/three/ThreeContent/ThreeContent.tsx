@@ -18,7 +18,7 @@ const keyArray = [
 export const ThreeContent = () => {
   return (
     <KeyboardControls map={keyArray}>
-      <Canvas shadows camera={{ fov: 45 }} style={{ height: "100vh" }}>
+      <Canvas shadows camera={{ fov: 45 }} style={{ height: "100%" }}>
         {/* <Sky sunPosition={[100, 20, 100]} /> */}
         <ambientLight intensity={0.3} />
         <pointLight castShadow intensity={0.8} position={[100, 100, 100]} />

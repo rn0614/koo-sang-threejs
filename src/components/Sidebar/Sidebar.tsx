@@ -10,6 +10,7 @@ import { Md3dRotation } from "react-icons/md";
 import { GrTest } from "react-icons/gr";
 import { stackRouterPush } from "@/utils/stackRouter";
 import { useRouter } from "next/navigation";
+import { FaMusic } from "react-icons/fa";
 
 type SidebarProps = {
   pathname: string;
@@ -28,8 +29,8 @@ export default function Sidebar({
   const routes = useMemo(
     () => [
       {
-        icon: HiHome,
-        label: "Home",
+        icon: FaMusic,
+        label: "Music",
         active: pathname == "/music/",
         href: "/music",
       },

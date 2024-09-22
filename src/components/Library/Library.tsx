@@ -1,13 +1,14 @@
 "use client";
 import useAuthModal from "@/hooks/useAuthModal";
 import useUploadModal from "@/hooks/useUploadModal";
-import useUser from "@/hooks/useUser2";
 import { Song } from "@/types/types";
 import { PlusIcon } from "@radix-ui/react-icons";
 import { MediaItem } from "../MediaItem/MediaItem";
 import styles from "./styles.module.scss";
 import useOnPlay from "@/hooks/useOnPlay";
 import { Box } from "@radix-ui/themes";
+import { useRecoilValue } from "recoil";
+import { userState } from "@/store/useUserStore";
 
 type LibraryProps = {
   songs: Song[];
@@ -16,12 +17,12 @@ type LibraryProps = {
 export const Library: React.FC<LibraryProps> = ({ songs }) => {
   const authModal = useAuthModal();
   const uploadModal = useUploadModal();
-  const { user, isFetching } = useUser();
+  const user = useRecoilValue(userState);
 
   const onPlay = useOnPlay(songs);
 
   const onClick = () => {
-    if (!user.id) {
+    if (!user?.id) {
       return authModal.onOpen();
     }
 
@@ -38,7 +39,7 @@ export const Library: React.FC<LibraryProps> = ({ songs }) => {
         {songs.map((item) => (
           <MediaItem
             key={item.id}
-            onClick={(id: string) => onPlay(id)}
+            onClick={(id: number) => onPlay(id)}
             data={item}
           />
         ))}

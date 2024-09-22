@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 
 const supabase = createClient();
 
-const fetchSongById = async (id?: string) => {
+const fetchSongById = async (id?: number) => {
   if (!id) return null;
   const { data, error } = await supabase
     .from("songs")
@@ -20,7 +20,7 @@ const fetchSongById = async (id?: string) => {
   return data as Song;
 };
 
-const useGetSongById = (id?: string) => {
+const useGetSongById = (id?: number) => {
   return useQuery({
     queryKey: ["song", id],
     queryFn: () => fetchSongById(id),

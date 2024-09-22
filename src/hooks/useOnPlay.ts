@@ -2,14 +2,18 @@
 import { Song } from "@/types/types";
 import usePlayer from "./usePlayer";
 import useAuthModal from "./useAuthModal";
-import useUser from "@/hooks/useUser2";
+import { useRecoilValue } from "recoil";
+import { userState } from "@/store/useUserStore";
 
 const useOnPlay = (songs: Song[]) => {
   const player = usePlayer();
   const authModal = useAuthModal();
-  const { user } = useUser();
+  const user = useRecoilValue(userState);
 
-  const onPlay = (id: string) => {
+  const onPlay = (id: number) => {
+    console.log('test');
+
+    console.log('test')
     if (!user.id) {
       return authModal.onOpen();
     }

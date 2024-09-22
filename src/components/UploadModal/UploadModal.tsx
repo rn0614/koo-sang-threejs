@@ -8,16 +8,17 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Input from "../Input/Input";
 import Modal from "../Modal/Modal";
 import styles from "./styles.module.scss";
-import useUser from "@/hooks/useUser2";
 import toast from "react-hot-toast";
 import uniquid from "uniqid";
 import { createClient } from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
+import { useRecoilValue } from "recoil";
+import { userState } from "@/store/useUserStore";
 
 export const UploadModal = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const uploadModal = useUploadModal();
-  const { user, isFetching } = useUser();
+  const user = useRecoilValue(userState);
   const supabaseClient = createClient();
   const router = useRouter();
 

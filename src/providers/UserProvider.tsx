@@ -7,6 +7,7 @@ type UserProviderProps = {
 };
 
 const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
+  const { user } = useUser();
   return <>{children}</>;
 };
 

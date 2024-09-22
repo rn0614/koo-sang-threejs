@@ -39,7 +39,7 @@ export const Header: React.FC<HeaderProps> = ({ className,children }) => {
             onClick={() => setSidebarOpen((pre) => !pre)}
           />
         </Box>
-        <Link href={"/music"}>
+        <Link href={"/"}>
           <FaHome size={32} color="black" />
         </Link>
       </Box>

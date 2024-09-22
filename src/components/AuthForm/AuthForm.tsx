@@ -1,5 +1,5 @@
 "use client";
-import { login, signup } from "@/app/login/actions";
+import { login, signup } from "@/app/(header)/login/actions";
 import styles from "./styles.module.scss";
 
 export default function LoginPage() {

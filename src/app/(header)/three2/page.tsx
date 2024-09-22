@@ -17,8 +17,8 @@ export default function ThreejsPage2() {
   return (
     <div style={{ width: "100%", height: "100%", minHeight: "100vh" }}>
       <KeyboardControls map={keyArray}>
-        <Canvas
           shadows
+        <Canvas
           camera={{ position: [0, 30, 0], fov: 30 }}
           style={{ height: "100vh" }}
         >
