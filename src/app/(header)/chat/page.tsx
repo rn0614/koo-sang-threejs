@@ -23,7 +23,7 @@ export default function ChatPage() {
 
   const createRoom = () => {
     const chatId = uuidv4(); // 랜덤 chatId 생성
-    router.push(`/chat/${chatId}`); // 방 생성 후 해당 방으로 이동
+    router.push(`/chat-detail/${chatId}`); // 방 생성 후 해당 방으로 이동
   };
 
   return (
@@ -46,7 +46,7 @@ export default function ChatPage() {
         </Flex>
         <Flex direction={"column"} gap="1">
           {rooms.map((item) => (
-            <Link key={item} href={`/chat/${item}`}>
+            <Link key={item} href={`/chat-detail/${item}`}>
               <Button className={styles.chatRoom}>{item}</Button>
             </Link>
           ))}

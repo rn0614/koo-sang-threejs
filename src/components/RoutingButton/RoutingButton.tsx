@@ -1,5 +1,6 @@
 "use client";
 import { stackRouterBack } from "@/utils/stackRouter";
+import { Button } from "@radix-ui/themes";
 import { useRouter } from "next/navigation";
 import React, { ButtonHTMLAttributes, forwardRef } from "react";
 
@@ -11,9 +12,9 @@ const RoutingBackButton = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ children, ...rest }, ref) => {
     const router = useRouter();
     return (
-      <button onClick={() => stackRouterBack(router)} ref={ref} {...rest}>
+      <Button onClick={() => stackRouterBack(router)} ref={ref}>
         {children}
-      </button>
+      </Button>
     );
   }
 );

@@ -1,12 +1,11 @@
 "use client";
-import { useEffect } from "react";
-import { Box, Grid, Container } from "@radix-ui/themes";
-import { SongItem } from "../SongItem/SongItem";
-import { useInfiniteSongList } from "@/hooks/useSongList";
 import useOnPlay from "@/hooks/useOnPlay";
+import { useInfiniteSongList } from "@/hooks/useSongList";
+import { Container, Grid } from "@radix-ui/themes";
 import InfiniteScroll from "react-infinite-scroller";
-import styles from "./styles.module.scss";
 import { Player } from "../Player/Player";
+import { SongItem } from "../SongItem/SongItem";
+import styles from "./styles.module.scss";
 
 const PageContent = () => {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =

@@ -39,7 +39,6 @@ export function useGetRoomList() {
   // refresh 
   const refresh = () => {
     if (socketRef.current) {
-      console.log('refresh click')
       socketRef.current.emit("getRoomList");
     }
   };

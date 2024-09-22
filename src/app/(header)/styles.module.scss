@@ -23,6 +23,7 @@
   height: 100%;
 
   .mainWrapper {
+    flex-grow:1;
     display: grid;
     grid-template-areas: "sidebar main";
     grid-template-columns: 200px auto;

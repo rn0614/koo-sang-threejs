@@ -1,7 +1,6 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { AiOutlineClose } from "react-icons/ai";
 import styles from "./styles.module.scss";
-import { Box } from "@radix-ui/themes";
 
 export type ModalProps = {
   isOpen: boolean;

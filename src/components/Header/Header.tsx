@@ -12,10 +12,10 @@ import Sidebar from "../Sidebar/Sidebar";
 
 type HeaderProps = {
   className?: string;
-  children?:ReactNode
+  children?: ReactNode;
 };
 
-export const Header: React.FC<HeaderProps> = ({ className,children }) => {
+export const Header: React.FC<HeaderProps> = ({ className, children }) => {
   const scrollDirection = useScrollDirection();
   const [sidbarOpen, setSidebarOpen] = useState(false);
   const pathname = usePathname();
@@ -44,7 +44,12 @@ export const Header: React.FC<HeaderProps> = ({ className,children }) => {
         </Link>
       </Box>
       {children}
-      <Sidebar pathname={pathname} isOpen={sidbarOpen} setSidebarOpen={setSidebarOpen} scrollDirection={scrollDirection}/>
+      <Sidebar
+        pathname={pathname}
+        isOpen={sidbarOpen}
+        setSidebarOpen={setSidebarOpen}
+        scrollDirection={scrollDirection}
+      />
     </header>
   );
 };

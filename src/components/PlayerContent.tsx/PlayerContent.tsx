@@ -2,7 +2,11 @@
 import { Song } from "@/types/types";
 import React, { useEffect, useState } from "react";
 import { BsPauseFill, BsPlayFill } from "react-icons/bs";
-import { AiFillStepBackward, AiFillStepForward } from "react-icons/ai";
+import {
+  AiFillStepBackward,
+  AiFillStepForward,
+  AiOutlineClose,
+} from "react-icons/ai";
 import { HiSpeakerXMark, HiSpeakerWave } from "react-icons/hi2";
 import { MediaItem } from "../MediaItem/MediaItem";
 import styles from "./styles.module.scss";
@@ -88,13 +92,17 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
     }
   };
 
+  const onClosePlay = () => {
+    player.reset();
+  };
+
   return (
     <div className={styles.playerContentWrapper}>
       <div>
         <MediaItem data={song} />
         <div />
       </div>
-      <div>
+      <div className={styles.playerController}>
         <AiFillStepBackward onClick={onPlayPrevious} size={30} />
         <div onClick={handlePlay}>
           <Icon size={30} />
@@ -103,6 +111,9 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
       </div>
       <VolumeIcon onClick={toggleMuete} size={34} />
       <Slider value={volume} onChange={(value) => setVolume(value)} />
+      <div className={styles.closeButton} onClick={onClosePlay}>
+        <AiOutlineClose />
+      </div>
     </div>
   );
 };

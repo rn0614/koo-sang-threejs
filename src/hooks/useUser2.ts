@@ -61,7 +61,6 @@ export default function useUser() {
       console.log(error);
     },
   });
-  console.log(user)
   const userOrNull = data ?? initialUser;
   return { user: userOrNull, isLoading, isFetching, isError, error, refetch };
 }

@@ -4,18 +4,17 @@ import usePlayer from "./usePlayer";
 import useAuthModal from "./useAuthModal";
 import { useRecoilValue } from "recoil";
 import { userState } from "@/store/useUserStore";
+import { useRouter } from "next/navigation";
 
 const useOnPlay = (songs: Song[]) => {
   const player = usePlayer();
   const authModal = useAuthModal();
   const user = useRecoilValue(userState);
+  const router= useRouter();
 
   const onPlay = (id: number) => {
-    console.log('test');
-
-    console.log('test')
     if (!user.id) {
-      return authModal.onOpen();
+      router.push("/login")
     }
     player.setId(id);
     player.setIds(songs.map((song) => song.id));

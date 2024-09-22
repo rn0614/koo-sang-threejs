@@ -41,13 +41,13 @@ export default function Sidebar({
         href: "/music/search",
       },
       {
-        icon: BsChatSquare,
+        icon: GrTest,
         label: "Test",
         active: pathname == "/test",
         href: "/test",
       },
       {
-        icon: GrTest,
+        icon: BsChatSquare,
         label: "Chat",
         active: pathname == "/chat",
         href: "/chat",

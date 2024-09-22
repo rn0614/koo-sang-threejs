@@ -28,7 +28,7 @@ export const SongItem: React.FC<SongItemProps> = ({ data, onClick }) => {
 
   const moreInfomationbuttonHandler = (e: React.MouseEvent) => {
     e.stopPropagation();
-    stackRouterPush(router, "/music/detail/" + data.id);
+    stackRouterPush(router, "/music-detail/" + data.id);
   };
   return (
     <Flex
