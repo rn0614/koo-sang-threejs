@@ -14,6 +14,7 @@ import styles from "./styles.module.scss";
 import Link from "next/link";
 import { useThrottle } from "@/hooks/useThrottle";
 import { MdOutlineRefresh } from "react-icons/md";
+import { stackRouterPush } from "@/utils/stackRouter";
 
 export default function ChatPage() {
   const router = useRouter();
@@ -23,7 +24,11 @@ export default function ChatPage() {
 
   const createRoom = () => {
     const chatId = uuidv4(); // 랜덤 chatId 생성
-    router.push(`/chat-detail/${chatId}`); // 방 생성 후 해당 방으로 이동
+    stackRouterPush(router, `/chat-detail/${chatId}`);
+  };
+
+  const joinRoom = (chatId: string) => {
+    stackRouterPush(router, `/chat-detail/${chatId}`);
   };
 
   return (
@@ -46,9 +51,13 @@ export default function ChatPage() {
         </Flex>
         <Flex direction={"column"} gap="1">
           {rooms.map((item) => (
-            <Link key={item} href={`/chat-detail/${item}`}>
-              <Button className={styles.chatRoom}>{item}</Button>
-            </Link>
+            <Button
+              key={item}
+              className={styles.chatRoom}
+              onClick={() => joinRoom(item)}
+            >
+              {item}
+            </Button>
           ))}
         </Flex>
         <Separator orientation="horizontal" size="4" />
