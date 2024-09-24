@@ -16,7 +16,7 @@ export const SerachInput = () => {
     };
 
     const url = qs.stringifyUrl({
-      url: "/music/search",
+      url: "/music-search",
       query: query,
     });
     router.push(url);

@@ -37,8 +37,8 @@ export default function Sidebar({
       {
         icon: BiSearch,
         label: "Search",
-        active: pathname == "/music/search",
-        href: "/music/search",
+        active: pathname == "/music-search",
+        href: "/music-search",
       },
       {
         icon: GrTest,
