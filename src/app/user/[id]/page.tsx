@@ -1,5 +1,7 @@
+import { createClient } from "@/utils/supabase/server";
 import { Metadata } from "next";
 import React from "react";
+import styles from "./styles.module.scss";
 
 type Props = {
   params: {
@@ -25,6 +27,23 @@ export const generateMetadata = async ({
   };
 };
 
-export default function UserPage({ params }: Props) {
-  return <div>Detail user Page {params.id}</div>;
+export default async function UserPage({ params }: Props) {
+  const supabase = createClient();
+  const result = await supabase.auth.getUser();
+  const user = result.data.user;
+  user?.email;
+
+  return (
+    <div className={styles.pageWrapper}>
+      <div>
+        <p>email : ${user?.email}</p>
+      </div>
+      <div>
+        <p>phone Number : ${user?.phone}</p>
+      </div>
+      <div>
+        <p>가입일 : ${user?.created_at}</p>
+      </div>
+    </div>
+  );
 }
