@@ -9,7 +9,7 @@ import styles from "./styles.module.scss";
 
 const PageContent = () => {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useInfiniteSongList({ limit: 5 });
+    useInfiniteSongList({ limit: 10 });
   const songs = data?.pages.flat() || [];
   const onPlay = useOnPlay(songs);
 

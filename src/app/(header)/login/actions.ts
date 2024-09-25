@@ -15,10 +15,12 @@ export async function login(formData: FormData) {
   };
 
   // 로그인만 하고 user에는 따로 저장로직 없음. (서버라 애초에 저장못함)
-  const { error } = await supabase.auth.signInWithPassword(inputData);
+  const { data, error } = await supabase.auth.signInWithPassword(inputData);
 
+  console.log('login user', data)
+  console.log('login error', error)
   if (error) {
-    redirect("/");
+    redirect("/login");
   }
 
   revalidatePath("/", "layout");

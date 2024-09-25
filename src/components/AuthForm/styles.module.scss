@@ -1,26 +1,79 @@
 .formContainer {
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+
+  .title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+  }
 
   .form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
+    width: 100%;
+    max-width: 400px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    .inputGroup {
+      display: flex;
+      flex-direction: column;
+      label {
+        margin-bottom: 5px;
+        font-size: 1rem;
+        color: #555;
+      }
+
+      input {
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
+        transition: border 0.2s ease;
+      }
+
+      input:focus {
+        border: 1px solid var(--accent-10);
+        outline: none;
+      }
+    }
 
     .loginButton {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      background-color: green;
+      background-color: var(--accent-10);
       color: white;
+      padding: 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: var(--accent-10);
+      }
     }
+
     .signupButton {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 5px;
+      background-color: #fff;
+      color: #333;
+      border: 2px solid var(--accent-8);
+      padding: 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+
+      &:hover {
+        background-color: var(--accent-8);
+        color: black;
+      }
     }
   }
 }

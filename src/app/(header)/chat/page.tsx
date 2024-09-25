@@ -11,7 +11,6 @@ import {
 import { useRouter } from "next/navigation";
 import { v4 as uuidv4 } from "uuid"; // UUID를 사용해 랜덤 chatId 생성
 import styles from "./styles.module.scss";
-import Link from "next/link";
 import { useThrottle } from "@/hooks/useThrottle";
 import { MdOutlineRefresh } from "react-icons/md";
 import { stackRouterPush } from "@/utils/stackRouter";
