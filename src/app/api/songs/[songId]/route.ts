@@ -1,4 +1,5 @@
 import { createClient } from "@/utils/supabase/server";
+import { NextResponse } from "next/server";
 
 export async function GET(
   request: Request,
@@ -7,7 +8,7 @@ export async function GET(
   const supabase = createClient();
   if (!params.songId) {
     console.log("songId", params.songId);
-    return null;
+    return NextResponse.json({ error: "없는 노래입니다." }, { status: 404 });
   }
 
   const { data, error } = await supabase
@@ -18,10 +19,5 @@ export async function GET(
   if (error) {
     console.log(error);
   }
-  return new Response(JSON.stringify(data), {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    status: 201,
-  });
+  return NextResponse.json(data);
 }
