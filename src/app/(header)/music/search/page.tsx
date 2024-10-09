@@ -1,7 +1,7 @@
-import getSongsByTitle from "@/actions/getSongsByTitle";
 import PageLayout from "@/components/PageLayout/PageLayout";
 import { SearchContent } from "@/components/SearchContent/SearchContent";
 import { SerachInput } from "@/components/SearchInput/SerachInput";
+import { fetchSongByTitle } from "@/hooks/useSongList";
 import React from "react";
 
 export const revalidate = 0;
@@ -13,7 +13,7 @@ type SearchProps = {
 };
 
 const Search: React.FC<SearchProps> = async ({ searchParams }) => {
-  const songs = await getSongsByTitle(searchParams.title);
+  const songs = await fetchSongByTitle(searchParams.title);
   return (
     <PageLayout>
       <SerachInput />

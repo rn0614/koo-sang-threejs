@@ -8,7 +8,42 @@ import {
 type SearchParams = {
   page: unknown;
   limit?: number;
+  title?: string;
 };
+
+async function fetchSongsByUser() {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/songs/liked`
+  );
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.error || "Unknown error");
+  }
+  return response.json();
+}
+
+async function fetchSongById(songId: string) {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/songs/${songId}`
+  );
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.error || "Unknown error");
+  }
+  return response.json();
+}
+
+async function fetchSongByTitle(title: string) {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/songs?title=${title}`
+  );
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.error || "Unknown error");
+  }
+  return response.json();
+}
 
 async function fetchSongs({ page, limit }: SearchParams) {
   const response = await fetch(`/api/songs?page=${page}&limit=${limit}`);
@@ -39,4 +74,19 @@ function useInfiniteSongList({ limit }: any) {
   });
 }
 
-export { useSongList, useInfiniteSongList };
+function useSongById(songId: string): UseQueryResult<Song> {
+  const returnData = useQuery<Song>({
+    queryKey: ["songs", songId],
+    queryFn: () => fetchSongById(songId),
+    staleTime: 2000,
+  });
+  return returnData;
+}
+
+export {
+  useSongList,
+  useInfiniteSongList,
+  fetchSongById,
+  fetchSongByTitle,
+  fetchSongsByUser,
+};

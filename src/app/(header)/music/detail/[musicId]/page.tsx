@@ -1,8 +1,8 @@
 import React from "react";
-import getSongById from "@/actions/getSongsById";
 import ClientImage from "@/components/Image/Image";
 import styles from "./styles.module.scss";
 import RoutingBackButton from "@/components/RoutingButton/RoutingButton";
+import { fetchSongById } from "@/hooks/useSongList";
 
 type PageProps = {
   params: {
@@ -11,11 +11,8 @@ type PageProps = {
 };
 
 export default async function MusicDetailPage({ params }: PageProps) {
-  const song = (await getSongById(params.musicId)) as any;
-
-  if (song == null) {
-    return <div>해당 노래가 없습니다.</div>;
-  }
+  //이부분을 serverAction이 아닌 fetch함수를 쓸 예정
+  const song = await fetchSongById(params.musicId);
 
   return (
     <div className={styles.pageContainer}>
