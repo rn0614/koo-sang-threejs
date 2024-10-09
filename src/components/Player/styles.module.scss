@@ -1,6 +1,13 @@
+@use "@styles/variable.scss";
 .songWrapper {
   position: fixed;
   bottom: 0;
-  width: 100%;
+  left: 200px;
+  right:0;
   height: 180px;
+
+  @media (max-width: variable.$media-sm) {
+    left:0;
+    width: 100%;
+  }
 }

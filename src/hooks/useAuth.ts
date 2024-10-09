@@ -1,14 +1,15 @@
-import { useMutation } from "@tanstack/react-query";
+import { stackRouterBack, stackRouterPush } from "@/utils/stackRouter";
 import { createClient } from "@/utils/supabase/client";
-import { toast } from "react-hot-toast";
-import { redirect } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { stackRouterPush } from "@/utils/stackRouter";
+import { toast } from "react-hot-toast";
+import useUser from "./useUser2";
 
 // Custom Hook
 export function useAuth() {
   const router = useRouter();
   const supabase = createClient();
+  const { refetch } = useUser();
 
   const loginMutation = useMutation(
     async (formData: FormData) => {
@@ -28,7 +29,8 @@ export function useAuth() {
     {
       onSuccess: () => {
         toast.success("Logged in successfully!");
-        stackRouterPush(router, "/");
+        refetch();
+        stackRouterBack(router);
       },
       onError: (error: any) => {
         toast.error(error.message || "Login failed. Please try again.");
@@ -42,11 +44,11 @@ export function useAuth() {
         email: formData.get("email") as string,
         password: formData.get("password") as string,
       };
-      console.log('inputData',inputData);
+      console.log("inputData", inputData);
 
       const { data, error } = await supabase.auth.signUp(inputData);
-      console.log('data',data)
-      console.log('error',error)
+      console.log("data", data);
+      console.log("error", error);
 
       if (error) {
         throw new Error(error.message || "Signup failed.");
@@ -55,7 +57,9 @@ export function useAuth() {
     },
     {
       onSuccess: () => {
-        toast.success("가입됐습니다. 가입한 이메일에서 확인을 눌러주세요!",{duration:1000});
+        toast.success("가입됐습니다. 가입한 이메일에서 확인을 눌러주세요!", {
+          duration: 1000,
+        });
         //stackRouterPush(router, "/");
       },
       onError: (error: any) => {
