@@ -52,6 +52,7 @@
     "socket.io-client": "^4.7.5",
     "stripe": "^16.2.0",
     "three": "^0.166.1",
+    "ts-node": "^10.9.2",
     "uniqid": "^5.4.0",
     "use-sound": "^4.0.3"
   },
@@ -60,6 +61,7 @@
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",
+    "@testing-library/user-event": "^14.5.2",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.16.2",
     "@types/react": "^18.3.5",
@@ -70,7 +72,8 @@
     "eslint-config-next": "14.2.5",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
-    "msw": "^2.4.1",
+    "jest-fixed-jsdom": "^0.0.3",
+    "msw": "^2.4.3",
     "supabase": "^1.183.5",
     "ts-jest": "^29.2.5",
     "typescript": "^5.5.4"

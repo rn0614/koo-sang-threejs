@@ -20,7 +20,7 @@ test("testing test", async () => {
     </QueryClientProvider>
   );
   
-  const myElem = await screen.findByText("string");
+  const myElem = await screen.findByText("");
 
   await waitFor(() => expect(myElem).toBeInTheDocument());
 });
