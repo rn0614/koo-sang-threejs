@@ -1,7 +1,6 @@
 "use client";
 import { Song } from "@/types/types";
 import usePlayer from "./usePlayer";
-import useAuthModal from "./useAuthModal";
 import { useRecoilValue } from "recoil";
 import { userState } from "@/store/useUserStore";
 import { useRouter } from "next/navigation";
@@ -15,6 +14,7 @@ const useOnPlay = (songs: Song[]) => {
   const onPlay = (id: number) => {
     if (!user.id) {
       stackRouterPush(router, `/login`);
+      return null;
     }
     player.setId(id);
     player.setIds(songs.map((song) => song.id));

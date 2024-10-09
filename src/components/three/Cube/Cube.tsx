@@ -1,26 +1,28 @@
 import React, { useCallback, useRef, useState } from "react";
 import { useTexture } from "@react-three/drei";
 import { RigidBody, RigidBodyProps } from "@react-three/rapier";
-import { create } from "zustand";
 import * as THREE from "three";
 import { ThreeEvent } from "@react-three/fiber";
+import { atom, useRecoilState } from "recoil";
 
 // 타입 정의
-type CubePosition = [number, number, number];
-
 interface CubeStore {
   cubes: CubePosition[];
   addCube: (x: number, y: number, z: number) => void;
 }
 
-const useCubeStore = create<CubeStore>((set) => ({
-  cubes: [],
-  addCube: (x, y, z) =>
-    set((state) => ({ cubes: [...state.cubes, [x, y, z]] })),
-}));
+
+// 타입 정의
+type CubePosition = [number, number, number];
+
+// Recoil atom for cube positions
+const cubesState = atom<CubePosition[]>({
+  key: "cubesState",
+  default: [],
+});
 
 export const Cubes: React.FC = () => {
-  const cubes = useCubeStore((state) => state.cubes);
+  const [cubes] = useRecoilState(cubesState);
   return (
     <>
       {cubes.map((coords, index) => (
@@ -37,7 +39,7 @@ interface CubeProps extends RigidBodyProps {
 export const Cube: React.FC<CubeProps> = (props) => {
   const ref = useRef<any>(null);
   const [hover, setHover] = useState<number | null>(null);
-  const addCube = useCubeStore((state) => state.addCube);
+  const [cubes, setCubes] = useRecoilState(cubesState);
   const texture = useTexture("/static/asset/dirt.jpg");
 
   const onMove = useCallback((e: ThreeEvent<PointerEvent>) => {

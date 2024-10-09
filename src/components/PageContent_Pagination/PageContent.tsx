@@ -33,7 +33,7 @@ const PageContent = () => {
       <Pagination
         curPage={page}
         limit={limit}
-        totalPage={100 ? Math.ceil(100 / limit) : 1}
+        totalPage={true ? Math.ceil(100 / limit) : 1}
         setPage={setPage}
         setLimit={setLimit}
         onLimitChange={() => {}}

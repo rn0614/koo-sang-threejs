@@ -9,13 +9,10 @@ import { Box } from "@radix-ui/themes";
 import Link from "next/link";
 import { BsJustify } from "react-icons/bs";
 import Sidebar from "../Sidebar/Sidebar";
+import HeaderButton from "../HeaderButton/HeaderButton";
 
-type HeaderProps = {
-  className?: string;
-  children?: ReactNode;
-};
 
-export const Header: React.FC<HeaderProps> = ({ className, children }) => {
+export const Header: React.FC = () => {
   const scrollDirection = useScrollDirection();
   const [sidbarOpen, setSidebarOpen] = useState(false);
   const pathname = usePathname();
@@ -43,7 +40,7 @@ export const Header: React.FC<HeaderProps> = ({ className, children }) => {
           <FaHome size={32} color="black" />
         </Link>
       </Box>
-      {children}
+      <HeaderButton />
       <Sidebar
         pathname={pathname}
         isOpen={sidbarOpen}

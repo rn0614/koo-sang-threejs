@@ -22,8 +22,9 @@ type SongItemProps = {
   onClick: any; // 부모 컴포넌트에서 전달된 onClick 핸들러
 };
 
-export const SongItem: React.FC<SongItemProps> = ({ data, onClick }) => {
+export const SongItem: React.FC<SongItemProps> = React.memo(({ data, onClick }) => {
   const { data: imagePath } = useLoadImage(data);
+  
   const router = useRouter();
 
   const moreInfomationbuttonHandler = (e: React.MouseEvent) => {
@@ -67,4 +68,7 @@ export const SongItem: React.FC<SongItemProps> = ({ data, onClick }) => {
       </Box>
     </Flex>
   );
-};
+});
+
+
+SongItem.displayName = 'SongItem';

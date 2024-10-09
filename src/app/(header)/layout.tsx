@@ -1,8 +1,6 @@
-import { Header } from "@/components/Header/Header";
-import { isApp } from "@/utils/stackRouter";
 import { Box } from "@radix-ui/themes";
 import styles from "./styles.module.scss";
-import HeaderButton from "@/components/HeaderButton/HeaderButton";
+import StackHeader from "@/components/StackHeader/Header";
 
 export default async function Layout({
   children,
@@ -11,9 +9,7 @@ export default async function Layout({
 }) {
   return (
     <Box className={styles.mainLayout}>
-      <Header>
-        <HeaderButton />
-      </Header>
+      <StackHeader/>
       <main className={styles.mainWrapper}>
         <Box className={styles.sidebarGuide}></Box>
         <Box className={styles.mainContent}>{children}</Box>

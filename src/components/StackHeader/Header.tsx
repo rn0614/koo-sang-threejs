@@ -1,6 +1,6 @@
 "use client";
 import { usePathname, useSearchParams } from "next/navigation";
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaHome } from "react-icons/fa";
 import styles from "./styles.module.scss";
 
@@ -8,14 +8,10 @@ import { useScrollDirection } from "@/hooks/useScrollDirection";
 import { Box } from "@radix-ui/themes";
 import Link from "next/link";
 import { BsJustify } from "react-icons/bs";
+import HeaderButton from "../HeaderButton/HeaderButton";
 import Sidebar from "../Sidebar/Sidebar";
 
-type HeaderProps = {
-  className?: string;
-  children: ReactNode;
-};
-
-export const StackHeader: React.FC<HeaderProps> = ({ className, children }) => {
+const StackHeader: React.FC = () => {
   const scrollDirection = useScrollDirection();
   const [sidbarOpen, setSidebarOpen] = useState(false);
   const pathname = usePathname();
@@ -53,7 +49,7 @@ export const StackHeader: React.FC<HeaderProps> = ({ className, children }) => {
           </Link>
         </Box>
       )}
-      {children}
+      <HeaderButton />
       <Sidebar
         pathname={pathname}
         isOpen={sidbarOpen}
@@ -63,3 +59,6 @@ export const StackHeader: React.FC<HeaderProps> = ({ className, children }) => {
     </header>
   );
 };
+
+
+export default StackHeader;

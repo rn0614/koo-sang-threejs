@@ -22,7 +22,7 @@ export const Bullet = ({ player, angle, position, onHit }: any) => {
     };
 
     rigidbody.current.setLinvel(velocity, true);
-  });
+  },[]);
   return (
     <group position={[position.x, position.y, position.z]} rotation-y={angle}>
       <RigidBody

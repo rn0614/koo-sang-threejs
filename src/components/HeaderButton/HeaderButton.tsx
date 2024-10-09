@@ -4,7 +4,7 @@ import queryClient from "@/utils/react-query/queryClient";
 import { createClient } from "@/utils/supabase/client";
 import { Box } from "@radix-ui/themes";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { BiLogIn, BiLogOut } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
@@ -19,7 +19,7 @@ export const initialUser = {
   payment_method: "",
 };
 
-export default function HeaderButton() {
+const HeaderButton = () => {
   const [isClient, setIsClient] = useState(false);
   const router = useRouter();
   const [user, setUser] = useRecoilState(userState);
@@ -36,9 +36,9 @@ export default function HeaderButton() {
       setUser(initialUser);
     }
   };
-  const loginButtonHandler = ()=>{
+  const loginButtonHandler = () => {
     stackRouterPush(router, `/login`);
-  }
+  };
 
   const userProfileHandler = async () => {
     const user = await supabaseClient.auth.getUser();
@@ -81,4 +81,6 @@ export default function HeaderButton() {
       )}
     </>
   );
-}
+};
+
+export default React.memo(HeaderButton);

@@ -13,7 +13,7 @@ export const Map = () => {
         child.receiveShadow = true;
       }
     });
-  });
+  },[]);
 
   return (
     <RigidBody colliders="trimesh" type="fixed">
