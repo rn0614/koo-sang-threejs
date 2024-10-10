@@ -18,7 +18,7 @@ export async function GET(request: Request) {
 
   query.order("created_at", { ascending: false });
 
-  if (limit && offset) {
+  if (limit ) {
     query.range(offset, offset + limit - 1);
   }
 

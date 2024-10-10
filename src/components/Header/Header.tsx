@@ -1,33 +1,18 @@
 "use client";
-import { usePathname, useSearchParams } from "next/navigation";
-import React, { ReactNode, useEffect, useState } from "react";
-import { FaHome } from "react-icons/fa";
-import styles from "./styles.module.scss";
-
-import { useScrollDirection } from "@/hooks/useScrollDirection";
 import { Box } from "@radix-ui/themes";
 import Link from "next/link";
+import React, { useState } from "react";
 import { BsJustify } from "react-icons/bs";
-import Sidebar from "../Sidebar/Sidebar";
+import { FaHome } from "react-icons/fa";
 import HeaderButton from "../HeaderButton/HeaderButton";
+import Sidebar from "../Sidebar/Sidebar";
+import styles from "./styles.module.scss";
 
-
-export const Header: React.FC = () => {
-  const scrollDirection = useScrollDirection();
+const Header: React.FC = () => {
   const [sidbarOpen, setSidebarOpen] = useState(false);
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
-  useEffect(() => {
-    setSidebarOpen(false);
-  }, [pathname, searchParams]);
 
   return (
-    <header
-      className={`${styles.headerWrapper} ${
-        scrollDirection === "down" && styles.headerHidden
-      }`}
-    >
+    <header className={`${styles.headerWrapper}`}>
       <Box className={styles.buttonWrapper}>
         <Box className={styles.sidebarButton}>
           <BsJustify
@@ -41,12 +26,9 @@ export const Header: React.FC = () => {
         </Link>
       </Box>
       <HeaderButton />
-      <Sidebar
-        pathname={pathname}
-        isOpen={sidbarOpen}
-        setSidebarOpen={setSidebarOpen}
-        scrollDirection={scrollDirection}
-      />
+      <Sidebar isOpen={sidbarOpen} setSidebarOpen={setSidebarOpen} />
     </header>
   );
 };
+
+export default React.memo(Header);

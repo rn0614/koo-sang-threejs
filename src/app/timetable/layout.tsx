@@ -1,4 +1,4 @@
-import { Header } from "@/components/Header/Header";
+import Header from "@/components/Header/Header";
 import { Box } from "@radix-ui/themes";
 import styles from "./styles.module.scss";
 
