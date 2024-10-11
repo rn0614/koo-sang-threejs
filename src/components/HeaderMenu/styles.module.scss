@@ -1,0 +1,15 @@
+@use "@styles/variable.scss";
+
+.buttonWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+
+  .sidebarButton {
+    cursor: pointer;
+    display: none;
+    @media (max-width: variable.$media-sm) {
+      display: block;
+    }
+  }
+}

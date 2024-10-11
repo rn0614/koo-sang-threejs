@@ -51,9 +51,7 @@ const StackHeader: React.FC = () => {
       )}
       <HeaderButton />
       <Sidebar
-        pathname={pathname}
         isOpen={sidbarOpen}
-        scrollDirection={scrollDirection}
         setSidebarOpen={setSidebarOpen}
       />
     </header>
