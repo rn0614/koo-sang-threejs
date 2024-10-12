@@ -14,15 +14,10 @@ export default function HeaderMenu() {
   const isDetailScreen = (pathname.match(/\//g) || []).length > 1;
   const isMobileRef = useRef(typeof window !== "undefined" && !!window.ReactNativeWebView);
 
-  // 클라이언트 렌더링 시점에서만 실행되도록 수정
-  if (typeof window === "undefined") {
-    return <div></div>;
-  }
-
   return (
     <>
       {isMobileRef.current && isDetailScreen ? (
-        <div></div> // 모바일이면서 상세화면일 때
+        <div></div>
       ) : (
         <>
           <Box className={styles.buttonWrapper}>
