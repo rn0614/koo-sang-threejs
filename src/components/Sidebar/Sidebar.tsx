@@ -1,7 +1,7 @@
 "use client";
 import SidebarItem from "@/components/SidebarItem/SidebarItem";
 import { Flex } from "@radix-ui/themes";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { BiSearch } from "react-icons/bi";
 import styles from "./styles.module.scss";
 import { BsChatSquare } from "react-icons/bs";
@@ -52,11 +52,15 @@ const menuRoutes = (pathname: string) => [
 const Sidebar = ({ isOpen, setSidebarOpen }: SidebarProps) => {
   const pathname = usePathname();
   const router = useRouter();
-  const routes = menuRoutes(pathname)||[];
+  const routes = menuRoutes(pathname) || [];
   const webviewClickhandler = (href: any) => {
     setSidebarOpen(false);
     stackRouterPush(router, href);
   };
+
+  useEffect(() => {
+    setSidebarOpen(false);
+  }, [pathname, setSidebarOpen]);
 
   return (
     <aside
