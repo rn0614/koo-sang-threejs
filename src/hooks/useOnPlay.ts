@@ -19,7 +19,7 @@ const useOnPlay = (songs: Song[]) => {
   const onPlay = useCallback(
     (id: number) => {
       if (!user.id) {
-        stackRouterPush(router, `/login`);
+        stackRouterPush(router, `/home/login`);
         return null;
       }
       player.setId(id);

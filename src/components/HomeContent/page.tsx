@@ -6,7 +6,7 @@ import styles from "./styles.module.scss";
 
 const menuList = [
   { href: "/music", label: "Music" },
-  { href: "/login", label: "Login" },
+  { href: "/home/login", label: "Login" },
   { href: "/apitest", label: "API Test" },
   { href: "/music/liked", label: "Liked" },
   { href: "/music/search", label: "Search" },

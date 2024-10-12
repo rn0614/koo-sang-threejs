@@ -20,7 +20,7 @@ export async function login(formData: FormData) {
   console.log('login user', data)
   console.log('login error', error)
   if (error) {
-    redirect("/login");
+    redirect("/home/login");
   }
 
   revalidatePath("/", "layout");

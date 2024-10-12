@@ -37,7 +37,7 @@ const HeaderButton = () => {
     }
   };
   const loginButtonHandler = () => {
-    stackRouterPush(router, `/login`);
+    stackRouterPush(router, `/home/login`);
   };
 
   const userProfileHandler = async () => {
