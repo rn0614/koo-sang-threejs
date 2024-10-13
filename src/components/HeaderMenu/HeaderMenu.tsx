@@ -46,7 +46,6 @@ export default function HeaderMenu() {
           </Box>
           <Sidebar
             isOpen={sidebarOpen}
-            closSidebar={closSidebar}
             pathname={pathname}
           />
         </>

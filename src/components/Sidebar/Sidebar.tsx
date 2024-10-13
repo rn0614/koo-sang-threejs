@@ -13,7 +13,6 @@ import styles from "./styles.module.scss";
 
 type SidebarProps = {
   isOpen: boolean;
-  closSidebar: any;
   pathname:string;
 };
 

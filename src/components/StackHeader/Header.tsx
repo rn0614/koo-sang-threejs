@@ -52,7 +52,7 @@ const StackHeader: React.FC = () => {
       <HeaderButton />
       <Sidebar
         isOpen={sidbarOpen}
-        setSidebarOpen={setSidebarOpen}
+        pathname={pathname}
       />
     </header>
   );
