@@ -1,19 +1,20 @@
 "use client";
 import SidebarItem from "@/components/SidebarItem/SidebarItem";
-import { Flex } from "@radix-ui/themes";
-import React, { useEffect, useMemo } from "react";
-import { BiSearch } from "react-icons/bi";
-import styles from "./styles.module.scss";
-import { BsChatSquare } from "react-icons/bs";
-import { Md3dRotation } from "react-icons/md";
-import { GrTest } from "react-icons/gr";
 import { stackRouterPush } from "@/utils/stackRouter";
-import { usePathname, useRouter } from "next/navigation";
+import { Flex } from "@radix-ui/themes";
+import { useRouter } from "next/navigation";
+import React, { useEffect } from "react";
+import { BiSearch } from "react-icons/bi";
+import { BsChatSquare } from "react-icons/bs";
 import { FaMusic } from "react-icons/fa";
+import { GrTest } from "react-icons/gr";
+import { Md3dRotation } from "react-icons/md";
+import styles from "./styles.module.scss";
 
 type SidebarProps = {
   isOpen: boolean;
-  setSidebarOpen: any;
+  closSidebar: any;
+  pathname:string;
 };
 
 const menuRoutes = (pathname: string) => [
@@ -47,20 +48,20 @@ const menuRoutes = (pathname: string) => [
     active: pathname == "/three",
     href: "/three",
   },
+  {
+    icon: Md3dRotation,
+    label: "ChangeText",
+    active: pathname == "/change-text",
+    href: "/change-text",
+  },
 ];
 
-const Sidebar = ({ isOpen, setSidebarOpen }: SidebarProps) => {
-  const pathname = usePathname();
+const Sidebar = ({ isOpen, pathname }: SidebarProps) => {
   const router = useRouter();
   const routes = menuRoutes(pathname) || [];
   const webviewClickhandler = (href: any) => {
-    setSidebarOpen(false);
     stackRouterPush(router, href);
   };
-
-  useEffect(() => {
-    setSidebarOpen(false);
-  }, [pathname, setSidebarOpen]);
 
   return (
     <aside

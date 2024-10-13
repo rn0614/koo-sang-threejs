@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import HeaderButton from "../HeaderButton/HeaderButton";
 import styles from "./styles.module.scss";
 import HeaderMenu from "../HeaderMenu/HeaderMenu";

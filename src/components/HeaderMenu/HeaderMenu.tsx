@@ -2,21 +2,33 @@
 import { Box } from "@radix-ui/themes";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { BsJustify } from "react-icons/bs";
 import { FaHome } from "react-icons/fa";
 import Sidebar from "../Sidebar/Sidebar";
 import styles from "./styles.module.scss";
 
 export default function HeaderMenu() {
-  const [sidebarOpen, setSidebarOpen]= useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isDetailScreen, setIsDetailScreen] = useState(true); // 초기 false 설정
   const pathname = usePathname();
-  const isDetailScreen = (pathname.match(/\//g) || []).length > 1;
-  const isMobileRef = useRef(typeof window !== "undefined" && !!window.ReactNativeWebView);
+
+  const closSidebar = useCallback(() => {
+    setSidebarOpen((pre) => !pre);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && !!window.ReactNativeWebView) {
+      setIsDetailScreen((pathname.match(/\//g) || []).length > 1);
+    } else {
+      setIsDetailScreen(false);
+    }
+    setSidebarOpen(false);
+  }, [pathname]);
 
   return (
     <>
-      {isMobileRef.current && isDetailScreen ? (
+      {isDetailScreen ? (
         <div></div>
       ) : (
         <>
@@ -32,7 +44,11 @@ export default function HeaderMenu() {
               <FaHome size={32} color="black" />
             </Link>
           </Box>
-          <Sidebar isOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+          <Sidebar
+            isOpen={sidebarOpen}
+            closSidebar={closSidebar}
+            pathname={pathname}
+          />
         </>
       )}
     </>
