@@ -2,7 +2,7 @@
 import SidebarItem from "@/components/SidebarItem/SidebarItem";
 import { stackRouterPush } from "@/utils/stackRouter";
 import { Flex } from "@radix-ui/themes";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import { BiSearch } from "react-icons/bi";
 import { BsChatSquare } from "react-icons/bs";
@@ -10,11 +10,7 @@ import { FaMusic } from "react-icons/fa";
 import { GrTest } from "react-icons/gr";
 import { Md3dRotation } from "react-icons/md";
 import styles from "./styles.module.scss";
-
-type SidebarProps = {
-  isOpen: boolean;
-  pathname:string;
-};
+import { useDrawer } from "@/providers/DrawerProvider";
 
 const menuRoutes = (pathname: string) => [
   {
@@ -55,18 +51,19 @@ const menuRoutes = (pathname: string) => [
   },
 ];
 
-const Sidebar = ({ isOpen, pathname }: SidebarProps) => {
+const Sidebar = () => {
+  const { closeDrawer } = useDrawer();
+  const pathname = usePathname();
   const router = useRouter();
   const routes = menuRoutes(pathname) || [];
   const webviewClickhandler = (href: any) => {
     stackRouterPush(router, href);
+    closeDrawer();
   };
 
   return (
     <aside
-      className={`${styles.sidebarWrapper} ${
-        isOpen ? styles.sidebarOpen : null
-      }`}
+      className={`${styles.sidebarWrapper} ${styles.sidebarOpen}`}
     >
       <Flex className={styles.route}>
         {routes.map((item, idx) => (

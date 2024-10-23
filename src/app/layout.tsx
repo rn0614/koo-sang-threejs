@@ -10,6 +10,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import UserProvider from "@/providers/UserProvider";
 import { mswStart } from "@/mocks";
+import { DrawerProvider } from "@/providers/DrawerProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -34,8 +35,10 @@ export default function RootLayout({
           <MockServiceProvider />
           <QueryClientProvider>
             <UserProvider>
-              <ModalProvider />
-              {children}
+              <DrawerProvider>
+                <ModalProvider />
+                {children}
+              </DrawerProvider>
             </UserProvider>
           </QueryClientProvider>
         </Theme>

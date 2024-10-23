@@ -1,4 +1,5 @@
 "use client";
+import Drawer from "@/components/Drawer/Drawer";
 import { UploadModal } from "@/components/UploadModal/UploadModal";
 
 const ModalProvider = () => {
@@ -6,6 +7,7 @@ const ModalProvider = () => {
     <>
       {/* <AuthModal />*/}
       <UploadModal /> 
+      <Drawer/>
     </>
   );
 };

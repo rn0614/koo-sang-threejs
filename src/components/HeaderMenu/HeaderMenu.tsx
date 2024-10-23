@@ -7,15 +7,16 @@ import { BsJustify } from "react-icons/bs";
 import { FaHome } from "react-icons/fa";
 import Sidebar from "../Sidebar/Sidebar";
 import styles from "./styles.module.scss";
+import { useDrawer } from "@/providers/DrawerProvider";
 
 export default function HeaderMenu() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { openDrawer } = useDrawer();
   const [isDetailScreen, setIsDetailScreen] = useState(true); // 초기 false 설정
   const pathname = usePathname();
-
-  const closSidebar = useCallback(() => {
-    setSidebarOpen((pre) => !pre);
-  }, []);
+  const handleOpenDrawer = () => {
+    console.log('open')
+    openDrawer(<Sidebar/>); //Later we will create a separate template.
+  }
 
   useEffect(() => {
     if (typeof window !== "undefined" && !!window.ReactNativeWebView) {
@@ -23,7 +24,6 @@ export default function HeaderMenu() {
     } else {
       setIsDetailScreen(false);
     }
-    setSidebarOpen(false);
   }, [pathname]);
 
   return (
@@ -37,17 +37,13 @@ export default function HeaderMenu() {
               <BsJustify
                 size={32}
                 color="black"
-                onClick={() => setSidebarOpen((pre) => !pre)}
+                onClick={handleOpenDrawer}
               />
             </Box>
             <Link href={"/music"}>
               <FaHome size={32} color="black" />
             </Link>
           </Box>
-          <Sidebar
-            isOpen={sidebarOpen}
-            pathname={pathname}
-          />
         </>
       )}
     </>
