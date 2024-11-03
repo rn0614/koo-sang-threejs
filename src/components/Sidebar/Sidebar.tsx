@@ -27,6 +27,12 @@ const menuRoutes = (pathname: string) => [
   },
   {
     icon: GrTest,
+    label: "AI",
+    active: pathname == "/ai",
+    href: "/ai",
+  },
+  {
+    icon: GrTest,
     label: "Test",
     active: pathname == "/test2",
     href: "/test2",
