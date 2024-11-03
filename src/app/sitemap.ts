@@ -1,9 +1,9 @@
 import { Song } from "@/types/types";
 
 export default async function sitemap() {
-  const baseUrl = "https://koo-sang-threejs.vercel.app";
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL
 
-  const response = await fetch(`/api/songs?page=${1}&limit=${10000}`);
+  const response = await fetch(`${baseUrl}/api/songs?page=${1}&limit=${10000}`);
 
   const data: Song[] = await response.json();
 
@@ -13,7 +13,6 @@ export default async function sitemap() {
       latestModified: new Date()
     };
   });
-
 
   return [
     {

@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots{
       allow: ["/", "/music"],
       disallow:[]
     },
-    sitemap:`${process.env.NEXT_PUBLIC_API_BASE_URL}/sitemap.xml`
+    sitemap:`${process.env.NEXT_PUBLIC_API_BASE_URL}/sitemap`
   }
 }
