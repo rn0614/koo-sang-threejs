@@ -1,6 +1,9 @@
-export const timeScheduleMock = [
+import TimeSchedule from "@/types/timeSchedule";
+
+export const timeScheduleMock: TimeSchedule[] = [
   {
     id: 1,
+    day: '2024-12-05',
     text: "box1",
     startTime: 9,
     endTime: 12,
@@ -9,6 +12,7 @@ export const timeScheduleMock = [
   },
   {
     id: 3,
+    day: '2024-12-05',
     text: "box3",
     startTime: 15,
     endTime: 17,
@@ -17,6 +21,7 @@ export const timeScheduleMock = [
   },
   {
     id: 4,
+    day: '2024-12-06',
     text: "box4",
     startTime: 10,
     endTime: 15,
@@ -25,6 +30,7 @@ export const timeScheduleMock = [
   },
   {
     id: 6,
+    day: '2024-12-07',
     text: "box6",
     startTime: 17,
     endTime: 18,
@@ -33,6 +39,7 @@ export const timeScheduleMock = [
   },
   {
     id: 7,
+    day: '2024-12-05',
     text: "box7",
     startTime: 9,
     endTime: 10,
@@ -41,6 +48,7 @@ export const timeScheduleMock = [
   },
   {
     id: 8,
+    day: '2024-12-06',
     text: "box8",
     startTime: 14,
     endTime: 15,
@@ -49,6 +57,7 @@ export const timeScheduleMock = [
   },
   {
     id: 9,
+    day: '2024-12-07',
     text: "box9",
     startTime: 16,
     endTime: 18,

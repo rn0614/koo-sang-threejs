@@ -1,34 +1,32 @@
+import { timeScheduleMock } from "@/mocks/data/time-schedule-list.mock";
+import TimeSchedule from "@/types/timeSchedule";
 import { useQuery } from "@tanstack/react-query";
+import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 
 export const getScheduleListRequest = async () => {
-  try {
-    const response = {data: []}
-    return response.data;
-  } catch (error) {
-    throw error;
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/getSchedule`
+  );
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.error || "Unknown error");
   }
+  return await response.json();
 };
 
-export function useScheduler() {
-  const returnData = useQuery<any[]>({
+export function useScheduler(): [
+  TimeSchedule[],
+  Dispatch<SetStateAction<TimeSchedule[]>>
+] {
+  const [wrapper, setWrapper] = useState<TimeSchedule[]>([]);
+  const returnData = useQuery<TimeSchedule[]>({
     queryKey: ["schedule-list"],
     queryFn: () => getScheduleListRequest(),
     staleTime: 2000,
   });
-  return returnData;
+
+  useEffect(() => {
+    setWrapper(returnData.data ?? []);
+  }, [returnData]);
+  return [wrapper, setWrapper];
 }
-
-const changeData = (inputData:any) => {
-  // Creating a Map to group data by type
-  const groupedByType = new Map();
-
-  // Filling the map with data grouped by type
-  inputData.forEach((item:any) => {
-    if (!groupedByType.has(item.type)) {
-      groupedByType.set(item.type, []);
-    }
-    groupedByType.get(item.type).push(item);
-  });
-
-  return Array.from(groupedByType.values());
-};

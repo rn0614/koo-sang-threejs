@@ -24,9 +24,16 @@ export default function DragBox({ id, text, time, data, size }: any) {
       ref={ref}
       className={styles["box"]}
       style={{
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
         opacity: isDragging ? 0.5 : 1,
         zIndex: isDragging ? 0 : 1,
-        height: size * 20 + "px",
+        height: size * 20 - 2 + "px",
+        fontSize: "12px",
+        textAlign:"center",
+        backgroundColor:data.isChange?"red":"green"
       }}
       onClick={() => console.log(size)}
     >

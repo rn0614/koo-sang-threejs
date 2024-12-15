@@ -5,13 +5,12 @@ import styles from "./DropWrapper.module.scss";
 type DropWrapperProps<T> = {
   areaList: T[] | undefined;
   addBox: any;
-  type: string;
   day: string;
 };
 
 export default function DropWrapper<
-  T extends { startTime: number; id: number }
->({ areaList, addBox, type, day }: DropWrapperProps<T>) {
+  T extends { startTime: number; endTime: number; id: number }
+>({ areaList, addBox, day }: DropWrapperProps<T>) {
   const ref = useRef<HTMLTableRowElement>(null);
   const wrapperList = Array.from({ length: 24 }, (v, k) => k);
   const resultList = wrapperList.map((time) => {
@@ -34,9 +33,12 @@ export default function DropWrapper<
     let upsideCheck =
       data.time + item.data.endTime - item.data.startTime - diff;
     let check = resultList.every((row) => {
+      let diffRow =
+        row.data !== null ? row.data?.endTime - row.data?.startTime - 1 : 0;
       if (upsideCheck > 24 || downsideCheck < 0) return false;
       if (row.data?.id == item.data.id) return true;
-      if (row.time >= upsideCheck || row.time < downsideCheck) return true;
+      if (row.time >= upsideCheck || row.time + diffRow < downsideCheck)
+        return true;
       if (row.data === null) return true;
       return false;
     });
@@ -52,7 +54,7 @@ export default function DropWrapper<
           addBox={addBox}
           time={idx}
           data={resultList[idx]}
-          type={type}
+          day={day}
           dropCheckHandler={dropCheckHandler}
         ></DropArea>
       ))}

@@ -12,7 +12,7 @@ type DropAreaType<T> = {
   ) => void;
   data: any;
   time: number;
-  type: string;
+  day: string;
   dropCheckHandler: any;
 };
 
@@ -20,14 +20,14 @@ export default function DropArea<T>({
   addBox,
   data,
   time,
-  type,
+  day,
   dropCheckHandler,
 }: DropAreaType<T>) {
   const ref = useRef<HTMLTableRowElement>(null);
   const [{ isOver, canDrop }, drop] = useDrop(
     () => ({
       accept: "row",
-      drop: (item, monitor) => addBox(time, item, monitor, type),
+      drop: (item, monitor) => addBox(time, item, monitor, day),
       canDrop: (item, monitor) => dropCheckHandler(data, item, monitor),
       collect: (monitor) => ({
         isOver: !!monitor.isOver(),

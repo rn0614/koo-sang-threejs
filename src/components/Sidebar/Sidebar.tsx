@@ -11,6 +11,7 @@ import { GrTest } from "react-icons/gr";
 import { Md3dRotation } from "react-icons/md";
 import styles from "./styles.module.scss";
 import { useDrawer } from "@/providers/DrawerProvider";
+import { GrSchedule } from "react-icons/gr";
 
 const menuRoutes = (pathname: string) => [
   {
@@ -54,6 +55,12 @@ const menuRoutes = (pathname: string) => [
     label: "ChangeText",
     active: pathname == "/change-text",
     href: "/change-text",
+  },
+  {
+    icon: GrSchedule,
+    label: "Time",
+    active: pathname == "/timetable",
+    href: "/timetable",
   },
 ];
 
