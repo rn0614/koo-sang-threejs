@@ -39,7 +39,7 @@ export const revalidate = 0;
 
 mswStart(); // 서버단 실행
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

@@ -1,12 +1,28 @@
 import dayjs from "dayjs";
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
 import duration from "dayjs/plugin/duration";
 import relativeTime from "dayjs/plugin/relativeTime";
 
 dayjs.extend(duration);
 dayjs.extend(relativeTime);
-dayjs.locale("ko");
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.tz.setDefault("Asia/Seoul") 
 
-export function getCurrentTime(
+export function getCurrentTime(){
+  return dayjs().locale("ko").tz();
+}
+
+export function getKoTime(date:Date){
+  return dayjs(date)
+}
+
+export function getKoTimeYYYYMMDD(date:Date){
+  return dayjs(date).format('YYYYMMDD')
+}
+
+export function getCurrentTimeYYYYMMDD(
   {
     unit = "day",
     delay,

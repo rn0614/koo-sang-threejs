@@ -1,16 +1,16 @@
 import React, { useRef } from "react";
 import DropArea from "../DropArea/DropArea";
 import styles from "./DropWrapper.module.scss";
+import { TimeSchedule } from "@/types/timeSchedule";
 
 type DropWrapperProps<T> = {
-  areaList: T[] | undefined;
+  areaList: TimeSchedule[] | undefined;
   addBox: any;
   day: string;
 };
 
 export default function DropWrapper<
-  T extends { startTime: number; endTime: number; id: number }
->({ areaList, addBox, day }: DropWrapperProps<T>) {
+  T extends TimeSchedule>({ areaList, addBox, day }: DropWrapperProps<T>) {
   const ref = useRef<HTMLTableRowElement>(null);
   const wrapperList = Array.from({ length: 24 }, (v, k) => k);
   const resultList = wrapperList.map((time) => {
@@ -34,7 +34,7 @@ export default function DropWrapper<
       data.time + item.data.endTime - item.data.startTime - diff;
     let check = resultList.every((row) => {
       let diffRow =
-        row.data !== null ? row.data?.endTime - row.data?.startTime - 1 : 0;
+        row.data !== null ? (row.data?.endTime ?? 0) - (row.data?.startTime ?? 0) - 1 : 0;
       if (upsideCheck > 24 || downsideCheck < 0) return false;
       if (row.data?.id == item.data.id) return true;
       if (row.time >= upsideCheck || row.time + diffRow < downsideCheck)

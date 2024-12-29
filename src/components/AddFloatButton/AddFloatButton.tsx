@@ -12,7 +12,7 @@ export const AddFloatButton = () => {
   const uploadModal = useUploadModal();
   const user = useRecoilValue(userState);
   const onClick = () => {
-    if (!user.id) {
+    if (!user) {
       return authModal.onOpen();
     }
     return uploadModal.onOpen();

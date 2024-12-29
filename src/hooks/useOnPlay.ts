@@ -18,14 +18,14 @@ const useOnPlay = (songs: Song[]) => {
   // onPlay 함수를 useCallback으로 감싸서 종속성이 변경될 때만 재생성되도록 합니다.
   const onPlay = useCallback(
     (id: number) => {
-      if (!user.id) {
+      if (!user?.id) {
         stackRouterPush(router, `/home/login`);
         return null;
       }
       player.setId(id);
       player.setIds(songIds);
     },
-    [user.id, router, player, songIds]
+    [user?.id, router, player, songIds]
   );
 
   return onPlay;

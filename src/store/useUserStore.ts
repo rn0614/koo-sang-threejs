@@ -1,15 +1,7 @@
+import { User } from "@supabase/supabase-js";
 import { atom } from "recoil";
 
-
-export const initialUser = {
-  id: "",
-  full_name: "",
-  avatar_url: "",
-  billing_address: "",
-  payment_method: "",
-};
-
-export const userState = atom<any>({
+export const userState = atom<User|null>({
   key: "userState",
-  default: initialUser,
+  default: null,
 });

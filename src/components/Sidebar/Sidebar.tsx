@@ -65,6 +65,7 @@ const menuRoutes = (pathname: string) => [
 ];
 
 const Sidebar = () => {
+  console.log('sidebar rendering')
   const { closeDrawer } = useDrawer();
   const pathname = usePathname();
   const router = useRouter();

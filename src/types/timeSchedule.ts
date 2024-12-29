@@ -1,9 +1,6 @@
-export default interface TimeSchedule {
-  id: number;
-  day:string;
-  text: string;
-  startTime: number;
-  endTime: number;
-  type: string;
+import { Database } from "./types_db";
+
+type TimeScheduleDto = Database["public"]["Tables"]["schedule_no_rls"]["Row"];
+export type TimeSchedule = TimeScheduleDto & {
   isChange?: boolean;
-}
+};

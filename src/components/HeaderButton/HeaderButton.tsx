@@ -11,6 +11,7 @@ import { CgProfile } from "react-icons/cg";
 import { useRecoilState } from "recoil";
 import styles from "./styles.module.scss";
 import { stackRouterPush } from "@/utils/stackRouter";
+import useUser from "@/hooks/useUser2";
 export const initialUser = {
   id: "",
   full_name: "",
@@ -20,20 +21,22 @@ export const initialUser = {
 };
 
 const HeaderButton = () => {
+  console.log('header button rendering')
   const [isClient, setIsClient] = useState(false);
   const router = useRouter();
-  const [user, setUser] = useRecoilState(userState);
+  const {user,logOut, refetch} = useUser();
   const supabaseClient = createClient();
+  const client = queryClient();
 
   const handleLogout = async () => {
-    const client = queryClient();
+    client.invalidateQueries(["user"]);
     const { error } = await supabaseClient.auth.signOut();
+    console.log('logout,',error)
     if (error) {
       toast.error(error.message);
     } else {
       toast.success("Logged out!");
-      client.invalidateQueries(["user"]);
-      setUser(initialUser);
+      await logOut();
     }
   };
   const loginButtonHandler = () => {
@@ -56,7 +59,7 @@ const HeaderButton = () => {
   // 데이터가 있으면 로그인 상태, 없으면 로그인 버튼 표시
   return (
     <>
-      {user?.id !== "" && (
+      {user!==null && (
         <Box className={styles.buttonWrapper}>
           <BiLogOut
             onClick={handleLogout}
@@ -70,7 +73,7 @@ const HeaderButton = () => {
           />
         </Box>
       )}
-      {user?.id == "" && (
+      {user===null && (
         <Box className={styles.buttonWrapper}>
           <BiLogIn
             onClick={loginButtonHandler}

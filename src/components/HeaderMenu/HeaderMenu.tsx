@@ -10,6 +10,7 @@ import styles from "./styles.module.scss";
 import { useDrawer } from "@/providers/DrawerProvider";
 
 export default function HeaderMenu() {
+  console.log('header menu rendering')
   const { openDrawer } = useDrawer();
   const [isDetailScreen, setIsDetailScreen] = useState(true); // 초기 false 설정
   const pathname = usePathname();

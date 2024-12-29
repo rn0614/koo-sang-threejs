@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { DropTargetMonitor } from "react-dnd";
 import { useScheduler } from "@/hooks/useSchedule";
-import TimeSchedule from "@/types/timeSchedule";
+import { TimeSchedule } from "@/types/timeSchedule";
 import DropWrapper from "@/components/DropWrapper/DropWrapper";
 import { cloneDeep } from "lodash";
 import { HTML5toTouch } from "rdndmb-html5-to-touch";
@@ -11,6 +11,7 @@ import styles from "./styles.module.scss";
 import { list2GroupedMap } from "@/utils/lib";
 import dayjs from "dayjs";
 import isoWeek from "dayjs/plugin/isoWeek"; // ISO 주 계산
+import { handleConfirmAction } from "@/components/ConfirmModal/ConfirmModal";
 
 dayjs.extend(isoWeek); // ISO 주(월요일 시작) 지원
 
@@ -26,10 +27,23 @@ export default function DragDropPage() {
     newMap.set(date, []);
   });
 
-  const [schedule, setSchedule] = useScheduler();
-  const [wrapper, setWrapper] = useState<Map<string, TimeSchedule[]>>(
-    newMap
-  );
+  const [schedule, setSchedule, postScheduleListRequest, refetch] =
+    useScheduler();
+  const [wrapper, setWrapper] = useState<Map<string, TimeSchedule[]>>(newMap);
+  const doConfirm = () => {
+    handleConfirmAction("confirm-cancel", async () => {
+      console.log(wrapper);
+      const changeList: TimeSchedule[] = [];
+      wrapper.forEach((data) => {
+        const changeFileteredMap = data.filter((item) => item?.isChange);
+        changeList.push(...changeFileteredMap);
+      });
+      console.log(postScheduleListRequest);
+      await postScheduleListRequest(changeList);
+      await refetch();
+    });
+  };
+  const doAdd = () => {};
   const addBox = useCallback(
     (
       time: number,
@@ -44,9 +58,7 @@ export default function DragDropPage() {
       );
       setWrapper((preRows) => {
         let itemToMove = cloneDeep(preRows);
-        console.log("here3", item);
         const deleteData = itemToMove.get(item.data.day);
-        console.log("here4 deleteData", deleteData);
         if (deleteData) {
           const filteredData =
             deleteData.filter((schedule) => {
@@ -54,7 +66,6 @@ export default function DragDropPage() {
               return schedule.id !== item.id;
             }) || [];
           itemToMove.set(item.data.day, filteredData);
-          console.log("here5", itemToMove, filteredData);
         }
 
         const addData = itemToMove.get(day);
@@ -69,7 +80,7 @@ export default function DragDropPage() {
               endTime: time + item.data.endTime - item.data.startTime - diff,
               type: item.type,
               isChange: true,
-            },
+            } as TimeSchedule,
           ];
           itemToMove.set(day, filteredData);
         }
@@ -143,17 +154,10 @@ export default function DragDropPage() {
           </div>
         </div>
         <div>
-          <label htmlFor="날짜">날짜</label>
-          <input name="날짜" placeholder="날짜"></input>
-          <label htmlFor="시작"></label>
-          <input placeholder=""></input>
-          <button
-            onClick={() => {
-              console.log(wrapper);
-            }}
-          >
-            버튼
-          </button>
+          <label htmlFor="txt">텍스트</label>
+          <input name="txt" placeholder="텍스트"></input>
+          <button onClick={doAdd}>추가</button>
+          <button onClick={doConfirm}>확정</button>
         </div>
         <div></div>
       </DndProvider>
