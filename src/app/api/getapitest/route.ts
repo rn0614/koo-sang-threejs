@@ -1,6 +1,17 @@
 import { handleError } from "@/utils/errorHandler";
 import { createClient } from "@/utils/supabase/server";
 
+/** 
+ * @swagger 
+ * /api/getapitest:
+ *   get: 
+ *     description: API test용 API
+ *     responses:  
+ *       200:
+ *         description: Song[]  
+ *       500:
+ *         description: Error 
+ */ 
 export async function GET() {
   const supabase = createClient();
   try {

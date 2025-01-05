@@ -1,6 +1,22 @@
+import { handleError } from "@/utils/errorHandler";
 import { createClient } from "@/utils/supabase/server";
 import { NextResponse } from "next/server";
-
+/**
+ * @swagger
+ * /api/songs/{songId}:
+ *   get:
+ *     description: songDetail
+ *     parameters:
+ *      - name: songId
+ *        in: params
+ *     responses:
+ *       200:
+ *         description: song
+ *       404:
+ *         description: no data
+ *       500:
+ *         description: Error
+ */
 export async function GET(
   request: Request,
   { params }: { params: { songId: string } }
@@ -18,6 +34,9 @@ export async function GET(
     .single();
   if (error) {
     console.log(error);
+  }
+  if (data == null) {
+    return handleError("There is no data", 404);
   }
   return NextResponse.json(data);
 }

@@ -4,6 +4,17 @@ import { createClient } from "@/utils/supabase/server";
 import { getCurrentTime } from "@/utils/day";
 import { NextRequest } from "next/server";
 
+/** 
+ * @swagger 
+ * /api/schedule:
+ *   get: 
+ *     description: Get all Employee by Email
+ *     responses:  
+ *       200: 
+ *         description: ScheduleList[]  
+ *       500:
+ *         description: Error 
+ */ 
 export async function GET() {
   const supabase = createClient();
   try {
@@ -26,6 +37,17 @@ export async function GET() {
   }
 }
 
+/** 
+ * @swagger 
+ * /api/schedule:
+ *   post: 
+ *     description: insert schdeuleList
+ *     responses:  
+ *       200:
+ *         description: null  
+ *       500:
+ *         description: Error 
+ */ 
 export async function POST(request: NextRequest) {
   const body = await request.json();
   const scheduleList = body.scheduleList as TimeSchedule[];
@@ -58,6 +80,18 @@ export async function POST(request: NextRequest) {
   }
 }
 
+
+/** 
+ * @swagger 
+ * /api/schedule:
+ *   put: 
+ *     description: update scheduleList
+ *     responses:  
+ *       200:
+ *         description: null  
+ *       500:
+ *         description: Error 
+ */ 
 export async function PUT() {
   const supabase = createClient();
   const updates = [
@@ -89,6 +123,17 @@ export async function PUT() {
   }
 }
 
+/** 
+ * @swagger 
+ * /api/schedule:
+ *   delete: 
+ *     description: delete scheduleList
+ *     responses:  
+ *       200:
+ *         description: null  
+ *       500:
+ *         description: Error 
+ */ 
 export async function DELETE() {
   const supabase = createClient();
   const id = 2;
@@ -108,6 +153,9 @@ export async function DELETE() {
       })
       .eq("id", id)
       .select(); // 해당결과값 재반환
+    if(error){
+      return handleError(error.message, +error.code);
+    }
     return new Response(JSON.stringify(data), {
       status: 200,
       headers: { "Content-Type": "application/json" },

@@ -2,6 +2,17 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/utils/supabase/server";
 
+/** 
+ * @swagger 
+ * /api/songs:
+ *   get: 
+ *     description: songList[]
+ *     responses:  
+ *       200:
+ *         description: song[]  
+ *       500:
+ *         description: Error 
+ */ 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const client = createClient();

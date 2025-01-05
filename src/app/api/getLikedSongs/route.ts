@@ -1,6 +1,17 @@
 import { handleError } from "@/utils/errorHandler";
 import { createClient } from "@/utils/supabase/server";
 
+/** 
+ * @swagger 
+ * /api/getLikedSongs:
+ *   get: 
+ *     description: 좋아요누른 Song 가져오는 API
+ *     responses:  
+ *       200:
+ *         description: Song[]  
+ *       500:
+ *         description: Error 
+ */ 
 export async function GET() {
   const supabase = createClient();
   try {

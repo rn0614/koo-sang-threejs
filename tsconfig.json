@@ -23,6 +23,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/mocks/index.js", "src/utils/translationWorker.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/mocks/index.js", "src/utils/translationWorker.js", "src/app/api/swagger/routes.js", "src/app/swagger/page.js"],
   "exclude": ["node_modules"]
 }

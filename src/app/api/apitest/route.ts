@@ -1,6 +1,17 @@
 import { NextRequest } from "next/server";
 import { comments } from "./data";
 
+/** 
+ * @swagger 
+ * /api/apitest:
+ *   get: 
+ *     description: apitest용 API
+ *     responses:  
+ *       200:
+ *         description: {id, text} 표현 
+ *       500:
+ *         description: Error 
+ */ 
 export async function GET(request: NextRequest) {
   //* query를 다루는 법*/
   const searchParams = request.nextUrl.searchParams;

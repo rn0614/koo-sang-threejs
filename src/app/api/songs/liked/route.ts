@@ -1,5 +1,16 @@
 import { createClient } from "@/utils/supabase/server";
 
+/** 
+ * @swagger 
+ * /api/songs/:
+ *   get: 
+ *     description: songList[]
+ *     responses:  
+ *       200:
+ *         description: song[]  
+ *       500:
+ *         description: Error 
+ */ 
 export async function GET(request: Request) {
   const supabase = createClient();
 

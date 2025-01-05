@@ -5,7 +5,17 @@ import { headers, cookies } from "next/headers";
 
 // 캐싱막기
 export const dynamic = "force-dynamic";
-
+/** 
+ * @swagger 
+ * /api/huggingface:
+ *   get: 
+ *     description: huggingface API
+ *     responses:  
+ *       200:
+ *         description: TranslationOutputValue[]  
+ *       500:
+ *         description: Error 
+ */ 
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
