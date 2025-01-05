@@ -5,6 +5,8 @@ import { createClient } from "@/utils/supabase/server";
  * @swagger 
  * /api/getapitest:
  *   get: 
+ *     tags:
+ *       - apitest
  *     description: API test용 API
  *     responses:  
  *       200:

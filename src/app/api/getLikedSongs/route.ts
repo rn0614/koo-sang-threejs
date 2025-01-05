@@ -4,7 +4,9 @@ import { createClient } from "@/utils/supabase/server";
 /** 
  * @swagger 
  * /api/getLikedSongs:
- *   get: 
+ *   get:
+ *     tags:
+ *       - songs
  *     description: 좋아요누른 Song 가져오는 API
  *     responses:  
  *       200:

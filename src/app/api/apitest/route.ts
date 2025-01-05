@@ -5,10 +5,12 @@ import { comments } from "./data";
  * @swagger 
  * /api/apitest:
  *   get: 
+ *     tags:
+ *       - apitest
  *     description: apitest용 API
  *     responses:  
  *       200:
- *         description: {id, text} 표현 
+ *         description: id, text 송출
  *       500:
  *         description: Error 
  */ 
@@ -28,6 +30,19 @@ export async function GET(request: NextRequest) {
   });
 }
 
+/** 
+ * @swagger 
+ * /api/apitest:
+ *   post: 
+ *     tags:
+ *       - apitest
+ *     description: apitest용 Post API
+ *     responses:  
+ *       200:
+ *         description: id, text 송출
+ *       500:
+ *         description: Error 
+ */ 
 export async function POST(request: Request, response: Response) {
   const reqComment = await request.json();
   const newComment = {

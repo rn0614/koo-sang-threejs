@@ -7,7 +7,9 @@ import { NextRequest } from "next/server";
 /** 
  * @swagger 
  * /api/schedule:
- *   get: 
+ *   get:
+ *     tags:
+ *       - schedule
  *     description: Get all Employee by Email
  *     responses:  
  *       200: 
@@ -41,12 +43,28 @@ export async function GET() {
  * @swagger 
  * /api/schedule:
  *   post: 
+ *     tags:
+ *       - schedule
  *     description: insert schdeuleList
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: "/api/schemas#/definitions/APItestRequest"
  *     responses:  
  *       200:
- *         description: null  
+ *         description: 업데이트된 json data를 반환한다  
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "/api/schemas#/definitions/ResultType"
  *       500:
  *         description: Error 
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "/api/schemas#/definitions/ResultType"
  */ 
 export async function POST(request: NextRequest) {
   const body = await request.json();
@@ -69,7 +87,6 @@ export async function POST(request: NextRequest) {
         schedule_data: formatedScheduleList, // 확인결과 따로 JSON.stringify(updates) 없이 사용
       }
     );
-    console.log("data");
     if (error) console.error(error);
     return new Response(JSON.stringify({}), {
       status: 200,
@@ -85,6 +102,8 @@ export async function POST(request: NextRequest) {
  * @swagger 
  * /api/schedule:
  *   put: 
+ *     tags:
+ *       - schedule
  *     description: update scheduleList
  *     responses:  
  *       200:
@@ -127,6 +146,8 @@ export async function PUT() {
  * @swagger 
  * /api/schedule:
  *   delete: 
+ *     tags:
+ *       - schedule
  *     description: delete scheduleList
  *     responses:  
  *       200:

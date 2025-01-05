@@ -2,8 +2,10 @@ import { createClient } from "@/utils/supabase/server";
 
 /** 
  * @swagger 
- * /api/songs/:
+ * /api/songs/liked:
  *   get: 
+ *     tags:
+ *       - songs
  *     description: songList[]
  *     responses:  
  *       200:

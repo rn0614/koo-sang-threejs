@@ -1,4 +1,27 @@
-import Stripe from "stripe";
+import { Database } from "./types_db";
+// import {
+//   StripeAddress,
+//   StripePaymentMethod,
+//   StripePaymentMethodType,
+//   StripePaymentMetadata,
+//   StripePriceType,
+//   StripePriceRecurringInterval,
+//   StripeSubscriptionStatus
+// } from "./stripe_type";
+export type ResultType = {
+  code: number;
+  message: string;
+};
+
+export type APItestRequest = {
+  id: number;
+  name: string;
+};
+
+type TimeScheduleDto = Database["public"]["Tables"]["schedule_no_rls"]["Row"];
+export type TimeSchedule = TimeScheduleDto & {
+  isChange?: boolean;
+};
 
 export type Song = {
   id: number;
@@ -15,8 +38,8 @@ export type userDetails = {
   laste_name: string;
   full_name?: string;
   avatar_url?: string;
-  billing_address?: Stripe.Address;
-  payment_method?: Stripe.PaymentMethod[Stripe.PaymentMethod.Type];
+  billing_address?: any; //StripeAddress;
+  payment_method?: any; //StripePaymentMethod[StripePaymentMethodType];
 };
 
 export type Product = {
@@ -25,7 +48,7 @@ export type Product = {
   name?: string;
   description?: string;
   image?: string;
-  metadate?: Stripe.Metadata;
+  metadate?: any; //StripePaymentMetadata;
 };
 
 export type Price = {
@@ -35,19 +58,19 @@ export type Price = {
   description?: string;
   unit_amount?: number;
   currency?: string;
-  type?: Stripe.Price.Type;
-  interval?: Stripe.Price.Recurring.Interval;
+  type?: any; //StripePriceType;
+  interval?: any; //StripePriceRecurringInterval;
   interval_count?: number;
   trial_period_days?: number | null;
-  metadata?: Stripe.Metadata;
+  metadata?: any; //StripePaymentMetadata;
   products?: Product;
 };
 
 export type Subscription = {
   id: string;
   user_id: string;
-  status: Stripe.Subscription.Status;
-  metadata?: Stripe.Metadata;
+  status: any; //StripeSubscriptionStatus;
+  metadata?: any; //StripePaymentMetadata;
   price_id: string;
   quantity?: number;
   cancel_at_period_end?: boolean;

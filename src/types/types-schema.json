@@ -1,0 +1,333 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "APItestRequest": {
+            "properties": {
+                "id": {
+                    "type": "number"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "type": "object"
+        },
+        "Price": {
+            "properties": {
+                "active": {
+                    "type": "boolean"
+                },
+                "currency": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "interval": {},
+                "interval_count": {
+                    "type": "number"
+                },
+                "metadata": {},
+                "product_id": {
+                    "type": "string"
+                },
+                "products": {
+                    "properties": {
+                        "active": {
+                            "type": "boolean"
+                        },
+                        "description": {
+                            "type": "string"
+                        },
+                        "id": {
+                            "type": "string"
+                        },
+                        "image": {
+                            "type": "string"
+                        },
+                        "metadate": {},
+                        "name": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "id"
+                    ],
+                    "type": "object"
+                },
+                "trial_period_days": {
+                    "type": "number"
+                },
+                "type": {},
+                "unit_amount": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "type": "object"
+        },
+        "Product": {
+            "properties": {
+                "active": {
+                    "type": "boolean"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "metadate": {},
+                "name": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "type": "object"
+        },
+        "ResultType": {
+            "properties": {
+                "code": {
+                    "type": "number"
+                },
+                "message": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "code",
+                "message"
+            ],
+            "type": "object"
+        },
+        "Song": {
+            "properties": {
+                "author": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "number"
+                },
+                "image_path": {
+                    "type": "string"
+                },
+                "song_path": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "author",
+                "id",
+                "image_path",
+                "song_path",
+                "title",
+                "user_id"
+            ],
+            "type": "object"
+        },
+        "Subscription": {
+            "properties": {
+                "cancel_at": {
+                    "type": "string"
+                },
+                "cancel_at_period_end": {
+                    "type": "boolean"
+                },
+                "canceled_at": {
+                    "type": "string"
+                },
+                "created": {
+                    "type": "string"
+                },
+                "current_period_end": {
+                    "type": "string"
+                },
+                "current_period_start": {
+                    "type": "string"
+                },
+                "ended_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "metadata": {},
+                "price_id": {
+                    "type": "string"
+                },
+                "prices": {
+                    "type": "string"
+                },
+                "quantity": {
+                    "type": "number"
+                },
+                "status": {},
+                "trial_end": {
+                    "type": "string"
+                },
+                "trial_start": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "created",
+                "current_period_end",
+                "current_period_start",
+                "id",
+                "price_id",
+                "status",
+                "user_id"
+            ],
+            "type": "object"
+        },
+        "TimeSchedule": {
+            "allOf": [
+                {
+                    "properties": {
+                        "created_at": {
+                            "type": "string"
+                        },
+                        "day": {
+                            "type": "string"
+                        },
+                        "deleted_at": {
+                            "type": "string"
+                        },
+                        "endTime": {
+                            "type": "number"
+                        },
+                        "id": {
+                            "type": "number"
+                        },
+                        "startTime": {
+                            "type": "number"
+                        },
+                        "text": {
+                            "type": "string"
+                        },
+                        "type": {
+                            "type": "string"
+                        },
+                        "updated_at": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "created_at",
+                        "day",
+                        "deleted_at",
+                        "endTime",
+                        "id",
+                        "startTime",
+                        "text",
+                        "type",
+                        "updated_at"
+                    ],
+                    "type": "object"
+                },
+                {
+                    "properties": {
+                        "isChange": {
+                            "type": "boolean"
+                        }
+                    },
+                    "type": "object"
+                }
+            ]
+        },
+        "TimeScheduleDto": {
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "day": {
+                    "type": "string"
+                },
+                "deleted_at": {
+                    "type": "string"
+                },
+                "endTime": {
+                    "type": "number"
+                },
+                "id": {
+                    "type": "number"
+                },
+                "startTime": {
+                    "type": "number"
+                },
+                "text": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "created_at",
+                "day",
+                "deleted_at",
+                "endTime",
+                "id",
+                "startTime",
+                "text",
+                "type",
+                "updated_at"
+            ],
+            "type": "object"
+        },
+        "userDetails": {
+            "properties": {
+                "avatar_url": {
+                    "type": "string"
+                },
+                "billing_address": {},
+                "first_name": {
+                    "type": "string"
+                },
+                "full_name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "laste_name": {
+                    "type": "string"
+                },
+                "payment_method": {}
+            },
+            "required": [
+                "first_name",
+                "id",
+                "laste_name"
+            ],
+            "type": "object"
+        }
+    }
+}
+

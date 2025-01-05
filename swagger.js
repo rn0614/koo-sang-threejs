@@ -8,7 +8,11 @@ const options = {
       version: "1.0.0",
     },
   },
-  apis: ["./app/api/**/*.js", "./app/api/**/*.ts"], // API Route 경로
+  apis: [
+    "./app/api/**/*.js",
+    "./app/api/**/*.ts",
+    path.resolve(__dirname, "./types-schema.json"),
+  ], // API Route 경로
 };
 
 const swaggerSpec = swaggerJsdoc(options);

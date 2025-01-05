@@ -6,7 +6,9 @@ const inference = new HfInference(process.env.HF_ACCESS_TOKEN);
 /** 
  * @swagger 
  * /api/huggingface:
- *   post: 
+ *   post:
+ *     tags:
+ *       - huggingface
  *     description: huggingface API
  *     responses:  
  *       200:

@@ -7,8 +7,10 @@ import { headers, cookies } from "next/headers";
 export const dynamic = "force-dynamic";
 /** 
  * @swagger 
- * /api/huggingface:
+ * /api/apitest:
  *   get: 
+ *     tags:
+ *       - apitest
  *     description: huggingface API
  *     responses:  
  *       200:

@@ -5,6 +5,8 @@ import { NextResponse } from "next/server";
  * @swagger
  * /api/songs/{songId}:
  *   get:
+ *     tags:
+ *       - songs
  *     description: songDetail
  *     parameters:
  *      - name: songId
